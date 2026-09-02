@@ -1,53 +1,20 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
-import { getCollection } from "astro:content";
 import { useTranslations, withBase, type Lang } from "@/i18n/utils";
 
 const lang: Lang = "en";
 const t = useTranslations(lang);
 const prefix = "/en";
 
-// Get all talks
-const allTalks = await getCollection("talks", ({ data }) => !data.draft);
-allTalks.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-// Group by semester
-const bySemester = new Map<string, typeof allTalks>();
-for (const talk of allTalks) {
-  const key = talk.data.semester;
-  if (!bySemester.has(key)) bySemester.set(key, []);
-  bySemester.get(key)!.push(talk);
-}
-
-// Recent news
-const recentNews = [
-  { date: "2026.06.20", text: "2026 R01 semester schedule is now live!" },
-  { date: "2026.06.13", text: "Talk #6: Expressivity of MoE — Theoretical Analysis" },
-  { date: "2026.06.06", text: "Talk #5: Combining RL and LLM Priors" },
-  { date: "2026.05.30", text: "Talk #4: Diffusion Sampling Optimization" },
-];
-
 // Organizers
 const organizers = [
-  { name: "Ming Li", affiliation: "Tsinghua University", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=ML&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "Fang Wang", affiliation: "Peking University", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=FW&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "Wei Zhang", affiliation: "Chinese Academy of Sciences", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=WZ&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "Yang Liu", affiliation: "Shanghai Jiao Tong", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=YL&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "Jing Chen", affiliation: "Zhejiang University", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=JC&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "Qiang Zhao", affiliation: "Fudan University", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=QZ&backgroundColor=9b2335&textColor=ffffff" },
+  { name: "Fan Zhou", affiliation: "SUFE", homepage: "https://mlzxzhou.github.io/", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=FZ&backgroundColor=9b2335&textColor=ffffff" },
+  { name: "Chengchun Shi", affiliation: "LSE", homepage: "https://callmespring.github.io/", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=CS&backgroundColor=9b2335&textColor=ffffff" },
+  { name: "Bang Liu", affiliation: "Mila", homepage: "https://mila.quebec/en/directory/bang-liu", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=BL&backgroundColor=9b2335&textColor=ffffff" },
+  { name: "Xiaowu Dai", affiliation: "UCLA", homepage: "https://www.xiaowudai.org/", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=XD&backgroundColor=9b2335&textColor=ffffff" },
 ];
 
-// Partners
-const partners = [
-  { name: "AI TIME", logo: "https://api.dicebear.com/7.x/shapes/svg?seed=AITIME&backgroundColor=1c1c1c" },
-  { name: "Kuxiang Academic", logo: "https://api.dicebear.com/7.x/shapes/svg?seed=KUXIANG&backgroundColor=1c1c1c" },
-  { name: "PaperWeekly", logo: "https://api.dicebear.com/7.x/shapes/svg?seed=PW&backgroundColor=1c1c1c" },
-];
-
-const dateFormatter = new Intl.DateTimeFormat("en-US", {
-  month: "short", day: "numeric"
-});
 ---
 
 <Layout lang={lang}>
@@ -71,32 +38,30 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
             </div>
             <div class="info-card">
               <p class="label">Time</p>
-              <p class="value">Fridays 10:00–11:00 (UTC+8)</p>
+              <p class="value">Thursday 8:00 PM, Friday 10:00 AM</p>
             </div>
             <div class="info-card">
               <p class="label">Platform</p>
-              <p class="value">Bilibili · WeChat</p>
+              <p class="value">Bilibili · WeChat · Xiaohongshu</p>
             </div>
           </div>
         </div>
 
-        <!-- QR Codes placeholder -->
-        <div class="lg:w-56 flex flex-col items-center justify-center gap-4">
-          <!-- WeChat QR -->
-          <div class="border border-[var(--color-rule)] rounded p-3 text-center bg-white">
-            <div class="w-28 h-28 bg-[var(--color-rule)] mb-2 flex items-center justify-center text-xs text-[var(--color-muted)]">
-              <!-- TODO: Add WeChat QR code image here -->
-              <span>WeChat OA QR</span>
-            </div>
+        <div class="lg:w-[30rem] grid grid-cols-3 gap-5 self-start">
+          <div class="border border-[var(--color-rule)] rounded p-4 text-center bg-white">
+            <img class="w-36 h-36 mb-3 object-contain bg-white" src={withBase("/qr/wechat.png")} alt="WeChat QR code" />
             <p class="text-xs text-[var(--color-slate)]">WeChat OA</p>
+            <p class="text-[11px] text-[var(--color-muted)] mt-1">AI+X seminar</p>
           </div>
-          <!-- Bilibili QR -->
-          <div class="border border-[var(--color-rule)] rounded p-3 text-center bg-white">
-            <div class="w-28 h-28 bg-[var(--color-rule)] mb-2 flex items-center justify-center text-xs text-[var(--color-muted)]">
-              <!-- TODO: Add Bilibili QR code image here -->
-              <span>Bilibili QR</span>
-            </div>
+          <div class="border border-[var(--color-rule)] rounded p-4 text-center bg-white">
+            <img class="w-36 h-36 mb-3 object-contain bg-white" src={withBase("/qr/bilibili.png")} alt="Bilibili QR code" />
             <p class="text-xs text-[var(--color-slate)]">Bilibili</p>
+            <p class="text-[11px] text-[var(--color-muted)] mt-1">AI+X seminar</p>
+          </div>
+          <div class="border border-[var(--color-rule)] rounded p-4 text-center bg-white">
+            <img class="w-36 h-36 mb-3 object-contain bg-white" src={withBase("/qr/xiaohongshu.png")} alt="Xiaohongshu QR code" />
+            <p class="text-xs text-[var(--color-slate)]">Xiaohongshu</p>
+            <p class="text-[11px] text-[var(--color-muted)] mt-1">AI+X seminar</p>
           </div>
         </div>
       </div>
@@ -111,14 +76,6 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
         <span class="section-marker">News</span>
       </div>
       <hr class="rule-subtle mb-0" />
-      <div class="max-w-2xl">
-        {recentNews.map((item) => (
-          <div class="news-item">
-            <span class="date">{item.date}</span>
-            <span class="text-sm">{item.text}</span>
-          </div>
-        ))}
-      </div>
     </Container>
   </section>
 
@@ -131,45 +88,6 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
       </div>
       <hr class="rule-subtle mb-0" />
 
-      {[...bySemester.entries()].map(([semester, talks]) => (
-        <details class="schedule-semester" open={semester === "2026 R01"}>
-          <summary>{semester}</summary>
-          <div class="overflow-x-auto mt-4">
-            <table class="schedule-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Speaker</th>
-                  <th class="hidden md:table-cell">Affiliation</th>
-                  <th class="hidden sm:table-cell">Title</th>
-                  <th class="hidden lg:table-cell">Paper</th>
-                  <th>Video</th>
-                </tr>
-              </thead>
-              <tbody>
-                {talks.map((talk) => (
-                  <tr>
-                    <td class="date-col">{dateFormatter.format(talk.data.date)}</td>
-                    <td class="speaker-col">{talk.data.speaker}</td>
-                    <td class="affiliation-col hidden md:table-cell">{talk.data.affiliation}</td>
-                    <td class="title-col hidden sm:table-cell">{talk.data.title}</td>
-                    <td class="link-col hidden lg:table-cell">
-                      {talk.data.paperUrl && (
-                        <a href={talk.data.paperUrl} target="_blank" rel="noopener">Paper</a>
-                      )}
-                    </td>
-                    <td class="link-col">
-                      {talk.data.videoUrl && (
-                        <a href={talk.data.videoUrl} target="_blank" rel="noopener">Video</a>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </details>
-      ))}
     </Container>
   </section>
 
@@ -186,7 +104,13 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
         {organizers.map((org) => (
           <div class="organizer-card">
             <img class="avatar" src={org.avatar} alt={org.name} />
-            <p class="name">{org.name}</p>
+            <a
+              class="name hover:text-[var(--color-accent)] hover:underline underline-offset-4 transition"
+              href={org.homepage}
+              target="_blank"
+              rel="noopener">
+              {org.name}
+            </a>
             <p class="affiliation">{org.affiliation}</p>
           </div>
         ))}
@@ -197,11 +121,7 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
         <h3 class="text-lg mb-4">Contributors</h3>
         <div class="flex flex-wrap gap-2 text-sm text-[var(--color-slate)]">
           {[
-            "Ming Li", "Fang Wang", "Wei Zhang", "Yang Liu", "Jing Chen", "Qiang Zhao",
-            "Li Sun", "Jie Zhou", "Lei Wu", "Xin Zheng",
-            "Ting Huang", "Peng Xu", "Chao Ma", "Lin Zhu",
-            "Jun Hu", "Feng Lin", "Xue He", "Yang Gao",
-            "Hao Luo", "Fang Guo", "Huan Wu", "Tao Xu",
+            "Wang Ziwei", "Zhu Changyu",
           ].map((name) => (
             <span class="px-3 py-1 bg-[var(--color-paper)] border border-[var(--color-rule)] rounded text-xs">
               {name}
@@ -221,14 +141,6 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
       </div>
       <hr class="rule-subtle mb-0" />
 
-      <div class="flex flex-wrap gap-8 items-center mt-6">
-        {partners.map((partner) => (
-          <div class="flex items-center gap-3">
-            <img class="partner-logo" src={partner.logo} alt={partner.name} />
-            <span class="text-sm font-medium">{partner.name}</span>
-          </div>
-        ))}
-      </div>
     </Container>
   </section>
 

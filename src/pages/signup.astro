@@ -26,17 +26,21 @@ const t = useTranslations(lang);
         </h2>
         <p class="text-sm leading-relaxed text-[var(--color-slate)] mt-3">
           {lang === "zh"
-            ? "我们欢迎在读博士生及青年研究者申请分享自己的工作。请填写右侧表单或通过邮件与我们联系。"
-            : "We welcome PhD students and early-career researchers to apply. Please fill out the form or contact us via email."}
+            ? "我们欢迎从事 AI 交叉领域研究的学者申请分享自己的工作。请填写右侧表单与我们联系。"
+            : "We welcome researchers working on cross-disciplinary AI to apply. Please fill out the form to contact us."}
         </p>
         <div class="mt-6 space-y-3 text-sm">
           <div class="flex items-center gap-2 text-[var(--color-slate)]">
             <span class="text-[var(--color-accent)]">✦</span>
-            <span>{t("contact.email")}: hello@ai-x-seminar.example</span>
+            <span>{t("contact.wechat")}: {t("contact.wechat.value")}</span>
           </div>
           <div class="flex items-center gap-2 text-[var(--color-slate)]">
             <span class="text-[var(--color-accent)]">✦</span>
-            <span>Bilibili: @AI+X-Seminar</span>
+            <span>{t("contact.bilibili")}: {t("contact.bilibili.value")}</span>
+          </div>
+          <div class="flex items-center gap-2 text-[var(--color-slate)]">
+            <span class="text-[var(--color-accent)]">✦</span>
+            <span>{t("contact.xiaohongshu")}: {t("contact.xiaohongshu.value")}</span>
           </div>
         </div>
       </div>

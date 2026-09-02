@@ -1,7 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
-import { getCollection } from "astro:content";
 import { useTranslations, withBase, type Lang } from "@/i18n/utils";
 
 export interface Props {
@@ -11,46 +10,14 @@ const { lang = "zh" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
 const prefix = lang === "en" ? "/en" : "";
 
-// Get all talks
-const allTalks = await getCollection("talks", ({ data }) => !data.draft);
-allTalks.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-// Group by semester
-const bySemester = new Map<string, typeof allTalks>();
-for (const talk of allTalks) {
-  const key = talk.data.semester;
-  if (!bySemester.has(key)) bySemester.set(key, []);
-  bySemester.get(key)!.push(talk);
-}
-
-// Recent news
-const recentNews = [
-  { date: "2026.06.20", text: "2026 R01 学期讲座安排已发布，欢迎关注！" },
-  { date: "2026.06.13", text: "第六期：MoE 的表达力 — 理论分析" },
-  { date: "2026.06.06", text: "第五期：RL 与 LLM 先验的结合" },
-  { date: "2026.05.30", text: "第四期：Diffusion 采样方法优化" },
-];
-
-// Organizers (placeholder data)
+// Organizers
 const organizers = [
-  { name: "李明", affiliation: "清华大学", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=LM&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "王芳", affiliation: "北京大学", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=WF&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "张伟", affiliation: "中国科学院", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=ZW&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "刘洋", affiliation: "上海交通大学", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=LY&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "陈静", affiliation: "浙江大学", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=CJ&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "赵强", affiliation: "复旦大学", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=ZQ&backgroundColor=9b2335&textColor=ffffff" },
+  { name: "Fan Zhou", affiliation: "SUFE", homepage: "https://mlzxzhou.github.io/", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=FZ&backgroundColor=9b2335&textColor=ffffff" },
+  { name: "Chengchun Shi", affiliation: "LSE", homepage: "https://callmespring.github.io/", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=CS&backgroundColor=9b2335&textColor=ffffff" },
+  { name: "Bang Liu", affiliation: "Mila", homepage: "https://mila.quebec/en/directory/bang-liu", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=BL&backgroundColor=9b2335&textColor=ffffff" },
+  { name: "Xiaowu Dai", affiliation: "UCLA", homepage: "https://www.xiaowudai.org/", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=XD&backgroundColor=9b2335&textColor=ffffff" },
 ];
 
-// Partners
-const partners = [
-  { name: "AI TIME", logo: "https://api.dicebear.com/7.x/shapes/svg?seed=AITIME&backgroundColor=1c1c1c" },
-  { name: "蔻享学术", logo: "https://api.dicebear.com/7.x/shapes/svg?seed=KUXIANG&backgroundColor=1c1c1c" },
-  { name: "PaperWeekly", logo: "https://api.dicebear.com/7.x/shapes/svg?seed=PW&backgroundColor=1c1c1c" },
-];
-
-const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "zh-CN", {
-  month: "short", day: "numeric"
-});
 ---
 
 <Layout lang={lang}>
@@ -76,32 +43,30 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "zh-CN",
             </div>
             <div class="info-card">
               <p class="label">{lang === "zh" ? "时间" : "Time"}</p>
-              <p class="value">{lang === "zh" ? "每周五 10:00–11:00（北京时间）" : "Fridays 10:00–11:00 (UTC+8)"}</p>
+              <p class="value">{lang === "zh" ? "周四晚 8:00，周五早 10:00" : "Thursday 8:00 PM, Friday 10:00 AM"}</p>
             </div>
             <div class="info-card">
               <p class="label">{lang === "zh" ? "平台" : "Platform"}</p>
-              <p class="value">Bilibili · WeChat</p>
+              <p class="value">Bilibili · WeChat · Xiaohongshu</p>
             </div>
           </div>
         </div>
 
-        <!-- QR Codes placeholder -->
-        <div class="lg:w-56 flex flex-col items-center justify-center gap-4">
-          <!-- WeChat QR -->
-          <div class="border border-[var(--color-rule)] rounded p-3 text-center bg-white">
-            <div class="w-28 h-28 bg-[var(--color-rule)] mb-2 flex items-center justify-center text-xs text-[var(--color-muted)]">
-              <!-- TODO: Add WeChat QR code image here -->
-              <span>微信公众号二维码</span>
-            </div>
+        <div class="lg:w-[30rem] grid grid-cols-3 gap-5 self-start">
+          <div class="border border-[var(--color-rule)] rounded p-4 text-center bg-white">
+            <img class="w-36 h-36 mb-3 object-contain bg-white" src={withBase("/qr/wechat.png")} alt={lang === "zh" ? "微信公众号二维码" : "WeChat QR code"} />
             <p class="text-xs text-[var(--color-slate)]">{lang === "zh" ? "微信公众号" : "WeChat OA"}</p>
+            <p class="text-[11px] text-[var(--color-muted)] mt-1">AI+X seminar</p>
           </div>
-          <!-- Bilibili QR -->
-          <div class="border border-[var(--color-rule)] rounded p-3 text-center bg-white">
-            <div class="w-28 h-28 bg-[var(--color-rule)] mb-2 flex items-center justify-center text-xs text-[var(--color-muted)]">
-              <!-- TODO: Add Bilibili QR code image here -->
-              <span>B站主页二维码</span>
-            </div>
+          <div class="border border-[var(--color-rule)] rounded p-4 text-center bg-white">
+            <img class="w-36 h-36 mb-3 object-contain bg-white" src={withBase("/qr/bilibili.png")} alt={lang === "zh" ? "Bilibili 二维码" : "Bilibili QR code"} />
             <p class="text-xs text-[var(--color-slate)]">Bilibili</p>
+            <p class="text-[11px] text-[var(--color-muted)] mt-1">AI+X seminar</p>
+          </div>
+          <div class="border border-[var(--color-rule)] rounded p-4 text-center bg-white">
+            <img class="w-36 h-36 mb-3 object-contain bg-white" src={withBase("/qr/xiaohongshu.png")} alt={lang === "zh" ? "小红书二维码" : "Xiaohongshu QR code"} />
+            <p class="text-xs text-[var(--color-slate)]">{lang === "zh" ? "小红书" : "Xiaohongshu"}</p>
+            <p class="text-[11px] text-[var(--color-muted)] mt-1">AI+X seminar</p>
           </div>
         </div>
       </div>
@@ -116,14 +81,6 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "zh-CN",
         <span class="section-marker">News</span>
       </div>
       <hr class="rule-subtle mb-0" />
-      <div class="max-w-2xl">
-        {recentNews.map((item) => (
-          <div class="news-item">
-            <span class="date">{item.date}</span>
-            <span class="text-sm">{item.text}</span>
-          </div>
-        ))}
-      </div>
     </Container>
   </section>
 
@@ -136,45 +93,6 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "zh-CN",
       </div>
       <hr class="rule-subtle mb-0" />
 
-      {[...bySemester.entries()].map(([semester, talks]) => (
-        <details class="schedule-semester" open={semester === "2026 R01"}>
-          <summary>{semester}</summary>
-          <div class="overflow-x-auto mt-4">
-            <table class="schedule-table">
-              <thead>
-                <tr>
-                  <th>{lang === "zh" ? "日期" : "Date"}</th>
-                  <th>{lang === "zh" ? "讲者" : "Speaker"}</th>
-                  <th class="hidden md:table-cell">{lang === "zh" ? "所属机构" : "Affiliation"}</th>
-                  <th class="hidden sm:table-cell">{lang === "zh" ? "题目" : "Title"}</th>
-                  <th class="hidden lg:table-cell">{lang === "zh" ? "论文" : "Paper"}</th>
-                  <th>{lang === "zh" ? "录像" : "Video"}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {talks.map((talk) => (
-                  <tr>
-                    <td class="date-col">{dateFormatter.format(talk.data.date)}</td>
-                    <td class="speaker-col">{talk.data.speaker}</td>
-                    <td class="affiliation-col hidden md:table-cell">{talk.data.affiliation}</td>
-                    <td class="title-col hidden sm:table-cell">{talk.data.title}</td>
-                    <td class="link-col hidden lg:table-cell">
-                      {talk.data.paperUrl && (
-                        <a href={talk.data.paperUrl} target="_blank" rel="noopener">Paper</a>
-                      )}
-                    </td>
-                    <td class="link-col">
-                      {talk.data.videoUrl && (
-                        <a href={talk.data.videoUrl} target="_blank" rel="noopener">Video</a>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </details>
-      ))}
     </Container>
   </section>
 
@@ -191,7 +109,13 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "zh-CN",
         {organizers.map((org) => (
           <div class="organizer-card">
             <img class="avatar" src={org.avatar} alt={org.name} />
-            <p class="name">{org.name}</p>
+            <a
+              class="name hover:text-[var(--color-accent)] hover:underline underline-offset-4 transition"
+              href={org.homepage}
+              target="_blank"
+              rel="noopener">
+              {org.name}
+            </a>
             <p class="affiliation">{org.affiliation}</p>
           </div>
         ))}
@@ -202,11 +126,7 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "zh-CN",
         <h3 class="text-lg mb-4">{lang === "zh" ? "贡献者" : "Contributors"}</h3>
         <div class="flex flex-wrap gap-2 text-sm text-[var(--color-slate)]">
           {[
-            "李明", "王芳", "张伟", "刘洋", "陈静", "赵强",
-            "孙丽", "周杰", "吴磊", "郑鑫",
-            "黄婷", "徐鹏", "马超", "朱琳",
-            "胡军", "林峰", "何雪", "高阳",
-            "罗浩", "郭芳", "吴欢", "徐涛",
+            "王子韦", "朱昶宇",
           ].map((name) => (
             <span class="px-3 py-1 bg-[var(--color-paper)] border border-[var(--color-rule)] rounded text-xs">
               {name}
@@ -226,14 +146,6 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "zh-CN",
       </div>
       <hr class="rule-subtle mb-0" />
 
-      <div class="flex flex-wrap gap-8 items-center mt-6">
-        {partners.map((partner) => (
-          <div class="flex items-center gap-3">
-            <img class="partner-logo" src={partner.logo} alt={partner.name} />
-            <span class="text-sm font-medium">{partner.name}</span>
-          </div>
-        ))}
-      </div>
     </Container>
   </section>
 
