@@ -22,7 +22,7 @@ for (const talk of allTalks) {
 
 const dateFormatter = new Intl.DateTimeFormat(
   lang === "en" ? "en-US" : "zh-CN",
-  { month: "short", day: "numeric" }
+  { month: "short", day: "numeric", timeZone: "Asia/Shanghai" }
 );
 ---
 
@@ -48,7 +48,7 @@ const dateFormatter = new Intl.DateTimeFormat(
                   <table class="schedule-table">
                     <thead>
                       <tr>
-                        <th>{lang === "zh" ? "日期" : "Date"}</th>
+                        <th>{t("talks.date")}</th>
                         <th>{lang === "zh" ? "讲者" : "Speaker"}</th>
                         <th class="hidden md:table-cell">{lang === "zh" ? "所属机构" : "Affiliation"}</th>
                         <th class="hidden sm:table-cell">{lang === "zh" ? "题目" : "Title"}</th>

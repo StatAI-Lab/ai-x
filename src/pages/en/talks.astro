@@ -19,7 +19,7 @@ for (const talk of allTalks) {
 }
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
-  month: "short", day: "numeric"
+  month: "short", day: "numeric", timeZone: "Asia/Shanghai"
 });
 ---
 
@@ -45,7 +45,7 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
                   <table class="schedule-table">
                     <thead>
                       <tr>
-                        <th>Date</th>
+                        <th>{t("talks.date")}</th>
                         <th>Speaker</th>
                         <th class="hidden md:table-cell">Affiliation</th>
                         <th class="hidden sm:table-cell">Title</th>
