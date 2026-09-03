@@ -30,7 +30,7 @@ export const ui = {
     "hero.title": "AI+X Seminar",
     "hero.subtitle":
       "每周一次，聚焦 AI 与其他领域的交叉创新，涵盖 AI+Science、跨模态、学科交叉等前沿方向。",
-    "hero.time": "周四晚 8:00，周五早 10:00（北京时间）",
+    "hero.time": "周四晚 8:00 / 周五早 10:00（北京时间）",
     "hero.cta.upcoming": "查看近期讲座",
     "hero.cta.subscribe": "订阅讲座通知",
 
@@ -164,7 +164,7 @@ export const ui = {
     "hero.title": "AI+X Seminar",
     "hero.subtitle":
       "Exploring the intersection of AI with other fields, covering AI+Science, cross-modality, and interdisciplinary innovation.",
-    "hero.time": "Thursday 8:00 PM, Friday 10:00 AM (Beijing Time, UTC+8)",
+    "hero.time": "Thursday 8:00 PM / Friday 10:00 AM (Beijing Time, UTC+8)",
     "hero.cta.upcoming": "View Upcoming Talks",
     "hero.cta.subscribe": "Subscribe",
 
