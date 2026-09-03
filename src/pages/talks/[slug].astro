@@ -1,11 +1,11 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
 import { useTranslations, withBase, type Lang } from "@/i18n/utils";
+import { getTalks } from "@/utils/talks";
 
 export async function getStaticPaths() {
-  const talks = await getCollection("talks");
+  const talks = await getTalks();
   return talks.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },

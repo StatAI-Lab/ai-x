@@ -120,6 +120,7 @@ export const ui = {
     "talks.video": "录像",
     "talks.slides": "幻灯片",
     "talks.viewMore": "查看更多",
+    "talks.empty": "讲座信息整理中。",
 
     // Contact 页
     "contact.title": "联系我们",
@@ -145,7 +146,6 @@ export const ui = {
 
     // Footer
     "footer.copyright": "AI+X Seminar 保留所有权利。",
-    "footer.builtWith": "基于 Astroship 模板搭建",
   },
 
   en: {
@@ -260,6 +260,7 @@ export const ui = {
     "talks.video": "Recording",
     "talks.slides": "Slides",
     "talks.viewMore": "View more",
+    "talks.empty": "Talk information is being prepared.",
 
     "contact.title": "Contact",
     "contact.desc":
@@ -285,7 +286,6 @@ export const ui = {
     "contact.form.errMessage": "Please enter your message",
 
     "footer.copyright": "AI+X Seminar. All rights reserved.",
-    "footer.builtWith": "Built on the Astroship template",
   },
 } as const;
 

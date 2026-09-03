@@ -4,29 +4,22 @@ import { useTranslations, type Lang } from "@/i18n/utils";
 const { lang = "zh" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
 
-// 合作单位:占位,可在 src/i18n/ui.ts 改文案,在这里改图标/名字
-const partners = [
-  "上海财经大学",
-  "上海交通大学",
-  "清华大学",
-  "北京大学",
-  "AI TIME",
-  "蔻享学术",
-];
+const partners: string[] = [];
 ---
 
-<div class="mt-24">
-  <h2 class="text-center text-slate-500 text-sm uppercase tracking-wider">
-    {t("logos.title")}
-  </h2>
-  <div
-    class="flex gap-6 md:gap-12 items-center justify-center mt-8 flex-wrap text-slate-400">
-    {
-      partners.map((name) => (
-        <span class="text-base md:text-lg font-medium px-4 py-2 border border-slate-200 rounded-md">
-          {name}
-        </span>
-      ))
-    }
-  </div>
-</div>
+{
+  partners.length > 0 && (
+    <div class="mt-24">
+      <h2 class="text-center text-slate-500 text-sm uppercase tracking-wider">
+        {t("logos.title")}
+      </h2>
+      <div class="flex gap-6 md:gap-12 items-center justify-center mt-8 flex-wrap text-slate-400">
+        {partners.map((name) => (
+          <span class="text-base md:text-lg font-medium px-4 py-2 border border-slate-200 rounded-md">
+            {name}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}

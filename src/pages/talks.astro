@@ -1,18 +1,16 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
 import Sectionhead from "@/components/sectionhead.astro";
 import { useTranslations, type Lang } from "@/i18n/utils";
+import { getTalks } from "@/utils/talks";
 
 export interface Props {
   lang?: Lang;
 }
 const { lang = "zh" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
-const prefix = lang === "en" ? "/en" : "";
-
-const allTalks = await getCollection("talks", ({ data }) => !data.draft);
+const allTalks = await getTalks();
 allTalks.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const bySemester = new Map<string, typeof allTalks>();
@@ -37,47 +35,53 @@ const dateFormatter = new Intl.DateTimeFormat(
 
     <main class="mt-16 max-w-4xl mx-auto">
       {
-        [...bySemester.entries()].map(([semester, talks]) => (
-          <section class="mb-12">
-            <details class="schedule-semester" open>
-              <summary>{semester}</summary>
-              <div class="overflow-x-auto mt-4">
-                <table class="schedule-table">
-                  <thead>
-                    <tr>
-                      <th>{lang === "zh" ? "日期" : "Date"}</th>
-                      <th>{lang === "zh" ? "讲者" : "Speaker"}</th>
-                      <th class="hidden md:table-cell">{lang === "zh" ? "所属机构" : "Affiliation"}</th>
-                      <th class="hidden sm:table-cell">{lang === "zh" ? "题目" : "Title"}</th>
-                      <th class="hidden lg:table-cell">{lang === "zh" ? "论文" : "Paper"}</th>
-                      <th>{lang === "zh" ? "录像" : "Video"}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {talks.map((entry) => (
+        bySemester.size === 0 ? (
+          <p class="border-y border-[var(--color-rule)] py-6 text-[var(--color-slate)]">
+            {t("talks.empty")}
+          </p>
+        ) : (
+          [...bySemester.entries()].map(([semester, talks]) => (
+            <section class="mb-12">
+              <details class="schedule-semester" open>
+                <summary>{semester}</summary>
+                <div class="overflow-x-auto mt-4">
+                  <table class="schedule-table">
+                    <thead>
                       <tr>
-                        <td class="date-col">{dateFormatter.format(entry.data.date)}</td>
-                        <td class="speaker-col">{entry.data.speaker}</td>
-                        <td class="affiliation-col hidden md:table-cell">{entry.data.affiliation}</td>
-                        <td class="title-col hidden sm:table-cell">{entry.data.title}</td>
-                        <td class="link-col hidden lg:table-cell">
-                          {entry.data.paperUrl && (
-                            <a href={entry.data.paperUrl} target="_blank" rel="noopener">Paper</a>
-                          )}
-                        </td>
-                        <td class="link-col">
-                          {entry.data.videoUrl && (
-                            <a href={entry.data.videoUrl} target="_blank" rel="noopener">Video</a>
-                          )}
-                        </td>
+                        <th>{lang === "zh" ? "日期" : "Date"}</th>
+                        <th>{lang === "zh" ? "讲者" : "Speaker"}</th>
+                        <th class="hidden md:table-cell">{lang === "zh" ? "所属机构" : "Affiliation"}</th>
+                        <th class="hidden sm:table-cell">{lang === "zh" ? "题目" : "Title"}</th>
+                        <th class="hidden lg:table-cell">{lang === "zh" ? "论文" : "Paper"}</th>
+                        <th>{lang === "zh" ? "录像" : "Video"}</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </details>
-          </section>
-        ))
+                    </thead>
+                    <tbody>
+                      {talks.map((entry) => (
+                        <tr>
+                          <td class="date-col">{dateFormatter.format(entry.data.date)}</td>
+                          <td class="speaker-col">{entry.data.speaker}</td>
+                          <td class="affiliation-col hidden md:table-cell">{entry.data.affiliation}</td>
+                          <td class="title-col hidden sm:table-cell">{entry.data.title}</td>
+                          <td class="link-col hidden lg:table-cell">
+                            {entry.data.paperUrl && (
+                              <a href={entry.data.paperUrl} target="_blank" rel="noopener">Paper</a>
+                            )}
+                          </td>
+                          <td class="link-col">
+                            {entry.data.videoUrl && (
+                              <a href={entry.data.videoUrl} target="_blank" rel="noopener">Video</a>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+            </section>
+          ))
+        )
       }
     </main>
   </Container>
