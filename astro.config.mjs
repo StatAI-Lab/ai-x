@@ -6,8 +6,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://sausage-5464.github.io/ai-x",
-  base: "/ai-x",
+  site: process.env.SITE ?? "https://sausage-5464.github.io",
   i18n: {
     defaultLocale: "zh",
     locales: ["zh", "en"],

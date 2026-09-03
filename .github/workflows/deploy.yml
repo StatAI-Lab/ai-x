@@ -31,10 +31,16 @@ jobs:
         with:
           node-version: 24
 
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Install dependencies
         run: pnpm install
 
       - name: Build
+        env:
+          SITE: ${{ steps.pages.outputs.base_url }}
         run: pnpm build
 
       - name: Upload artifact
