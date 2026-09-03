@@ -45,6 +45,7 @@ const organizers = defineCollection({
     nameEn: z.string().optional(), // 拼音 / 英文名
     affiliation: z.string(), // 中文机构
     affiliationEn: z.string().optional(), // 英文机构
+    avatar: z.string().optional(), // public 下的头像路径,如 /organizers/name.jpg
     homepage: z.string().url().optional(),
     order: z.number().default(99), // 显示顺序(数字小的排前面)
   }),

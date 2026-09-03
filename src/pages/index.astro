@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
 import { useTranslations, withBase, type Lang } from "@/i18n/utils";
+import { getOrganizers, initials } from "@/utils/organizers";
 
 export interface Props {
   lang?: Lang;
@@ -9,14 +10,7 @@ export interface Props {
 const { lang = "zh" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
 const prefix = lang === "en" ? "/en" : "";
-
-// Organizers
-const organizers = [
-  { name: "Fan Zhou", affiliation: "SUFE", homepage: "https://mlzxzhou.github.io/", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=FZ&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "Chengchun Shi", affiliation: "LSE", homepage: "https://callmespring.github.io/", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=CS&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "Bang Liu", affiliation: "Mila", homepage: "https://mila.quebec/en/directory/bang-liu", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=BL&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "Xiaowu Dai", affiliation: "UCLA", homepage: "https://www.xiaowudai.org/", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=XD&backgroundColor=9b2335&textColor=ffffff" },
-];
+const organizers = await getOrganizers(lang);
 
 ---
 
@@ -47,7 +41,7 @@ const organizers = [
             </div>
             <div class="info-card">
               <p class="label">{lang === "zh" ? "平台" : "Platform"}</p>
-              <p class="value">Bilibili · WeChat · Xiaohongshu</p>
+              <p class="value">{lang === "zh" ? "哔哩哔哩 · 微信公众号 · 小红书" : "Bilibili · WeChat · Xiaohongshu"}</p>
             </div>
           </div>
         </div>
@@ -59,8 +53,8 @@ const organizers = [
             <p class="text-[11px] text-[var(--color-muted)] mt-1">AI+X seminar</p>
           </div>
           <div class="border border-[var(--color-rule)] rounded p-4 text-center bg-white">
-            <img class="w-36 h-36 mb-3 object-contain bg-white" src={withBase("/qr/bilibili.png")} alt={lang === "zh" ? "Bilibili 二维码" : "Bilibili QR code"} />
-            <p class="text-xs text-[var(--color-slate)]">Bilibili</p>
+            <img class="w-36 h-36 mb-3 object-contain bg-white" src={withBase("/qr/bilibili.png")} alt={lang === "zh" ? "哔哩哔哩二维码" : "Bilibili QR code"} />
+            <p class="text-xs text-[var(--color-slate)]">{lang === "zh" ? "哔哩哔哩" : "Bilibili"}</p>
             <p class="text-[11px] text-[var(--color-muted)] mt-1">AI+X seminar</p>
           </div>
           <div class="border border-[var(--color-rule)] rounded p-4 text-center bg-white">
@@ -78,7 +72,7 @@ const organizers = [
     <Container>
       <div class="flex items-baseline gap-6 mb-6">
         <h2 class="text-xl">{lang === "zh" ? "最近新闻" : "Recent News"}</h2>
-        <span class="section-marker">News</span>
+        <span class="section-marker">{lang === "zh" ? "新闻" : "News"}</span>
       </div>
       <hr class="rule-subtle mb-0" />
     </Container>
@@ -89,7 +83,7 @@ const organizers = [
     <Container>
       <div class="flex items-baseline gap-6 mb-6">
         <h2 class="text-xl">{lang === "zh" ? "讲座安排" : "Schedule"}</h2>
-        <span class="section-marker">Schedule by Semester</span>
+        <span class="section-marker">{lang === "zh" ? "按学期归档" : "Schedule by Semester"}</span>
       </div>
       <hr class="rule-subtle mb-0" />
 
@@ -101,21 +95,31 @@ const organizers = [
     <Container>
       <div class="flex items-baseline gap-6 mb-6">
         <h2 class="text-xl">{lang === "zh" ? "组织者" : "Organizers"}</h2>
-        <span class="section-marker">Core Team</span>
+        <span class="section-marker">{lang === "zh" ? "核心团队" : "Core Team"}</span>
       </div>
       <hr class="rule-subtle mb-0" />
 
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-6">
         {organizers.map((org) => (
           <div class="organizer-card">
-            <img class="avatar" src={org.avatar} alt={org.name} />
-            <a
-              class="name hover:text-[var(--color-accent)] hover:underline underline-offset-4 transition"
-              href={org.homepage}
-              target="_blank"
-              rel="noopener">
-              {org.name}
-            </a>
+            {org.avatar ? (
+              <img class="avatar" src={org.avatar} alt={org.name} />
+            ) : (
+              <div class="avatar flex items-center justify-center text-xl font-semibold text-[var(--color-slate)]">
+                {initials(org.name)}
+              </div>
+            )}
+            {org.homepage ? (
+              <a
+                class="name hover:text-[var(--color-accent)] hover:underline underline-offset-4 transition"
+                href={org.homepage}
+                target="_blank"
+                rel="noopener">
+                {org.name}
+              </a>
+            ) : (
+              <span class="name">{org.name}</span>
+            )}
             <p class="affiliation">{org.affiliation}</p>
           </div>
         ))}
@@ -142,7 +146,7 @@ const organizers = [
     <Container>
       <div class="flex items-baseline gap-6 mb-6">
         <h2 class="text-xl">{lang === "zh" ? "合作组织" : "Partners"}</h2>
-        <span class="section-marker">Collaborations</span>
+        <span class="section-marker">{lang === "zh" ? "合作" : "Collaborations"}</span>
       </div>
       <hr class="rule-subtle mb-0" />
 

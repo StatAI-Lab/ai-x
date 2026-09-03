@@ -2,18 +2,12 @@
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
 import { useTranslations, withBase, type Lang } from "@/i18n/utils";
+import { getOrganizers, initials } from "@/utils/organizers";
 
 const lang: Lang = "en";
 const t = useTranslations(lang);
 const prefix = "/en";
-
-// Organizers
-const organizers = [
-  { name: "Fan Zhou", affiliation: "SUFE", homepage: "https://mlzxzhou.github.io/", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=FZ&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "Chengchun Shi", affiliation: "LSE", homepage: "https://callmespring.github.io/", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=CS&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "Bang Liu", affiliation: "Mila", homepage: "https://mila.quebec/en/directory/bang-liu", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=BL&backgroundColor=9b2335&textColor=ffffff" },
-  { name: "Xiaowu Dai", affiliation: "UCLA", homepage: "https://www.xiaowudai.org/", avatar: "https://api.dicebear.com/7.x/initials/svg?seed=XD&backgroundColor=9b2335&textColor=ffffff" },
-];
+const organizers = await getOrganizers(lang);
 
 ---
 
@@ -103,14 +97,24 @@ const organizers = [
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-6">
         {organizers.map((org) => (
           <div class="organizer-card">
-            <img class="avatar" src={org.avatar} alt={org.name} />
-            <a
-              class="name hover:text-[var(--color-accent)] hover:underline underline-offset-4 transition"
-              href={org.homepage}
-              target="_blank"
-              rel="noopener">
-              {org.name}
-            </a>
+            {org.avatar ? (
+              <img class="avatar" src={org.avatar} alt={org.name} />
+            ) : (
+              <div class="avatar flex items-center justify-center text-xl font-semibold text-[var(--color-slate)]">
+                {initials(org.name)}
+              </div>
+            )}
+            {org.homepage ? (
+              <a
+                class="name hover:text-[var(--color-accent)] hover:underline underline-offset-4 transition"
+                href={org.homepage}
+                target="_blank"
+                rel="noopener">
+                {org.name}
+              </a>
+            ) : (
+              <span class="name">{org.name}</span>
+            )}
             <p class="affiliation">{org.affiliation}</p>
           </div>
         ))}

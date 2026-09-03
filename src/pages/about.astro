@@ -3,19 +3,14 @@ import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
 import Sectionhead from "@/components/sectionhead.astro";
 import { useTranslations, type Lang } from "@/i18n/utils";
+import { getOrganizers, initials } from "@/utils/organizers";
 
 export interface Props {
   lang?: Lang;
 }
 const { lang = "zh" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
-
-const organizers = [
-  { name: "Fan Zhou", affiliation: "SUFE", homepage: "https://mlzxzhou.github.io/" },
-  { name: "Chengchun Shi", affiliation: "LSE", homepage: "https://callmespring.github.io/" },
-  { name: "Bang Liu", affiliation: "Mila", homepage: "https://mila.quebec/en/directory/bang-liu" },
-  { name: "Xiaowu Dai", affiliation: "UCLA", homepage: "https://www.xiaowudai.org/" },
-];
+const organizers = await getOrganizers(lang);
 
 const logistics = [
   { label: t("about.logistics.time"), value: t("about.logistics.time.value") },
@@ -30,15 +25,6 @@ const logistics = [
   },
 ];
 
-function initials(name: string) {
-  return name
-    .trim()
-    .split(/\s+/)
-    .map((p) => p[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
-}
 ---
 
 <Layout title={t("nav.about")} lang={lang}>
@@ -90,17 +76,29 @@ function initials(name: string) {
         {
           organizers.map((org) => (
             <div class="flex flex-col items-center text-center">
-              <div class="size-20 rounded-full bg-[var(--color-paper)] border-2 border-[var(--color-rule)] flex items-center justify-center text-xl font-semibold text-[var(--color-slate)]">
-                {initials(org.name)}
-              </div>
+              {org.avatar ? (
+                <img
+                  class="size-20 rounded-full object-cover bg-[var(--color-paper)] border-2 border-[var(--color-rule)]"
+                  src={org.avatar}
+                  alt={org.name}
+                />
+              ) : (
+                <div class="size-20 rounded-full bg-[var(--color-paper)] border-2 border-[var(--color-rule)] flex items-center justify-center text-xl font-semibold text-[var(--color-slate)]">
+                  {initials(org.name)}
+                </div>
+              )}
               <div class="mt-3">
-                <a
-                  href={org.homepage}
-                  target="_blank"
-                  rel="noopener"
-                  class="font-medium text-[var(--color-ink)] hover:text-[var(--color-accent)] hover:underline underline-offset-4">
-                  {org.name}
-                </a>
+                {org.homepage ? (
+                  <a
+                    href={org.homepage}
+                    target="_blank"
+                    rel="noopener"
+                    class="font-medium text-[var(--color-ink)] hover:text-[var(--color-accent)] hover:underline underline-offset-4">
+                    {org.name}
+                  </a>
+                ) : (
+                  <span class="font-medium text-[var(--color-ink)]">{org.name}</span>
+                )}
                 <div class="text-xs text-[var(--color-muted)] mt-1">{org.affiliation}</div>
               </div>
             </div>
