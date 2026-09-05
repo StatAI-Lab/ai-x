@@ -14,9 +14,9 @@ export const ui = {
   zh: {
     // 全站
     "site.name": "AI+X Seminar",
-    "site.tagline": "聚焦 AI 交叉领域的线上学术研讨会",
+    "site.tagline": "聚焦 AI 与多学科融合创新的线上学术研讨会",
     "site.description":
-      "AI+X Seminar 是一个聚焦人工智能交叉领域的线上学术研讨会，关注 AI 与各学科的融合创新。",
+      "AI+X Seminar 是一个聚焦 AI 与多学科融合创新的线上学术研讨会，涵盖大模型的数学基础、AI 赋能科学、智能体系统与大模型评测等交叉方向。",
 
     // 导航
     "nav.home": "首页",
@@ -29,7 +29,7 @@ export const ui = {
     // 首页 Hero
     "hero.title": "AI+X Seminar",
     "hero.subtitle":
-      "每周一次，聚焦 AI 与其他领域的交叉创新，涵盖 AI+Science、跨模态、学科交叉等前沿方向。",
+      "每周一次，聚焦 AI 与其他领域的跨学科融合创新，涵盖大模型的数学基础、AI 赋能科学、智能体系统与大模型评测等交叉方向。",
     "hero.time": "周四晚 8:00 / 周五早 10:00（北京时间）",
     "hero.cta.upcoming": "查看近期讲座",
     "hero.cta.subscribe": "订阅讲座通知",
@@ -37,7 +37,7 @@ export const ui = {
     // 首页 Features
     "features.title": "研讨会概况",
     "features.subtitle":
-      "面向中文学术社区,搭建高质量的 AI 基础研究交流平台。",
+      "面向中文学术社区,搭建高质量的 AI 跨学科融合创新交流平台。",
     "features.f1.title": "每周一讲",
     "features.f1.desc":
       "周四晚八点与周五早十点开讲,每场聚焦一位讲者的近期工作,深入而非浮光掠影。",
@@ -49,7 +49,7 @@ export const ui = {
       "讲座内容通过哔哩哔哩、微信公众号与小红书同步发布,会后可观看回放,论文链接公开分享。",
     "features.f4.title": "前沿话题",
     "features.f4.desc":
-      "覆盖机器学习理论、大模型、强化学习、AI for Science 等基础研究方向。",
+      "覆盖大模型数学基础、AI for Science、智能体系统、大模型评测等交叉研究方向。",
     "features.f5.title": "开放参与",
     "features.f5.desc":
       "观众可通过微信公众号、哔哩哔哩与小红书关注讲座通知与内容更新。",
@@ -70,9 +70,9 @@ export const ui = {
     "about.title": "关于 AI+X Seminar",
     "about.desc": "一个由青年研究者自发组织的线上学术研讨会。",
     "about.intro.h":
-      "为中文社区的 AI 基础研究,搭建一个长期的、严肃的交流平台。",
+      "为中文社区的 AI 跨学科融合创新,搭建一个长期的、严肃的交流平台。",
     "about.intro.p":
-      "AI+X Seminar 创立于 2026 年,定期邀请活跃在 AI 交叉领域的一线研究者分享其近期工作。我们关注 AI+Science、跨模态、学科交叉等前沿方向,以中文为主要语言,面向全球中文研究社区开放。",
+      "AI+X Seminar 创立于 2026 年,定期邀请活跃在 AI 与其他领域融合创新前沿的一线研究者分享其近期工作。我们关注大模型的数学基础、AI 赋能科学、智能体系统、大模型评测等交叉方向,以中文为主要语言,面向全球中文研究社区开放。",
     "about.logistics.title": "基础信息",
     "about.logistics.time": "时间",
     "about.logistics.time.value": "周四晚 8:00，周五早 10:00（北京时间）",
@@ -100,7 +100,7 @@ export const ui = {
     "info.audience.f6": "提倡尊重讲者、文明讨论",
     "info.audience.cta": "联系我们",
     "info.speaker.title": "讲者须知",
-    "info.speaker.f1": "本研讨会面向 AI 交叉领域研究,关注 AI+Science、跨模态与学科交叉等方向",
+    "info.speaker.f1": "本研讨会面向 AI 与其他领域的跨学科融合创新,关注大模型数学基础、AI 赋能科学、智能体系统、大模型评测等方向",
     "info.speaker.f2": "讲座时长 45 分钟 + 15 分钟 QA",
     "info.speaker.f3": "鼓励分享尚未发表或刚刚发表的工作",
     "info.speaker.f4": "讲述语言为中文,幻灯片中英皆可",
@@ -150,9 +150,9 @@ export const ui = {
 
   en: {
     "site.name": "AI+X Seminar",
-    "site.tagline": "An online seminar on cross-disciplinary AI research",
+    "site.tagline": "An online seminar on interdisciplinary AI innovation",
     "site.description":
-      "AI+X Seminar is an online academic seminar focused on the intersection of AI with other fields, covering AI+Science, cross-modality, and interdisciplinary innovation.",
+      "AI+X Seminar is an online academic seminar focused on interdisciplinary innovation between AI and other fields, covering the mathematical foundations of large models, AI for science, agent systems, and large model evaluation.",
 
     "nav.home": "Home",
     "nav.about": "About",
@@ -163,14 +163,14 @@ export const ui = {
 
     "hero.title": "AI+X Seminar",
     "hero.subtitle":
-      "Exploring the intersection of AI with other fields, covering AI+Science, cross-modality, and interdisciplinary innovation.",
+      "Exploring interdisciplinary innovation between AI and other fields, covering the mathematical foundations of large models, AI for science, agent systems, and large model evaluation.",
     "hero.time": "Thursday 8:00 PM / Friday 10:00 AM (Beijing Time, UTC+8)",
     "hero.cta.upcoming": "View Upcoming Talks",
     "hero.cta.subscribe": "Subscribe",
 
     "features.title": "About the Seminar",
     "features.subtitle":
-      "Building a high-quality forum for foundational AI research in the Chinese-speaking academic community.",
+      "Building a high-quality forum for interdisciplinary AI innovation in the Chinese-speaking academic community.",
     "features.f1.title": "Weekly Talks",
     "features.f1.desc":
       "Talks run on Thursday evenings and Friday mornings, each session focused on one speaker's recent work.",
@@ -182,7 +182,7 @@ export const ui = {
       "Talk content is published through Bilibili, WeChat, and Xiaohongshu. Recordings and paper links are shared after each talk.",
     "features.f4.title": "Foundational Topics",
     "features.f4.desc":
-      "Covers ML theory, large models, reinforcement learning, AI for Science, and adjacent foundational directions.",
+      "Covers the mathematical foundations of large models, AI for Science, agent systems, and large model evaluation.",
     "features.f5.title": "Open Participation",
     "features.f5.desc":
       "Audience can follow AI+X seminar on WeChat, Bilibili, and Xiaohongshu for talk updates.",
@@ -201,9 +201,9 @@ export const ui = {
     "about.desc":
       "A grass-roots online academic seminar organized by early-career researchers.",
     "about.intro.h":
-      "Building a long-running, serious forum for foundational AI research in the Chinese-speaking community.",
+      "Building a long-running, serious forum for interdisciplinary AI innovation in the Chinese-speaking community.",
     "about.intro.p":
-      "AI+X Seminar was founded in 2026. We regularly invite researchers working at the frontiers of cross-disciplinary AI to share recent work. We focus on AI+Science, cross-modality, interdisciplinary research, and related directions. Talks are primarily in Chinese and open to the global Chinese-speaking research community.",
+      "AI+X Seminar was founded in 2026. We regularly invite researchers working at the frontiers of interdisciplinary innovation between AI and other fields to share recent work. We focus on the mathematical foundations of large models, AI for science, agent systems, large model evaluation, and related directions. Talks are primarily in Chinese and open to the global Chinese-speaking research community.",
     "about.logistics.title": "Logistics",
     "about.logistics.time": "When",
     "about.logistics.time.value": "Thursday 8:00 PM, Friday 10:00 AM (Beijing Time, UTC+8)",
@@ -237,7 +237,7 @@ export const ui = {
     "info.audience.cta": "Contact Us",
     "info.speaker.title": "For Speakers",
     "info.speaker.f1":
-      "The seminar focuses on cross-disciplinary AI, including AI+Science, cross-modality, and interdisciplinary research",
+      "The seminar focuses on interdisciplinary innovation between AI and other fields, including the mathematical foundations of large models, AI for science, agent systems, and large model evaluation",
     "info.speaker.f2": "Each session is 45 min talk + 15 min Q&A",
     "info.speaker.f3":
       "Sharing in-progress or recently-published work is encouraged",

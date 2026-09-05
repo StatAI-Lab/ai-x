@@ -20,20 +20,20 @@ const organizers = await getOrganizers(lang);
     <Container>
       <div class="flex flex-col lg:flex-row gap-8">
         <div class="flex-1 max-w-3xl">
-          <p class="section-marker mb-2">AI+X Seminar · AI 交叉领域研讨会</p>
+          <p class="section-marker mb-2">AI+X Seminar · AI 跨学科融合创新研讨会</p>
           <h1 class="hero-title">AI+X Seminar</h1>
           <hr class="rule-accent my-4 w-24" />
           <p class="hero-subtitle mb-6">
             {lang === "zh"
-              ? "聚焦 AI 与其他领域的交叉创新，涵盖 AI+Science、跨模态、学科交叉等前沿方向。"
-              : "Exploring the intersection of AI with other fields, covering AI+Science, cross-modality, and interdisciplinary innovation."}
+              ? "聚焦 AI 与其他领域的跨学科融合创新，涵盖大模型的数学基础、AI 赋能科学、智能体系统与大模型评测等交叉方向。"
+              : "Exploring interdisciplinary innovation between AI and other fields, covering the mathematical foundations of large models, AI for science, agent systems, and large model evaluation."}
           </p>
 
           <!-- Info Cards - compact -->
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             <div class="info-card">
               <p class="label">{lang === "zh" ? "主题" : "Theme"}</p>
-              <p class="value">{lang === "zh" ? "AI 交叉领域研究" : "Cross-disciplinary AI"}</p>
+              <p class="value">{lang === "zh" ? "AI 跨学科融合创新" : "Interdisciplinary AI Innovation"}</p>
             </div>
             <div class="info-card">
               <p class="label">{lang === "zh" ? "时间" : "Time"}</p>
