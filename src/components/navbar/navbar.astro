@@ -6,6 +6,8 @@ import {
   withBase,
   type Lang,
 } from "@/i18n/utils";
+import { Image } from "astro:assets";
+import { siteImages } from "@/utils/images";
 
 const { lang = "zh" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
@@ -32,10 +34,15 @@ const homePath = withBase(prefix + "/");
     <div class="flex items-center justify-between h-20">
       <!-- Logo -->
       <a href={homePath} class="flex items-center gap-3 group">
-        <img
+        <Image
           class="w-11 h-11 object-contain"
-          src={withBase("/logo.png")}
+          src={siteImages.logo}
           alt="AI+X Seminar logo"
+          width={44}
+          height={44}
+          densities={[1, 2]}
+          quality="high"
+          priority
         />
         <span class="font-serif font-bold text-lg text-[var(--color-ink)] tracking-tight">
           {lang === "zh" ? "AI+X Seminar" : "AI+X Seminar"}

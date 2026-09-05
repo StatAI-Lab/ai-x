@@ -4,6 +4,7 @@ import Container from "@/components/container.astro";
 import Sectionhead from "@/components/sectionhead.astro";
 import { useTranslations, type Lang } from "@/i18n/utils";
 import { getOrganizers, initials } from "@/utils/organizers";
+import { Image } from "astro:assets";
 
 const lang: Lang = "en";
 const t = useTranslations(lang);
@@ -70,11 +71,27 @@ const logistics = [
         {
           organizers.map((org) => (
             <div class="flex flex-col items-center text-center">
-              {org.avatar ? (
+              {org.optimizedAvatar ? (
+                <Image
+                  class="size-20 rounded-full object-cover bg-[var(--color-paper)] border-2 border-[var(--color-rule)]"
+                  src={org.optimizedAvatar}
+                  alt={org.name}
+                  width={80}
+                  height={80}
+                  densities={[1, 2]}
+                  fit="cover"
+                  quality="high"
+                  loading="lazy"
+                />
+              ) : org.avatar ? (
                 <img
                   class="size-20 rounded-full object-cover bg-[var(--color-paper)] border-2 border-[var(--color-rule)]"
                   src={org.avatar}
                   alt={org.name}
+                  width="80"
+                  height="80"
+                  loading="lazy"
+                  decoding="async"
                 />
               ) : (
                 <div class="size-20 rounded-full bg-[var(--color-paper)] border-2 border-[var(--color-rule)] flex items-center justify-center text-xl font-semibold text-[var(--color-slate)]">

@@ -3,6 +3,8 @@ import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
 import { useTranslations, withBase, type Lang } from "@/i18n/utils";
 import { getOrganizers, initials } from "@/utils/organizers";
+import { Image } from "astro:assets";
+import { siteImages } from "@/utils/images";
 
 const lang: Lang = "en";
 const t = useTranslations(lang);
@@ -43,17 +45,17 @@ const organizers = await getOrganizers(lang);
 
         <div class="lg:w-[30rem] grid grid-cols-3 gap-5 self-start">
           <div class="border border-[var(--color-rule)] rounded p-4 text-center bg-white">
-            <img class="w-36 h-36 mb-3 object-contain bg-white" src={withBase("/qr/wechat.png")} alt="WeChat QR code" />
+            <Image class="w-36 h-36 mb-3 object-contain bg-white" src={siteImages.qr.wechat} alt="WeChat QR code" width={144} height={144} densities={[1, 2]} format="png" />
             <p class="text-xs text-[var(--color-slate)]">WeChat OA</p>
             <p class="text-[11px] text-[var(--color-muted)] mt-1">AI+X seminar</p>
           </div>
           <div class="border border-[var(--color-rule)] rounded p-4 text-center bg-white">
-            <img class="w-36 h-36 mb-3 object-contain bg-white" src={withBase("/qr/bilibili.png")} alt="Bilibili QR code" />
+            <Image class="w-36 h-36 mb-3 object-contain bg-white" src={siteImages.qr.bilibili} alt="Bilibili QR code" width={144} height={144} densities={[1, 2]} format="png" />
             <p class="text-xs text-[var(--color-slate)]">Bilibili</p>
             <p class="text-[11px] text-[var(--color-muted)] mt-1">AI+X seminar</p>
           </div>
           <div class="border border-[var(--color-rule)] rounded p-4 text-center bg-white">
-            <img class="w-36 h-36 mb-3 object-contain bg-white" src={withBase("/qr/xiaohongshu.png")} alt="Xiaohongshu QR code" />
+            <Image class="w-36 h-36 mb-3 object-contain bg-white" src={siteImages.qr.xiaohongshu} alt="Xiaohongshu QR code" width={144} height={144} densities={[1, 2]} format="png" />
             <p class="text-xs text-[var(--color-slate)]">Xiaohongshu</p>
             <p class="text-[11px] text-[var(--color-muted)] mt-1">AI+X seminar</p>
           </div>
@@ -97,8 +99,10 @@ const organizers = await getOrganizers(lang);
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-6">
         {organizers.map((org) => (
           <div class="organizer-card">
-            {org.avatar ? (
-              <img class="avatar" src={org.avatar} alt={org.name} />
+            {org.optimizedAvatar ? (
+              <Image class="avatar" src={org.optimizedAvatar} alt={org.name} width={80} height={80} densities={[1, 2]} fit="cover" quality="high" loading="lazy" />
+            ) : org.avatar ? (
+              <img class="avatar" src={org.avatar} alt={org.name} width="80" height="80" loading="lazy" decoding="async" />
             ) : (
               <div class="avatar flex items-center justify-center text-xl font-semibold text-[var(--color-slate)]">
                 {initials(org.name)}

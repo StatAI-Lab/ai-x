@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { getCollection } from "astro:content";
 import { withBase, type Lang } from "@/i18n/utils";
+import { organizerAvatars } from "@/utils/images";
 
 const publicDir = join(process.cwd(), "public");
 
@@ -20,12 +21,14 @@ export async function getOrganizers(lang: Lang) {
         lang === "en" ? data.affiliationEn ?? data.affiliation : data.affiliation;
       const avatar =
         data.avatar && publicAssetExists(data.avatar) ? withBase(data.avatar) : undefined;
+      const optimizedAvatar = data.avatar ? organizerAvatars[data.avatar] : undefined;
 
       return {
         name,
         affiliation,
         homepage: data.homepage,
         avatar,
+        optimizedAvatar,
       };
     });
 }
