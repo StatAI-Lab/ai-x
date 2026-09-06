@@ -152,7 +152,7 @@ export const ui = {
     "site.name": "AI+X Seminar",
     "site.tagline": "An online seminar on interdisciplinary AI innovation",
     "site.description":
-      "AI+X Seminar is an online academic seminar focused on interdisciplinary innovation between AI and other fields, covering the mathematical foundations of large models, AI for science, agent systems, and large model evaluation.",
+      "AI+X Seminar is an online academic seminar focused on interdisciplinary innovation between AI and other fields, covering the mathematical foundations of large language models, AI for science, agent systems, and LLM evaluation.",
 
     "nav.home": "Home",
     "nav.about": "About",
@@ -163,7 +163,7 @@ export const ui = {
 
     "hero.title": "AI+X Seminar",
     "hero.subtitle":
-      "Exploring interdisciplinary innovation between AI and other fields, covering the mathematical foundations of large models, AI for science, agent systems, and large model evaluation.",
+      "Exploring interdisciplinary innovation between AI and other fields, covering the mathematical foundations of large language models, AI for science, agent systems, and LLM evaluation.",
     "hero.time": "Thursday 8:00 PM / Friday 10:00 AM (Beijing Time, UTC+8)",
     "hero.cta.upcoming": "View Upcoming Talks",
     "hero.cta.subscribe": "Subscribe",
@@ -182,7 +182,7 @@ export const ui = {
       "Talk content is published through Bilibili, WeChat, and Xiaohongshu. Recordings and paper links are shared after each talk.",
     "features.f4.title": "Foundational Topics",
     "features.f4.desc":
-      "Covers the mathematical foundations of large models, AI for Science, agent systems, and large model evaluation.",
+      "Covers the mathematical foundations of large language models, AI for Science, agent systems, and LLM evaluation.",
     "features.f5.title": "Open Participation",
     "features.f5.desc":
       "Audience can follow AI+X seminar on WeChat, Bilibili, and Xiaohongshu for talk updates.",
@@ -203,7 +203,7 @@ export const ui = {
     "about.intro.h":
       "Building a long-running, serious forum for interdisciplinary AI innovation in the Chinese-speaking community.",
     "about.intro.p":
-      "AI+X Seminar was founded in 2026. We regularly invite researchers working at the frontiers of interdisciplinary innovation between AI and other fields to share recent work. We focus on the mathematical foundations of large models, AI for science, agent systems, large model evaluation, and related directions. Talks are primarily in Chinese and open to the global Chinese-speaking research community.",
+      "AI+X Seminar was founded in 2026. We regularly invite researchers working at the frontiers of interdisciplinary innovation between AI and other fields to share recent work. We focus on the mathematical foundations of large language models, AI for science, agent systems, LLM evaluation, and related directions. Talks are primarily in Chinese and open to the global Chinese-speaking research community.",
     "about.logistics.title": "Logistics",
     "about.logistics.time": "When",
     "about.logistics.time.value": "Thursday 8:00 PM, Friday 10:00 AM (Beijing Time, UTC+8)",
@@ -237,7 +237,7 @@ export const ui = {
     "info.audience.cta": "Contact Us",
     "info.speaker.title": "For Speakers",
     "info.speaker.f1":
-      "The seminar focuses on interdisciplinary innovation between AI and other fields, including the mathematical foundations of large models, AI for science, agent systems, and large model evaluation",
+      "The seminar focuses on interdisciplinary innovation between AI and other fields, including the mathematical foundations of large language models, AI for science, agent systems, and LLM evaluation",
     "info.speaker.f2": "Each session is 45 min talk + 15 min Q&A",
     "info.speaker.f3":
       "Sharing in-progress or recently-published work is encouraged",
