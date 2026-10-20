@@ -68,7 +68,7 @@ export const ui = {
 
     // About 页
     "about.title": "关于 AI+X Seminar",
-    "about.desc": "一个由青年研究者自发组织的线上学术研讨会。",
+    "about.desc": "一个由研究者自发组织的线上学术研讨会。",
     "about.intro.h":
       "为中文社区的 AI 跨学科融合创新,搭建一个长期的、严肃的交流平台。",
     "about.intro.p":
@@ -199,7 +199,7 @@ export const ui = {
 
     "about.title": "About AI+X Seminar",
     "about.desc":
-      "A grass-roots online academic seminar organized by early-career researchers.",
+      "A grass-roots online academic seminar organized by researchers.",
     "about.intro.h":
       "Building a long-running, serious forum for interdisciplinary AI innovation in the Chinese-speaking community.",
     "about.intro.p":
