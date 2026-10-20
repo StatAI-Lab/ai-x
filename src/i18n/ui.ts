@@ -86,7 +86,7 @@ export const ui = {
       "讲座内容通过哔哩哔哩、微信公众号与小红书账号 AI+X seminar 发布",
     "about.organizers.title": "组织者",
     "about.organizers.desc":
-      "AI+X Seminar 由来自不同高校和研究机构的青年研究者共同组织。",
+      "AI+X Seminar 由来自不同高校和研究机构的研究者共同组织。",
 
     // Info(原 Pricing)页 — 须知
     "info.title": "参会须知",
@@ -218,7 +218,7 @@ export const ui = {
       "Talk content is published through AI+X seminar on Bilibili, WeChat, and Xiaohongshu",
     "about.organizers.title": "Organizers",
     "about.organizers.desc":
-      "AI+X Seminar is organized by early-career researchers from universities and research institutes.",
+      "AI+X Seminar is organized by researchers from universities and research institutes.",
 
     "info.title": "Guidelines",
     "info.desc": "Guidelines for audience members and speakers.",
