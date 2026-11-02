@@ -1,0 +1,85 @@
+01-nocturne
+Use case: ads-marketing.
+Create ONE finished, exceptionally art-directed academic seminar POSTER DESIGN CONCEPT, portrait 2:3 aspect ratio, around 1536 x 2304 px or higher if supported. This is one of three alternative visual templates for a recurring academic series. It must look like a designed international science/culture event poster, fancy and visually memorable but academically credible, not a business slide or website.
+Input image 1 is the ONLY speaker photo, a supporting compositing input. Preserve this exact man's identity, facial geometry, glasses, expression, apparent age, hairstyle, dark suit, striped shirt and red tie. Use the source photographic portrait within a clean rectangular image window; a tighter upper-body crop is allowed. Do not redraw, beautify, stylize, relight the face heavily, or invent a different person. Keep the portrait as a standalone, easily replaceable rectangular module, no text crossing his face.
+Template logic: fixed brand masthead, a generous title area accommodating 2-4 lines, a clearly separated replaceable speaker photo and speaker information, short replaceable talk-focus text, and event-details footer. Keep main text straight and horizontally set. Elegant whitespace, strong scale contrast, meticulous grid and typography. Legible at mobile viewing scale. Do not include fake QR codes, invented university logos, dates, meeting IDs, sponsor names, page numbers, serial issue numbers or fictitious claims. No background mockup scene: edge-to-edge actual poster image only.
+ALL required poster text, exact spelling, Chinese characters clean and accurate:
+"AI+X"
+"SEMINAR"
+"学术报告"
+"Statistical Analysis"
+"with Foundation Models"
+(The last two are the complete exact talk title "Statistical Analysis with Foundation Models"; line breaks may change, but do not add or remove words.)
+"黄坚"
+"Jian Huang"
+"香港理工大学"
+"数据科学与分析讲座教授"
+"ASA & IMS Fellow"
+"报告看点"
+"自主数据分析 / 预测与生成建模 / 统计方法创新"
+"报告时间"
+"待公布"
+"参会方式"
+"待公布"
+No additional body prose. These event placeholders are intentional and must remain visible. No design-direction names or labels A/B/C on the poster itself.
+ART DIRECTION A — NOCTURNE / futuristic mathematical sculpture.
+Near-black midnight blue base, bright warm-white typography, selective acid-lime accent. Large editorial sans typography with tightly controlled alignment. Build a genuinely striking sculptural centerpiece: one delicate luminous folded toroidal surface or a fluid silver-iridescent mathematical ribbon, sweeping at a diagonal through the middle-right; spectral cyan/silver reflections, visually sophisticated physically rendered material, not generic neon circuitry or a starfield. This form is an abstract decorative artwork, no scientific axis labels or fabricated equations.
+Composition: small AI+X SEMINAR masthead at top with generous margin. Huge title across upper third with 'Foundation Models' visually prominent in lime. Sculptural fold occupies center; reserve a quiet area to avoid text collisions. In lower middle, speaker name and credentials on left, the source photo in a tall clean rectangular frame on the right, roughly a quarter of poster width. Sparse lime fine rules make hierarchy. Compact talk focus and two-column time/join information footer. Controlled Swiss-grid structure, high contrast, beautiful dark negative space. The fancy quality comes from material, typography, scale and composition; no pill labels or card UI.
+
+
+02-swiss
+Use case: ads-marketing.
+Create ONE finished, exceptionally art-directed academic seminar POSTER DESIGN CONCEPT, portrait 2:3 aspect ratio, around 1536 x 2304 px or higher if supported. This is one of three alternative visual templates for a recurring academic series. It must look like a designed international science/culture event poster, fancy and visually memorable but academically credible, not a business slide or website.
+Input image 1 is the ONLY speaker photo, a supporting compositing input. Preserve this exact man's identity, facial geometry, glasses, expression, apparent age, hairstyle, dark suit, striped shirt and red tie. Use the source photographic portrait within a clean rectangular image window; a tighter upper-body crop is allowed. Do not redraw, beautify, stylize, relight the face heavily, or invent a different person. Keep the portrait as a standalone, easily replaceable rectangular module, no text crossing his face.
+Template logic: fixed brand masthead, a generous title area accommodating 2-4 lines, a clearly separated replaceable speaker photo and speaker information, short replaceable talk-focus text, and event-details footer. Keep main text straight and horizontally set. Elegant whitespace, strong scale contrast, meticulous grid and typography. Legible at mobile viewing scale. Do not include fake QR codes, invented university logos, dates, meeting IDs, sponsor names, page numbers, serial issue numbers or fictitious claims. No background mockup scene: edge-to-edge actual poster image only.
+ALL required poster text, exact spelling, Chinese characters clean and accurate:
+"AI+X"
+"SEMINAR"
+"学术报告"
+"Statistical Analysis"
+"with Foundation Models"
+(The last two are the complete exact talk title "Statistical Analysis with Foundation Models"; line breaks may change, but do not add or remove words.)
+"黄坚"
+"Jian Huang"
+"香港理工大学"
+"数据科学与分析讲座教授"
+"ASA & IMS Fellow"
+"报告看点"
+"自主数据分析 / 预测与生成建模 / 统计方法创新"
+"报告时间"
+"待公布"
+"参会方式"
+"待公布"
+No additional body prose. These event placeholders are intentional and must remain visible. No design-direction names or labels A/B/C on the poster itself.
+ART DIRECTION B — SWISS / bold international typographic poster.
+Warm ivory paper ground, ultramarine blue as the dominant type and graphic color, one vivid vermilion-orange accent. Flat precise modernist print design with subtle real paper grain. Extremely large 'AI+X' masthead occupying a strong upper strip; elegant small 'SEMINAR' and Chinese academic descriptor. Main title in very bold condensed sans typography, asymmetric line breaks, dominant size and generous leading.
+One massive cropped ultramarine multiplication-sign / intersection form at the right margin gives a strong repeatable series signature; tiny vermilion accent block used deliberately once. Native source portrait is in a simple rectangular crop at mid-left with blue thin frame, speaker typography at mid-right; the face must remain a natural accurate color photograph. Speaker '黄坚' very large and the credentials smaller. Talk-focus row and event footer grounded by thin blue rules. The main composition should be quite different from a dark technology poster: airy, architectural, flat printmaking aesthetic, surprising but balanced alignment, no gradients, no 3D chrome, no scientific network icons. Avoid making a generic corporate flyer. All text remains legible and not inside busy graphical areas.
+
+
+03-editorial
+Use case: ads-marketing.
+Create ONE finished, exceptionally art-directed academic seminar POSTER DESIGN CONCEPT, portrait 2:3 aspect ratio, around 1536 x 2304 px or higher if supported. This is one of three alternative visual templates for a recurring academic series. It must look like a designed international science/culture event poster, fancy and visually memorable but academically credible, not a business slide or website.
+Input image 1 is the ONLY speaker photo, a supporting compositing input. Preserve this exact man's identity, facial geometry, glasses, expression, apparent age, hairstyle, dark suit, striped shirt and red tie. Use the source photographic portrait within a clean rectangular image window; a tighter upper-body crop is allowed. Do not redraw, beautify, stylize, relight the face heavily, or invent a different person. Keep the portrait as a standalone, easily replaceable rectangular module, no text crossing his face.
+Template logic: fixed brand masthead, a generous title area accommodating 2-4 lines, a clearly separated replaceable speaker photo and speaker information, short replaceable talk-focus text, and event-details footer. Keep main text straight and horizontally set. Elegant whitespace, strong scale contrast, meticulous grid and typography. Legible at mobile viewing scale. Do not include fake QR codes, invented university logos, dates, meeting IDs, sponsor names, page numbers, serial issue numbers or fictitious claims. No background mockup scene: edge-to-edge actual poster image only.
+ALL required poster text, exact spelling, Chinese characters clean and accurate:
+"AI+X"
+"SEMINAR"
+"学术报告"
+"Statistical Analysis"
+"with Foundation Models"
+(The last two are the complete exact talk title "Statistical Analysis with Foundation Models"; line breaks may change, but do not add or remove words.)
+"黄坚"
+"Jian Huang"
+"香港理工大学"
+"数据科学与分析讲座教授"
+"ASA & IMS Fellow"
+"报告看点"
+"自主数据分析 / 预测与生成建模 / 统计方法创新"
+"报告时间"
+"待公布"
+"参会方式"
+"待公布"
+No additional body prose. These event placeholders are intentional and must remain visible. No design-direction names or labels A/B/C on the poster itself.
+ART DIRECTION C — EDITORIAL / collectible art-and-science journal cover.
+Rich oxblood / aubergine background with warm parchment text and a restrained pale-lavender accent. A tactile, elegant high-fashion editorial sensibility translated to a serious research seminar. Use a refined high-contrast serif for the enormous English title, paired with minimalist Chinese sans-serif for the speaker and metadata. 'AI+X' at top left as a crisp small wordmark with SEMINAR; very generous margins and dramatic vertical rhythm.
+A beautiful abstract translucent pleated glass / folded silk fan sculpture in pale lilac sweeps through the upper-right margin and behind empty space; graceful moiré-like fine texture suggests statistical manifolds, purely decorative with no invented equations. The talk title is large across upper-middle, text and art must not overlap messily. Place the unchanged natural source portrait as a medium rectangular inset near lower-left with a very thin parchment keyline, and '黄坚' with credentials immediately to its right, elegant prominent hierarchy. Lower area has talk-focus text and a minimal event-details footer. It should feel like a museum lecture invitation with daring typography and premium material, distinctly different from both a neon technology poster and a Swiss blue/orange poster. No gold luxury clichés, no ornamental borders, no UI cards.
