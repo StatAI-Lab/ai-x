@@ -6,8 +6,6 @@ import {
   withBase,
   type Lang,
 } from "@/i18n/utils";
-import { Image } from "astro:assets";
-import { siteImages } from "@/utils/images";
 
 const { lang = "zh" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
@@ -31,37 +29,33 @@ const homePath = withBase(prefix + "/");
 
 <header class="border-b border-[var(--color-rule)] sticky top-0 bg-[var(--color-paper)] z-50">
   <Container>
-    <div class="flex items-center justify-between h-20">
+    <div class="flex items-center justify-between gap-6 min-h-24 sm:min-h-28 py-2">
       <!-- Logo -->
-      <a href={homePath} class="flex items-center gap-3 group">
-        <Image
-          class="w-11 h-11 object-contain"
-          src={siteImages.logo}
-          alt="AI+X Seminar logo"
-          width={44}
-          height={44}
-          densities={[1, 2]}
-          quality="high"
-          priority
+      <a href={homePath} class="shrink-0" aria-label={lang === "zh" ? "AI+X 首页" : "AI+X home"}>
+        <img
+          class="brand-logo"
+          src={withBase("/logo.png")}
+          alt="AI+X"
+          width="1274"
+          height="502"
+          fetchpriority="high"
+          decoding="async"
         />
-        <span class="font-serif font-bold text-lg text-[var(--color-ink)] tracking-tight">
-          {lang === "zh" ? "AI+X Seminar" : "AI+X Seminar"}
-        </span>
       </a>
 
       <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center gap-8">
+      <nav class="hidden xl:flex items-center gap-6" aria-label={lang === "zh" ? "主导航" : "Main navigation"}>
         {menuitems.map((item) => (
           <a
             href={withBase(item.path)}
-            class="text-base text-[var(--color-slate)] hover:text-[var(--color-accent)] transition border-b border-transparent hover:border-[var(--color-accent)] pb-0.5">
+            class="whitespace-nowrap text-base text-[var(--color-slate)] hover:text-[var(--color-accent)] transition border-b border-transparent hover:border-[var(--color-accent)] pb-0.5">
             {item.title}
           </a>
         ))}
       </nav>
 
       <!-- Language Toggle -->
-      <div class="flex items-center gap-3">
+      <div class="flex shrink-0 items-center gap-3">
         <a
           href={withBase(otherLangPath)}
           aria-label="Switch language"
@@ -71,8 +65,10 @@ const homePath = withBase(prefix + "/");
 
         <!-- Mobile menu button -->
         <button
-          class="lg:hidden p-2 text-[var(--color-slate)]"
-          aria-label="Menu"
+          class="xl:hidden p-2 text-[var(--color-slate)]"
+          aria-label={lang === "zh" ? "导航菜单" : "Navigation menu"}
+          aria-controls="mobile-menu"
+          aria-expanded="false"
           id="mobile-menu-btn">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
@@ -82,7 +78,7 @@ const homePath = withBase(prefix + "/");
     </div>
 
     <!-- Mobile Nav -->
-    <nav class="lg:hidden hidden pb-4" id="mobile-menu">
+    <nav class="xl:hidden hidden pb-4" id="mobile-menu" aria-label={lang === "zh" ? "移动端导航" : "Mobile navigation"}>
       <div class="flex flex-col gap-2">
         {menuitems.map((item) => (
           <a
@@ -100,6 +96,31 @@ const homePath = withBase(prefix + "/");
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
   btn?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
+    if (!menu) return;
+    const isHidden = menu.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!isHidden));
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu && !menu.classList.contains('hidden')) {
+      menu.classList.add('hidden');
+      btn?.setAttribute('aria-expanded', 'false');
+      btn?.focus();
+    }
   });
 </script>
+
+<style>
+  .brand-logo {
+    display: block;
+    width: 160px;
+    height: auto;
+    /* Keep the supplied artwork intact and blend its white canvas into the header. */
+    mix-blend-mode: multiply;
+  }
+
+  @media (min-width: 640px) {
+    .brand-logo {
+      width: 208px;
+    }
+  }
+</style>

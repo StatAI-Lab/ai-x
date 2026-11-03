@@ -13,10 +13,10 @@ export type Lang = keyof typeof languages;
 export const ui = {
   zh: {
     // 全站
-    "site.name": "AI+X Seminar",
-    "site.tagline": "聚焦 AI 与多学科融合创新的线上学术研讨会",
+    "site.name": "AI+X",
+    "site.tagline": "连接 AI 与不同学科的学术交流平台",
     "site.description":
-      "AI+X Seminar 是一个聚焦 AI 与多学科融合创新的线上学术研讨会，涵盖大模型的数学基础、AI 赋能科学、智能体系统与大模型评测等交叉方向。",
+      "AI+X 是面向海内外研究者、青年学者、学生与相关领域实践者的学术交流平台，连接 AI 的理论探索、科学研究与应用实践。目前以 Seminar 专题报告与开放讨论为主要形式。",
 
     // 导航
     "nav.home": "首页",
@@ -27,35 +27,35 @@ export const ui = {
     "nav.signup": "讲者报名",
 
     // 首页 Hero
-    "hero.title": "AI+X Seminar",
+    "hero.title": "AI+X",
     "hero.subtitle":
-      "每周一次，聚焦 AI 与其他领域的跨学科融合创新，涵盖大模型的数学基础、AI 赋能科学、智能体系统与大模型评测等交叉方向。",
-    "hero.time": "周四晚 8:00 / 周五早 10:00（北京时间）",
+      "面向海内外研究者、青年学者、学生与相关领域实践者，连接 AI 的理论探索、科学研究与应用实践。我们从 Seminar 专题报告与开放讨论出发，分享新工作，讨论新问题，促成跨学科交流与合作。",
+    "hero.time": "具体时间以每场活动通知为准（北京时间）",
     "hero.cta.upcoming": "查看近期讲座",
     "hero.cta.subscribe": "订阅讲座通知",
 
     // 首页 Features
-    "features.title": "研讨会概况",
+    "features.title": "我们在这里交流什么",
     "features.subtitle":
-      "面向中文学术社区,搭建高质量的 AI 跨学科融合创新交流平台。",
-    "features.f1.title": "每周一讲",
+      "AI 是起点，X 是我们共同探索的未知。",
+    "features.f1.title": "专题报告与开放讨论",
     "features.f1.desc":
-      "周四晚八点与周五早十点开讲,每场聚焦一位讲者的近期工作,深入而非浮光掠影。",
-    "features.f2.title": "中文学术社区",
+      "目前以 Seminar 为主要形式，邀请研究者分享工作，并为提问与交流预留时间。",
+    "features.f2.title": "不同背景，共同参与",
     "features.f2.desc":
-      "以中文为主要交流语言,讲者来自全球各大研究机构,服务中文学术社区。",
-    "features.f3.title": "录播回放",
+      "面向海内外研究者、青年学者、学生及相关领域实践者，以中文为主要交流语言。",
+    "features.f3.title": "方法背后的思考",
     "features.f3.desc":
-      "讲座内容通过哔哩哔哩、微信公众号与小红书同步发布,会后可观看回放,论文链接公开分享。",
-    "features.f4.title": "前沿话题",
+      "一个新的模型或算法，试图解决什么问题？我们关注研究问题、方法选择与背后的思考。",
+    "features.f4.title": "真实场景的挑战",
     "features.f4.desc":
-      "覆盖大模型数学基础、AI for Science、智能体系统、大模型评测等交叉研究方向。",
-    "features.f5.title": "开放参与",
+      "当 AI 融入领域知识，如何推动科学研究的发展？在理论、科学与应用之间展开讨论。",
+    "features.f5.title": "跨学科研究的实践",
     "features.f5.desc":
-      "观众可通过微信公众号、哔哩哔哩与小红书关注讲座通知与内容更新。",
-    "features.f6.title": "讲者自荐",
+      "探索不同领域如何建立共同语言，并形成有价值的交流与合作。",
+    "features.f6.title": "尚在探索中的想法",
     "features.f6.desc":
-      "欢迎在读博士生及青年研究者通过报名通道申请分享自己的工作。",
+      "欢迎成熟成果，也欢迎值得讨论的初步发现、研究困惑与开放问题。",
 
     // 首页 Logos
     "logos.title": "合作单位",
@@ -63,47 +63,47 @@ export const ui = {
     // 首页 CTA
     "cta.title": "加入我们的社区",
     "cta.desc":
-      "关注 AI+X seminar 的微信公众号、哔哩哔哩与小红书账号，获取最新讲座通知。",
+      "分享一项工作，旁听一场报告，或加入讨论。关注微信公众号【AI+X Seminar】，获取具体活动通知。",
     "cta.button": "了解参与方式",
 
     // About 页
-    "about.title": "关于 AI+X Seminar",
-    "about.desc": "一个由研究者自发组织的线上学术研讨会。",
+    "about.title": "关于 AI+X",
+    "about.desc": "一个连接 AI 与不同学科的学术交流平台。",
     "about.intro.h":
-      "为中文社区的 AI 跨学科融合创新,搭建一个长期的、严肃的交流平台。",
+      "AI 是起点，X 是我们共同探索的未知。",
     "about.intro.p":
-      "AI+X Seminar 创立于 2026 年,定期邀请活跃在 AI 与其他领域融合创新前沿的一线研究者分享其近期工作。我们关注大模型的数学基础、AI 赋能科学、智能体系统、大模型评测等交叉方向,以中文为主要语言,面向全球中文研究社区开放。",
-    "about.logistics.title": "基础信息",
+      "AI+X 面向海内外研究者、青年学者、学生及相关领域实践者，聚焦 AI 与不同学科的交叉研究。我们希望连接理论探索、科学研究与应用实践，持续分享新工作、讨论新问题，让不同研究阶段、不同学科背景的参与者有机会相识、交流与合作。目前以 Seminar 专题报告与开放讨论为主要形式；未来计划逐步开展主题讨论、青年研究者交流与跨领域对谈。",
+    "about.logistics.title": "Seminar 参与信息",
     "about.logistics.time": "时间",
-    "about.logistics.time.value": "周四晚 8:00，周五早 10:00（北京时间）",
+    "about.logistics.time.value": "具体时间以每场活动通知为准（北京时间）",
     "about.logistics.lang": "语言",
-    "about.logistics.lang.value": "中文(讲述);幻灯片中英皆可",
+    "about.logistics.lang.value": "中文讲述；幻灯片中英皆可",
     "about.logistics.platform": "平台",
     "about.logistics.platform.value":
       "哔哩哔哩 + 微信公众号 + 小红书",
     "about.logistics.archive": "归档",
     "about.logistics.archive.value":
-      "讲座内容通过哔哩哔哩、微信公众号与小红书账号 AI+X seminar 发布",
+      "讲座内容通过哔哩哔哩、微信公众号与小红书账号 AI+X Seminar 发布",
     "about.organizers.title": "组织者",
     "about.organizers.desc":
-      "AI+X Seminar 由来自不同高校和研究机构的研究者共同组织。",
+      "AI+X 由来自不同高校和研究机构的研究者共同组织。",
 
     // Info(原 Pricing)页 — 须知
     "info.title": "参会须知",
-    "info.desc": "面向观众与讲者的须知。",
+    "info.desc": "目前活动以 Seminar 为主，以下为观众与讲者的参与须知。",
     "info.audience.title": "观众须知",
-    "info.audience.f1": "讲座时间为周四晚 8:00 或周五早 10:00（北京时间）",
-    "info.audience.f2": "关注微信公众号、哔哩哔哩与小红书账号 AI+X seminar 获取通知",
-    "info.audience.f3": "直播中可使用弹幕或评论提问,讲者会在 QA 环节回应",
+    "info.audience.f1": "讲座日期、时间与参与方式以每场活动通知为准（北京时间）",
+    "info.audience.f2": "关注微信公众号【AI+X Seminar】获取具体活动通知，也可通过哔哩哔哩与小红书关注内容更新",
+    "info.audience.f3": "报告设有提问与交流时间，欢迎围绕研究问题参与讨论",
     "info.audience.f4": "讲座结束后回放将通过哔哩哔哩发布",
     "info.audience.f5": "论文/讲义链接见公众号或对应平台发布内容",
     "info.audience.f6": "提倡尊重讲者、文明讨论",
     "info.audience.cta": "联系我们",
     "info.speaker.title": "讲者须知",
-    "info.speaker.f1": "本研讨会面向 AI 与其他领域的跨学科融合创新,关注大模型数学基础、AI 赋能科学、智能体系统、大模型评测等方向",
+    "info.speaker.f1": "欢迎分享 AI 与不同学科的交叉研究，连接理论探索、科学研究与应用实践",
     "info.speaker.f2": "讲座时长 45 分钟 + 15 分钟 QA",
-    "info.speaker.f3": "鼓励分享尚未发表或刚刚发表的工作",
-    "info.speaker.f4": "讲述语言为中文,幻灯片中英皆可",
+    "info.speaker.f3": "欢迎成熟成果、初步发现、研究困惑与开放问题",
+    "info.speaker.f4": "讲述语言为中文，幻灯片中英皆可",
     "info.speaker.f5": "需在讲前一周提交讲座标题、摘要、个人简介、论文链接",
     "info.speaker.f6": "讲座内容允许在哔哩哔哩、微信公众号与小红书发布或留存",
     "info.speaker.cta": "申请讲者",
@@ -125,16 +125,16 @@ export const ui = {
     // Contact 页
     "contact.title": "联系我们",
     "contact.desc": "讲者报名、合作咨询、其他事宜都欢迎与我们联系。",
-    "contact.intro.h": "与 AI+X Seminar 联系",
+    "contact.intro.h": "与 AI+X 联系",
     "contact.intro.p":
-      "我们欢迎:(1)有意向分享工作的讲者自荐;(2)希望成为合作伙伴的机构;(3)对研讨会的建议与反馈。请通过下方表单或邮件与我们联系。",
+      "欢迎有意分享工作的研究者自荐，也欢迎提出合作设想、活动建议与反馈。无论你致力于 AI 基础理论、探索 AI 驱动的科学研究，还是推动技术落地，都欢迎与我们交流。",
     "contact.email": "邮箱",
     "contact.wechat": "微信公众号",
-    "contact.wechat.value": "AI+X seminar",
+    "contact.wechat.value": "AI+X Seminar",
     "contact.bilibili": "哔哩哔哩",
-    "contact.bilibili.value": "AI+X seminar",
+    "contact.bilibili.value": "AI+X Seminar",
     "contact.xiaohongshu": "小红书",
-    "contact.xiaohongshu.value": "AI+X seminar",
+    "contact.xiaohongshu.value": "AI+X Seminar",
     "contact.form.name": "姓名",
     "contact.form.email": "邮箱",
     "contact.form.message": "留言(若为讲者自荐,请简述拟讲内容与论文链接)",
@@ -145,14 +145,14 @@ export const ui = {
     "contact.form.errMessage": "请填写留言内容",
 
     // Footer
-    "footer.copyright": "AI+X Seminar 保留所有权利。",
+    "footer.copyright": "AI+X 保留所有权利。",
   },
 
   en: {
-    "site.name": "AI+X Seminar",
-    "site.tagline": "An online seminar on interdisciplinary AI innovation",
+    "site.name": "AI+X",
+    "site.tagline": "A forum connecting AI with research across disciplines",
     "site.description":
-      "AI+X Seminar is an online academic seminar focused on interdisciplinary innovation between AI and other fields, covering the mathematical foundations of large language models, AI for science, agent systems, and LLM evaluation.",
+      "AI+X is an academic exchange platform for researchers, early-career scholars, students, and practitioners worldwide, connecting AI theory, scientific research, and applications. Our current focus is research seminars and open discussion.",
 
     "nav.home": "Home",
     "nav.about": "About",
@@ -161,52 +161,52 @@ export const ui = {
     "nav.contact": "Contact",
     "nav.signup": "Apply as Speaker",
 
-    "hero.title": "AI+X Seminar",
+    "hero.title": "AI+X",
     "hero.subtitle":
-      "Exploring interdisciplinary innovation between AI and other fields, covering the mathematical foundations of large language models, AI for science, agent systems, and LLM evaluation.",
-    "hero.time": "Thursday 8:00 PM / Friday 10:00 AM (Beijing Time, UTC+8)",
+      "A platform for researchers, early-career scholars, students, and practitioners worldwide, connecting AI theory, scientific research, and applications. We begin with research seminars and open discussion to share new work, explore questions, and build connections across disciplines.",
+    "hero.time": "See each event announcement for the date and time (Beijing Time, UTC+8)",
     "hero.cta.upcoming": "View Upcoming Talks",
     "hero.cta.subscribe": "Subscribe",
 
-    "features.title": "About the Seminar",
+    "features.title": "What We Explore",
     "features.subtitle":
-      "Building a high-quality forum for interdisciplinary AI innovation in the Chinese-speaking academic community.",
-    "features.f1.title": "Weekly Talks",
+      "AI is our starting point; X is what we explore together.",
+    "features.f1.title": "Seminars and Open Discussion",
     "features.f1.desc":
-      "Talks run on Thursday evenings and Friday mornings, each session focused on one speaker's recent work.",
-    "features.f2.title": "Chinese-Speaking Community",
+      "Our current focus is research seminars, with time for questions and conversation after each presentation.",
+    "features.f2.title": "A Community Across Disciplines",
     "features.f2.desc":
-      "Talks are delivered in Chinese, with speakers from research institutions worldwide. Serves the global Chinese-speaking academic community.",
-    "features.f3.title": "Recordings",
+      "Open to researchers, early-career scholars, students, and practitioners worldwide. Talks are primarily in Chinese.",
+    "features.f3.title": "Thinking Behind the Methods",
     "features.f3.desc":
-      "Talk content is published through Bilibili, WeChat, and Xiaohongshu. Recordings and paper links are shared after each talk.",
-    "features.f4.title": "Foundational Topics",
+      "What problem does a new model or algorithm address? We discuss the research questions and choices behind the method.",
+    "features.f4.title": "Challenges in Real Settings",
     "features.f4.desc":
-      "Covers the mathematical foundations of large language models, AI for Science, agent systems, and LLM evaluation.",
-    "features.f5.title": "Open Participation",
+      "How can AI and domain knowledge advance scientific research? We connect questions from theory, science, and practice.",
+    "features.f5.title": "Interdisciplinary Research in Practice",
     "features.f5.desc":
-      "Audience can follow AI+X seminar on WeChat, Bilibili, and Xiaohongshu for talk updates.",
-    "features.f6.title": "Open Speaker Sign-up",
+      "Exploring how different fields can build a shared language and develop meaningful collaborations.",
+    "features.f6.title": "Ideas Still Taking Shape",
     "features.f6.desc":
-      "We welcome PhD students and early-career researchers to apply through our speaker sign-up channel.",
+      "We welcome established results, preliminary findings, research challenges, and open questions.",
 
     "logos.title": "Partners",
 
     "cta.title": "Join the Community",
     "cta.desc":
-      "Follow AI+X seminar on WeChat, Bilibili, and Xiaohongshu for the latest talk announcements.",
+      "Share your work, attend a talk, or join the discussion. Follow our WeChat official account, AI+X Seminar, for event announcements.",
     "cta.button": "How to Participate",
 
-    "about.title": "About AI+X Seminar",
+    "about.title": "About AI+X",
     "about.desc":
-      "A grass-roots online academic seminar organized by researchers.",
+      "A forum connecting AI with research across disciplines.",
     "about.intro.h":
-      "Building a long-running, serious forum for interdisciplinary AI innovation in the Chinese-speaking community.",
+      "AI is our starting point; X is what we explore together.",
     "about.intro.p":
-      "AI+X Seminar was founded in 2026. We regularly invite researchers working at the frontiers of interdisciplinary innovation between AI and other fields to share recent work. We focus on the mathematical foundations of large language models, AI for science, agent systems, LLM evaluation, and related directions. Talks are primarily in Chinese and open to the global Chinese-speaking research community.",
-    "about.logistics.title": "Logistics",
+      "AI+X brings together researchers, early-career scholars, students, and practitioners worldwide to explore the intersections of AI and other disciplines. We connect theoretical inquiry, scientific research, and applications through new work and open questions, creating opportunities for people at different career stages and from different fields to meet and collaborate. Our current focus is research seminars and open discussion. We plan to expand into thematic discussions, early-career researcher exchanges, and conversations across disciplines.",
+    "about.logistics.title": "Seminar Information",
     "about.logistics.time": "When",
-    "about.logistics.time.value": "Thursday 8:00 PM, Friday 10:00 AM (Beijing Time, UTC+8)",
+    "about.logistics.time.value": "See each event announcement for the date and time (Beijing Time, UTC+8)",
     "about.logistics.lang": "Language",
     "about.logistics.lang.value":
       "Talk delivered in Chinese; slides may be in Chinese or English",
@@ -215,20 +215,20 @@ export const ui = {
       "Bilibili + WeChat + Xiaohongshu",
     "about.logistics.archive": "Archive",
     "about.logistics.archive.value":
-      "Talk content is published through AI+X seminar on Bilibili, WeChat, and Xiaohongshu",
+      "Talk content is published through AI+X Seminar on Bilibili, WeChat, and Xiaohongshu",
     "about.organizers.title": "Organizers",
     "about.organizers.desc":
-      "AI+X Seminar is organized by researchers from universities and research institutes.",
+      "AI+X is organized by researchers from universities and research institutes.",
 
     "info.title": "Guidelines",
-    "info.desc": "Guidelines for audience members and speakers.",
+    "info.desc": "Our current activities are seminars. Find participation guidelines for audience members and speakers below.",
     "info.audience.title": "For Audience",
     "info.audience.f1":
-      "Talks run at Thursday 8:00 PM or Friday 10:00 AM Beijing Time",
+      "See each event announcement for the date, time, and participation details (Beijing Time, UTC+8)",
     "info.audience.f2":
-      "Follow AI+X seminar on WeChat, Bilibili, and Xiaohongshu for notifications and paper links",
+      "Follow the WeChat official account AI+X Seminar for event announcements, and Bilibili and Xiaohongshu for content updates",
     "info.audience.f3":
-      "Audience can ask questions through live comments; the speaker responds during the QA segment",
+      "Each presentation includes time for questions and exchange. Contributions to the research discussion are welcome",
     "info.audience.f4":
       "Recordings are published on Bilibili after each talk",
     "info.audience.f5":
@@ -237,10 +237,10 @@ export const ui = {
     "info.audience.cta": "Contact Us",
     "info.speaker.title": "For Speakers",
     "info.speaker.f1":
-      "The seminar focuses on interdisciplinary innovation between AI and other fields, including the mathematical foundations of large language models, AI for science, agent systems, and LLM evaluation",
+      "We welcome research at the intersection of AI and other disciplines, connecting theory, scientific research, and applications",
     "info.speaker.f2": "Each session is 45 min talk + 15 min Q&A",
     "info.speaker.f3":
-      "Sharing in-progress or recently-published work is encouraged",
+      "Established results, preliminary findings, research challenges, and open questions are all welcome",
     "info.speaker.f4":
       "Talks are delivered in Chinese; slides may be in either language",
     "info.speaker.f5":
@@ -265,16 +265,16 @@ export const ui = {
     "contact.title": "Contact",
     "contact.desc":
       "Reach out for speaker applications, partnership inquiries, or any feedback.",
-    "contact.intro.h": "Get in touch with AI+X Seminar",
+    "contact.intro.h": "Get in touch with AI+X",
     "contact.intro.p":
-      "We welcome: (1) researchers interested in giving a talk; (2) institutions interested in partnership; (3) feedback and suggestions about the seminar. Please use the form below or contact us by email.",
+      "We welcome researchers interested in sharing their work, ideas for collaboration, and suggestions for future activities. Whether you study AI foundations, explore AI-driven science, or work on practical applications, we would like to hear from you.",
     "contact.email": "Email",
     "contact.wechat": "WeChat Channel",
-    "contact.wechat.value": "AI+X seminar",
+    "contact.wechat.value": "AI+X Seminar",
     "contact.bilibili": "Bilibili",
-    "contact.bilibili.value": "AI+X seminar",
+    "contact.bilibili.value": "AI+X Seminar",
     "contact.xiaohongshu": "Xiaohongshu",
-    "contact.xiaohongshu.value": "AI+X seminar",
+    "contact.xiaohongshu.value": "AI+X Seminar",
     "contact.form.name": "Name",
     "contact.form.email": "Email",
     "contact.form.message":
@@ -285,7 +285,7 @@ export const ui = {
     "contact.form.errEmailValid": "Please provide a valid email",
     "contact.form.errMessage": "Please enter your message",
 
-    "footer.copyright": "AI+X Seminar. All rights reserved.",
+    "footer.copyright": "AI+X. All rights reserved.",
   },
 } as const;
 

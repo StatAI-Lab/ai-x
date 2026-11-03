@@ -1,4 +1,3 @@
-import logo from "@/assets/logo.png";
 import bilibiliQr from "@/assets/qr/bilibili.png";
 import wechatQr from "@/assets/qr/wechat.png";
 import xiaohongshuQr from "@/assets/qr/xiaohongshu.png";
@@ -10,7 +9,6 @@ import xiaowuDaiAvatar from "@/assets/organizers/xiaowu-dai.jpg";
 import type { ImageMetadata } from "astro";
 
 export const siteImages = {
-  logo,
   qr: {
     bilibili: bilibiliQr,
     wechat: wechatQr,

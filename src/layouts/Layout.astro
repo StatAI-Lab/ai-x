@@ -17,7 +17,7 @@ const t = useTranslations(lang);
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 const resolvedImageWithDomain = new URL(
-  "/opengraph.jpg",
+  withBase("/logo.png"),
   Astro.site
 ).toString();
 
@@ -32,7 +32,7 @@ const htmlLang = lang === "en" ? "en" : "zh-CN";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href={withBase("/favicon.png")} />
+    <link rel="icon" type="image/png" href={withBase("/logo.png")} />
     <meta name="generator" content={Astro.generator} />
 
     <SEO

@@ -16,7 +16,7 @@ const t = useTranslations(lang);
   <Container>
     <Sectionhead>
       <Fragment slot="title">{t("nav.signup")}</Fragment>
-      <Fragment slot="desc">{lang === "zh" ? "申请成为 AI+X Seminar 的讲者" : "Apply to speak at AI+X Seminar"}</Fragment>
+      <Fragment slot="desc">{lang === "zh" ? "在 AI+X 的 Seminar 中分享你的研究" : "Share your research at an AI+X seminar"}</Fragment>
     </Sectionhead>
 
     <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
@@ -26,8 +26,8 @@ const t = useTranslations(lang);
         </h2>
         <p class="text-sm leading-relaxed text-[var(--color-slate)] mt-3">
           {lang === "zh"
-            ? "我们欢迎从事 AI 与其他领域跨学科融合创新的学者申请分享自己的工作。请填写右侧表单与我们联系。"
-            : "We welcome researchers working on interdisciplinary innovation between AI and other fields to apply. Please fill out the form to contact us."}
+            ? "欢迎不同研究阶段、不同学科背景的研究者分享工作。除了成熟成果，也欢迎初步发现、研究困惑与开放问题。请通过表单与我们联系。"
+            : "We welcome researchers at different career stages and from different disciplines. Share established results, preliminary findings, research challenges, or open questions. Please use the form to contact us."}
         </p>
         <div class="mt-6 space-y-3 text-sm">
           <div class="flex items-center gap-2 text-[var(--color-slate)]">
