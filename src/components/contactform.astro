@@ -3,19 +3,35 @@ import { useTranslations, type Lang } from "@/i18n/utils";
 
 const { lang = "zh" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
+const formEnabled = Boolean(accessKey && accessKey !== "YOUR_ACCESS_KEY_HERE");
 ---
 
 <form
-  action="https://api.web3forms.com/submit"
+  action={formEnabled ? "https://api.web3forms.com/submit" : undefined}
   method="POST"
   id="form"
+  data-enabled={formEnabled ? "true" : "false"}
+  aria-label={lang === "zh" ? "讲者报名与咨询" : "Speaker applications and enquiries"}
+  aria-describedby={!formEnabled ? "form-unavailable" : undefined}
   class="needs-validation"
   novalidate>
-  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+  <input type="hidden" name="access_key" value={accessKey} />
   <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
 
+  {!formEnabled && (
+    <p id="form-unavailable" class="mb-5 text-sm leading-relaxed text-[var(--color-slate)]">
+      {lang === "zh"
+        ? "线上表单暂未开放。讲者报名与其他咨询，请通过微信公众号「AI+X Seminar」联系我们。"
+        : "Online submissions are not available yet. For speaker applications and other enquiries, please contact us through our WeChat official account, AI+X Seminar."}
+    </p>
+  )}
+
+  <fieldset disabled={!formEnabled} class="min-w-0 disabled:opacity-60">
   <div class="mb-4">
+    <label for="contact_name" class="sr-only">{t("contact.form.name")}</label>
     <input
+      id="contact_name"
       type="text"
       placeholder={t("contact.form.name")}
       required
@@ -46,7 +62,9 @@ const t = useTranslations(lang);
   </div>
 
   <div class="mb-4">
+    <label for="contact_message" class="sr-only">{t("contact.form.message")}</label>
     <textarea
+      id="contact_message"
       name="message"
       required
       placeholder={t("contact.form.message")}
@@ -59,11 +77,12 @@ const t = useTranslations(lang);
 
   <button
     type="submit"
-    class="w-full py-3 bg-[var(--color-accent)] text-white font-medium hover:bg-[var(--color-gold)] transition">
+    class="w-full py-3 bg-[var(--color-accent)] text-white font-medium hover:bg-[var(--color-gold)] disabled:cursor-not-allowed transition">
     {t("contact.form.submit")}
   </button>
+  </fieldset>
 
-  <div id="result" class="mt-3 text-center text-sm"></div>
+  <div id="result" role="status" aria-live="polite" class="mt-3 text-center text-sm"></div>
 </form>
 
 <style>
@@ -92,6 +111,7 @@ const t = useTranslations(lang);
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+    if (form.dataset.enabled !== "true") return;
     form.classList.add("was-validated");
     if (!form.checkValidity()) {
       form.querySelectorAll(":invalid")[0].focus();

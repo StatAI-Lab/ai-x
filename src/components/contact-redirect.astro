@@ -1,0 +1,39 @@
+---
+import { useTranslations, withBase, type Lang } from "@/i18n/utils";
+
+interface Props {
+  lang?: Lang;
+  section?: "audience" | "speaker" | "signup";
+}
+
+const { lang = "zh", section = "audience" } = Astro.props;
+const t = useTranslations(lang);
+const prefix = lang === "en" ? "/en" : "";
+const destination = withBase(`${prefix}/contact/#${section}`);
+const label = section === "signup" ? t("nav.signup") : t(`info.${section}.title`);
+---
+
+<!doctype html>
+<html lang={lang === "zh" ? "zh-CN" : "en"}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    <title>{label} | AI+X</title>
+  </head>
+  <body>
+    <p>{lang === "zh" ? "此内容已整合至“联系我们”页面。" : "This information is now part of the Contact page."}</p>
+    <a href={destination}>{label} →</a>
+  </body>
+</html>
+
+<style>
+  body {
+    margin: 3rem auto;
+    padding-inline: 1.5rem;
+    max-width: 40rem;
+    font-family: system-ui, sans-serif;
+    line-height: 1.8;
+  }
+</style>

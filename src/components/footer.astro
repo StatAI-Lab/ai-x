@@ -22,17 +22,14 @@ const year = new Date().getFullYear();
 
       <!-- Center: Links -->
       <div class="flex flex-wrap justify-center gap-4 text-sm">
-        <a href={withBase(lang === "zh" ? "/about" : "/en/about")} class="text-[var(--color-slate)] hover:text-[var(--color-accent)]">
-          {lang === "zh" ? "关于" : "About"}
+        <a href={withBase(lang === "zh" ? "/" : "/en/")} class="text-[var(--color-slate)] hover:text-[var(--color-accent)]">
+          {t("nav.home")}
         </a>
         <a href={withBase(lang === "zh" ? "/talks" : "/en/talks")} class="text-[var(--color-slate)] hover:text-[var(--color-accent)]">
           {lang === "zh" ? "往期讲座" : "Past Talks"}
         </a>
-        <a href={withBase(lang === "zh" ? "/info" : "/en/info")} class="text-[var(--color-slate)] hover:text-[var(--color-accent)]">
-          {lang === "zh" ? "须知" : "Guidelines"}
-        </a>
         <a href={withBase(lang === "zh" ? "/contact" : "/en/contact")} class="text-[var(--color-slate)] hover:text-[var(--color-accent)]">
-          {lang === "zh" ? "联系" : "Contact"}
+          {t("nav.contact")}
         </a>
       </div>
 

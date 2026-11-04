@@ -10,6 +10,12 @@ export interface Props {
 }
 const { lang = "zh" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
+const audienceFeatures = ([1, 2, 3, 4, 5, 6] as const).map((i) =>
+  t(`info.audience.f${i}` as const)
+);
+const speakerFeatures = ([1, 2, 3, 4, 5, 6] as const).map((i) =>
+  t(`info.speaker.f${i}` as const)
+);
 ---
 
 <Layout title={t("nav.contact")} lang={lang}>
@@ -19,32 +25,110 @@ const t = useTranslations(lang);
       <Fragment slot="desc">{t("contact.desc")}</Fragment>
     </Sectionhead>
 
-    <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
-      <div>
-        <h2 class="font-serif font-semibold text-xl text-[var(--color-ink)]">
-          {t("contact.intro.h")}
-        </h2>
-        <p class="text-sm leading-relaxed text-[var(--color-slate)] mt-3">
-          {t("contact.intro.p")}
-        </p>
-        <div class="mt-6 space-y-3 text-sm">
-          <div class="flex items-center gap-2 text-[var(--color-slate)]">
-            <span class="text-[var(--color-accent)]">✦</span>
-            <span>{t("contact.wechat")}: {t("contact.wechat.value")}</span>
+    <div class="max-w-4xl mx-auto">
+      <nav class="contact-sections" aria-label={lang === "zh" ? "参与信息" : "Participation information"}>
+        <a href="#audience">{t("info.audience.title")}</a>
+        <a href="#speaker">{t("info.speaker.title")}</a>
+        <a href="#signup">{t("nav.signup")}</a>
+      </nav>
+
+      <section id="audience" class="contact-section" aria-labelledby="audience-title">
+        <h2 id="audience-title" class="text-2xl mb-5">{t("info.audience.title")}</h2>
+        <ul class="guideline-list">
+          {audienceFeatures.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+
+      <section id="speaker" class="contact-section" aria-labelledby="speaker-title">
+        <h2 id="speaker-title" class="text-2xl mb-5">{t("info.speaker.title")}</h2>
+        <ul class="guideline-list">
+          {speakerFeatures.map((item) => <li>{item}</li>)}
+        </ul>
+        <a href="#signup" class="inline-block mt-6 text-base underline underline-offset-4">
+          {lang === "zh" ? "前往讲者报名 →" : "Go to speaker applications →"}
+        </a>
+      </section>
+
+      <section id="signup" class="contact-section" aria-labelledby="signup-title">
+        <h2 id="signup-title" class="text-2xl mb-6">{t("nav.signup")}</h2>
+        <div class="grid md:grid-cols-2 gap-8 md:gap-10">
+          <div class="min-w-0">
+            <p class="text-base leading-relaxed text-[var(--color-slate)]">
+              {lang === "zh"
+                ? "欢迎不同研究阶段、不同学科背景的研究者分享工作。除了成熟成果，也欢迎初步发现、研究困惑与开放问题。报名时请简述拟讲内容，并附上相关论文或个人主页链接。"
+                : "We welcome researchers at different career stages and from different disciplines. Share established results, preliminary findings, research challenges, or open questions. Please include a brief description of your proposed talk and links to relevant papers or your homepage."}
+            </p>
+            <p class="text-base leading-relaxed text-[var(--color-slate)] mt-4">
+              {lang === "zh"
+                ? "合作咨询、活动建议与其他问题，也欢迎通过以下渠道与我们联系。"
+                : "For collaborations, event suggestions, and other enquiries, you can also contact us through the channels below."}
+            </p>
+            <dl class="mt-6 space-y-3 text-sm text-[var(--color-slate)]">
+              <div>
+                <dt class="inline font-semibold">{t("contact.wechat")}: </dt>
+                <dd class="inline">{t("contact.wechat.value")}</dd>
+              </div>
+              <div>
+                <dt class="inline font-semibold">{t("contact.bilibili")}: </dt>
+                <dd class="inline">{t("contact.bilibili.value")}</dd>
+              </div>
+              <div>
+                <dt class="inline font-semibold">{t("contact.xiaohongshu")}: </dt>
+                <dd class="inline">{t("contact.xiaohongshu.value")}</dd>
+              </div>
+            </dl>
           </div>
-          <div class="flex items-center gap-2 text-[var(--color-slate)]">
-            <span class="text-[var(--color-accent)]">✦</span>
-            <span>{t("contact.bilibili")}: {t("contact.bilibili.value")}</span>
-          </div>
-          <div class="flex items-center gap-2 text-[var(--color-slate)]">
-            <span class="text-[var(--color-accent)]">✦</span>
-            <span>{t("contact.xiaohongshu")}: {t("contact.xiaohongshu.value")}</span>
+          <div class="min-w-0">
+            <Contactform lang={lang} />
           </div>
         </div>
-      </div>
-      <div>
-        <Contactform lang={lang} />
-      </div>
+      </section>
     </div>
   </Container>
 </Layout>
+
+<style>
+  .contact-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 2rem;
+    margin-top: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-rule);
+    font-size: 1rem;
+  }
+
+  .contact-sections a {
+    text-underline-offset: 0.3em;
+  }
+
+  .contact-sections a:hover,
+  .contact-sections a:focus-visible {
+    text-decoration: underline;
+  }
+
+  .contact-section {
+    padding-block: 2.5rem;
+    border-bottom: 1px solid var(--color-rule);
+    scroll-margin-top: 8rem;
+  }
+
+  .contact-section:last-child {
+    border-bottom: 0;
+  }
+
+  .guideline-list {
+    display: grid;
+    gap: 0.75rem;
+    padding-left: 1.25rem;
+    list-style: disc;
+    color: var(--color-slate);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .guideline-list li::marker {
+    color: var(--color-muted);
+  }
+</style>

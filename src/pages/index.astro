@@ -18,11 +18,13 @@ const organizers = await getOrganizers(lang);
 
 <Layout lang={lang}>
   <!-- AI+X is the platform; seminars are its current activity. -->
-  <section class="py-10 lg:py-12 border-b border-[var(--color-rule)]">
+  <section class="py-10 lg:py-12">
     <Container>
       <div class="grid lg:grid-cols-[minmax(0,1fr)_23rem] gap-8 lg:gap-12 items-start">
         <div class="min-w-0 max-w-2xl">
           <h1 class="home-intro-title">{t("hero.title")}</h1>
+          <div class="home-intro-rule" aria-hidden="true"></div>
+          <p class="home-intro-slogan">{t("hero.slogan")}</p>
           <p class="home-intro-description">{t("hero.subtitle")}</p>
         </div>
 
@@ -47,7 +49,7 @@ const organizers = await getOrganizers(lang);
     </Container>
   </section>
 
-  <section class="py-12 lg:py-16 border-b border-[var(--color-rule)]" id="first-seminar">
+  <section class="py-12 lg:py-16" id="first-seminar">
     <Container>
       <div class="flex flex-wrap items-baseline gap-x-6 gap-y-2 mb-6">
         <h2 class="text-xl">{lang === "zh" ? "首场 Seminar" : "First Seminar"}</h2>
@@ -146,7 +148,7 @@ const organizers = await getOrganizers(lang);
           {t("cta.desc")}
         </p>
         <a
-          href={withBase(`${prefix}/info`)}
+          href={withBase(`${prefix}/contact#audience`)}
           class="inline-block px-6 py-3 bg-[var(--color-accent)] text-white font-medium rounded hover:bg-[var(--color-gold)] transition">
           {lang === "zh" ? "了解参与方式 →" : "How to Participate →"}
         </a>
@@ -157,14 +159,30 @@ const organizers = await getOrganizers(lang);
 
 <style>
   .home-intro-title {
-    margin-bottom: 1.25rem;
+    font-family: var(--font-serif);
+    font-size: clamp(2.25rem, 5.2vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.2;
+    color: #17364a;
+  }
+
+  .home-intro-rule {
+    width: 5rem;
+    height: 2px;
+    margin: 1.5rem 0;
+    background: #7eaac0;
+  }
+
+  .home-intro-slogan {
+    margin-bottom: 0.875rem;
     font-family: 'Libre Baskerville', Georgia, 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', STSong, SimSun, serif;
-    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-size: clamp(1.25rem, 2.2vw, 1.625rem);
     font-weight: 400;
     letter-spacing: 0.025em;
-    line-height: 1.5;
+    line-height: 1.6;
     text-wrap: balance;
-    color: #17364a;
+    color: var(--color-ink);
   }
 
   .home-intro-description {

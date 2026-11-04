@@ -13,11 +13,7 @@ const t = useTranslations(lang);
 const prefix = lang === "en" ? "/en" : "";
 const menuitems = [
   { title: t("nav.home"), path: prefix + "/" },
-  { title: lang === "zh" ? "基础信息" : "Basic Info", path: prefix + "/about" },
   { title: t("nav.talks"), path: prefix + "/talks" },
-  { title: lang === "zh" ? "观众须知" : "Audience", path: prefix + "/audience" },
-  { title: lang === "zh" ? "讲者须知" : "For Speakers", path: prefix + "/speaker" },
-  { title: lang === "zh" ? "讲者报名" : "Apply", path: prefix + "/signup" },
   { title: t("nav.contact"), path: prefix + "/contact" },
 ];
 
@@ -44,7 +40,7 @@ const homePath = withBase(prefix + "/");
       </a>
 
       <!-- Desktop Nav -->
-      <nav class="hidden xl:flex items-center gap-6" aria-label={lang === "zh" ? "主导航" : "Main navigation"}>
+      <nav class="hidden md:flex items-center gap-6" aria-label={lang === "zh" ? "主导航" : "Main navigation"}>
         {menuitems.map((item) => (
           <a
             href={withBase(item.path)}
@@ -65,7 +61,7 @@ const homePath = withBase(prefix + "/");
 
         <!-- Mobile menu button -->
         <button
-          class="xl:hidden p-2 text-[var(--color-slate)]"
+          class="md:hidden p-2 text-[var(--color-slate)]"
           aria-label={lang === "zh" ? "导航菜单" : "Navigation menu"}
           aria-controls="mobile-menu"
           aria-expanded="false"
@@ -78,7 +74,7 @@ const homePath = withBase(prefix + "/");
     </div>
 
     <!-- Mobile Nav -->
-    <nav class="xl:hidden hidden pb-4" id="mobile-menu" aria-label={lang === "zh" ? "移动端导航" : "Mobile navigation"}>
+    <nav class="md:hidden hidden pb-4" id="mobile-menu" aria-label={lang === "zh" ? "移动端导航" : "Mobile navigation"}>
       <div class="flex flex-col gap-2">
         {menuitems.map((item) => (
           <a
