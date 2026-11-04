@@ -52,68 +52,72 @@ const organizers = await getOrganizers(lang);
     </Container>
   </section>
 
-  <section class="py-12 lg:py-16 border-b border-[var(--color-rule)]">
+  <section class="py-12 lg:py-16 border-b border-[var(--color-rule)] scroll-mt-36" id="discussions">
     <Container>
-      <h2 class="text-xl">{t("features.title")}</h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-        {([3, 4, 5, 6] as const).map((i) => (
-          <div class="min-w-0">
-            <h3 class="text-base font-semibold border-b border-[var(--color-rule)] pb-3">{t(`features.f${i}.title` as const)}</h3>
-            <p class="text-sm text-[var(--color-slate)] leading-relaxed mt-3">{t(`features.f${i}.desc` as const)}</p>
-          </div>
-        ))}
+      <div class="home-featured-column">
+        <h2 class="home-section-title">{t("features.title")}</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+          {([3, 4, 5, 6] as const).map((i) => (
+            <div class="min-w-0">
+              <h3 class="text-base font-semibold border-b border-[var(--color-rule)] pb-3">{t(`features.f${i}.title` as const)}</h3>
+              <p class="text-sm text-[var(--color-slate)] leading-relaxed mt-3">{t(`features.f${i}.desc` as const)}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </Container>
   </section>
 
   <!-- Organizers Section -->
-  <section class="py-16 border-b border-[var(--color-rule)]">
+  <section class="py-16 border-b border-[var(--color-rule)] scroll-mt-36" id="organizers">
     <Container>
-      <div class="flex items-baseline gap-6 mb-6">
-        <h2 class="text-xl">{lang === "zh" ? "组织者" : "Organizers"}</h2>
-        <span class="section-marker">{lang === "zh" ? "核心团队" : "Core Team"}</span>
-      </div>
-      <hr class="rule-subtle mb-0" />
+      <div class="home-featured-column">
+        <div class="text-center mb-6">
+          <h2 class="home-section-title">{lang === "zh" ? "组织者" : "Organizers"}</h2>
+          <p class="section-marker mt-2">{lang === "zh" ? "核心团队" : "Core Team"}</p>
+        </div>
+        <hr class="rule-subtle mb-0" />
 
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-6">
-        {organizers.map((org) => (
-          <div class="organizer-card">
-            {org.optimizedAvatar ? (
-              <Image class="avatar" src={org.optimizedAvatar} alt={org.name} width={80} height={80} densities={[1, 2]} fit="cover" quality="high" loading="lazy" />
-            ) : org.avatar ? (
-              <img class="avatar" src={org.avatar} alt={org.name} width="80" height="80" loading="lazy" decoding="async" />
-            ) : (
-              <div class="avatar flex items-center justify-center text-xl font-semibold text-[var(--color-slate)]">
-                {initials(org.name)}
-              </div>
-            )}
-            {org.homepage ? (
-              <a
-                class="name hover:text-[var(--color-accent)] hover:underline underline-offset-4 transition"
-                href={org.homepage}
-                target="_blank"
-                rel="noopener">
-                {org.name}
-              </a>
-            ) : (
-              <span class="name">{org.name}</span>
-            )}
-            <p class="affiliation">{org.affiliation}</p>
-          </div>
-        ))}
-      </div>
-
-      <!-- Contributors -->
-      <div class="mt-12 pt-8 border-t border-[var(--color-rule)]">
-        <h3 class="text-lg mb-4">{lang === "zh" ? "贡献者" : "Contributors"}</h3>
-        <div class="flex flex-wrap gap-2 text-sm text-[var(--color-slate)]">
-          {[
-            ...(lang === "zh" ? ["王子韦", "朱昶宇"] : ["Wang Ziwei", "Zhu Changyu"]),
-          ].map((name) => (
-            <span class="px-3 py-1 bg-[var(--color-paper)] border border-[var(--color-rule)] rounded text-xs">
-              {name}
-            </span>
+        <div class="home-organizer-list">
+          {organizers.map((org) => (
+            <div class="organizer-card">
+              {org.optimizedAvatar ? (
+                <Image class="avatar" src={org.optimizedAvatar} alt={org.name} width={80} height={80} densities={[1, 2]} fit="cover" quality="high" loading="lazy" />
+              ) : org.avatar ? (
+                <img class="avatar" src={org.avatar} alt={org.name} width="80" height="80" loading="lazy" decoding="async" />
+              ) : (
+                <div class="avatar flex items-center justify-center text-xl font-semibold text-[var(--color-slate)]">
+                  {initials(org.name)}
+                </div>
+              )}
+              {org.homepage ? (
+                <a
+                  class="name hover:text-[var(--color-accent)] hover:underline underline-offset-4 transition"
+                  href={org.homepage}
+                  target="_blank"
+                  rel="noopener">
+                  {org.name}
+                </a>
+              ) : (
+                <span class="name">{org.name}</span>
+              )}
+              <p class="affiliation">{org.affiliation}</p>
+            </div>
           ))}
+        </div>
+
+        <!-- Contributors -->
+        <div class="mt-12 pt-8 border-t border-[var(--color-rule)] text-center">
+          <h3 class="text-lg mb-4">{lang === "zh" ? "贡献者" : "Contributors"}</h3>
+          <div class="flex flex-wrap justify-center gap-2 text-sm text-[var(--color-slate)]">
+            {[
+              ...(lang === "zh" ? ["王子韦", "朱昶宇"] : ["Wang Ziwei", "Zhu Changyu"]),
+            ].map((name) => (
+              <span class="px-3 py-1 bg-[var(--color-paper)] border border-[var(--color-rule)] rounded text-xs">
+                {name}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </Container>
@@ -157,6 +161,37 @@ const organizers = await getOrganizers(lang);
 </Layout>
 
 <style>
+  .home-section-title {
+    font-size: clamp(1.625rem, 2.5vw, 2rem);
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .home-organizer-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .home-organizer-list .organizer-card {
+    width: calc((100% - 1rem) / 2);
+    min-width: 0;
+  }
+
+  @media (min-width: 768px) {
+    .home-organizer-list .organizer-card {
+      width: calc((100% - 2rem) / 3);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .home-organizer-list .organizer-card {
+      width: calc((100% - 4rem) / 5);
+    }
+  }
+
   .home-featured-column {
     width: 100%;
     max-width: 64rem;
