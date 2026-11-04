@@ -13,6 +13,7 @@ const { lang = "zh" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
 const prefix = lang === "en" ? "/en" : "";
 const organizers = await getOrganizers(lang);
+const sloganParts = lang === "zh" ? t("hero.slogan").split(/(?<=，)/u) : [t("hero.slogan")];
 
 ---
 
@@ -20,31 +21,11 @@ const organizers = await getOrganizers(lang);
   <!-- AI+X is the platform; seminars are its current activity. -->
   <section class="py-10 lg:py-12">
     <Container>
-      <div class="grid lg:grid-cols-[minmax(0,1fr)_23rem] gap-8 lg:gap-12 items-start">
-        <div class="min-w-0 max-w-2xl">
-          <h1 class="home-intro-title">{t("hero.title")}</h1>
-          <div class="home-intro-rule" aria-hidden="true"></div>
-          <p class="home-intro-slogan">{t("hero.slogan")}</p>
-          <p class="home-intro-description">{t("hero.subtitle")}</p>
-        </div>
-
-        <div class="w-full max-w-lg grid grid-cols-3 gap-2 sm:gap-3">
-          <div class="min-w-0 border border-[var(--color-rule)] rounded p-2 sm:p-3 text-center bg-white">
-            <Image class="w-full max-w-36 h-auto aspect-square mx-auto mb-3 object-contain bg-white" src={siteImages.qr.wechat} alt={lang === "zh" ? "微信公众号二维码" : "WeChat QR code"} width={144} height={144} densities={[1, 2]} format="png" />
-            <p class="text-xs text-[var(--color-slate)]">{t("contact.wechat")}</p>
-            <p class="text-[11px] text-[var(--color-muted)] mt-1 break-words">{t("contact.wechat.value")}</p>
-          </div>
-          <div class="min-w-0 border border-[var(--color-rule)] rounded p-2 sm:p-3 text-center bg-white">
-            <Image class="w-full max-w-36 h-auto aspect-square mx-auto mb-3 object-contain bg-white" src={siteImages.qr.bilibili} alt={lang === "zh" ? "哔哩哔哩二维码" : "Bilibili QR code"} width={144} height={144} densities={[1, 2]} format="png" />
-            <p class="text-xs text-[var(--color-slate)]">{t("contact.bilibili")}</p>
-            <p class="text-[11px] text-[var(--color-muted)] mt-1 break-words">{t("contact.bilibili.value")}</p>
-          </div>
-          <div class="min-w-0 border border-[var(--color-rule)] rounded p-2 sm:p-3 text-center bg-white">
-            <Image class="w-full max-w-36 h-auto aspect-square mx-auto mb-3 object-contain bg-white" src={siteImages.qr.xiaohongshu} alt={lang === "zh" ? "小红书二维码" : "Xiaohongshu QR code"} width={144} height={144} densities={[1, 2]} format="png" />
-            <p class="text-xs text-[var(--color-slate)]">{t("contact.xiaohongshu")}</p>
-            <p class="text-[11px] text-[var(--color-muted)] mt-1 break-words">{t("contact.xiaohongshu.value")}</p>
-          </div>
-        </div>
+      <div class="min-w-0 max-w-6xl">
+        <h1 class="home-intro-title">{t("hero.title")}</h1>
+        <div class="home-intro-rule" aria-hidden="true"></div>
+        <p class="home-intro-slogan">{sloganParts.map((part) => <span class="inline-block">{part}</span>)}</p>
+        <p class="home-intro-description">{t("hero.subtitle")}</p>
       </div>
     </Container>
   </section>
@@ -74,7 +55,6 @@ const organizers = await getOrganizers(lang);
   <section class="py-12 lg:py-16 border-b border-[var(--color-rule)]">
     <Container>
       <h2 class="text-xl">{t("features.title")}</h2>
-      <p class="text-[var(--color-slate)] mt-3">{t("features.subtitle")}</p>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
         {([3, 4, 5, 6] as const).map((i) => (
           <div class="border-t border-[var(--color-rule)] pt-5 min-w-0">
@@ -140,18 +120,37 @@ const organizers = await getOrganizers(lang);
   </section>
 
   <!-- CTA Section -->
-  <section class="py-16">
+  <section class="py-16" id="participate">
     <Container>
-      <div class="max-w-xl mx-auto text-center">
-        <h2 class="text-2xl mb-4">{lang === "zh" ? "参与讨论" : "Join the Discussion"}</h2>
-        <p class="text-[var(--color-slate)] mb-6">
-          {t("cta.desc")}
-        </p>
-        <a
-          href={withBase(`${prefix}/contact#audience`)}
-          class="inline-block px-6 py-3 bg-[var(--color-accent)] text-white font-medium rounded hover:bg-[var(--color-gold)] transition">
-          {lang === "zh" ? "了解参与方式 →" : "How to Participate →"}
-        </a>
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_23rem] gap-10 lg:gap-12 items-center">
+        <div class="w-full max-w-xl mx-auto text-center">
+          <h2 class="text-2xl mb-4">{lang === "zh" ? "参与讨论" : "Join the Discussion"}</h2>
+          <p class="text-[var(--color-slate)] text-balance mb-6">
+            {t("cta.desc")}
+          </p>
+          <a
+            href={withBase(`${prefix}/contact#audience`)}
+            class="inline-block px-6 py-3 bg-[var(--color-accent)] text-white font-medium rounded hover:bg-[var(--color-gold)] transition">
+            {lang === "zh" ? "了解参与方式 →" : "How to Participate →"}
+          </a>
+        </div>
+        <div class="w-full max-w-lg mx-auto grid grid-cols-3 gap-2 sm:gap-3">
+          <div class="min-w-0 border border-[var(--color-rule)] rounded p-2 sm:p-3 text-center bg-white">
+            <Image class="w-full max-w-36 h-auto aspect-square mx-auto mb-3 object-contain bg-white" src={siteImages.qr.wechat} alt={lang === "zh" ? "微信公众号二维码" : "WeChat QR code"} width={144} height={144} densities={[1, 2]} format="png" />
+            <p class="text-xs text-[var(--color-slate)]">{t("contact.wechat")}</p>
+            <p class="text-[11px] text-[var(--color-muted)] mt-1 break-words">{t("contact.wechat.value")}</p>
+          </div>
+          <div class="min-w-0 border border-[var(--color-rule)] rounded p-2 sm:p-3 text-center bg-white">
+            <Image class="w-full max-w-36 h-auto aspect-square mx-auto mb-3 object-contain bg-white" src={siteImages.qr.bilibili} alt={lang === "zh" ? "哔哩哔哩二维码" : "Bilibili QR code"} width={144} height={144} densities={[1, 2]} format="png" />
+            <p class="text-xs text-[var(--color-slate)]">{t("contact.bilibili")}</p>
+            <p class="text-[11px] text-[var(--color-muted)] mt-1 break-words">{t("contact.bilibili.value")}</p>
+          </div>
+          <div class="min-w-0 border border-[var(--color-rule)] rounded p-2 sm:p-3 text-center bg-white">
+            <Image class="w-full max-w-36 h-auto aspect-square mx-auto mb-3 object-contain bg-white" src={siteImages.qr.xiaohongshu} alt={lang === "zh" ? "小红书二维码" : "Xiaohongshu QR code"} width={144} height={144} densities={[1, 2]} format="png" />
+            <p class="text-xs text-[var(--color-slate)]">{t("contact.xiaohongshu")}</p>
+            <p class="text-[11px] text-[var(--color-muted)] mt-1 break-words">{t("contact.xiaohongshu.value")}</p>
+          </div>
+        </div>
       </div>
     </Container>
   </section>
@@ -160,7 +159,7 @@ const organizers = await getOrganizers(lang);
 <style>
   .home-intro-title {
     font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-size: clamp(2.5rem, 8vw, 6rem);
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.15;
@@ -175,7 +174,7 @@ const organizers = await getOrganizers(lang);
 
   .home-intro-rule {
     width: 60%;
-    max-width: 24rem;
+    max-width: 28rem;
     height: 2px;
     margin: 1.5rem 0;
     background: #7eaac0;
@@ -195,6 +194,7 @@ const organizers = await getOrganizers(lang);
   .home-intro-description {
     font-size: 1.125rem;
     line-height: 1.85;
+    text-wrap: pretty;
     color: var(--color-slate);
   }
 </style>

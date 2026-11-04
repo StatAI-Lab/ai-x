@@ -1,9 +1,8 @@
 ---
 import Container from "@/components/container.astro";
-import { useTranslations, withBase, type Lang } from "@/i18n/utils";
+import type { Lang } from "@/i18n/utils";
 
 const { lang = "zh" } = Astro.props as { lang?: Lang };
-const t = useTranslations(lang);
 const year = new Date().getFullYear();
 ---
 
@@ -20,21 +19,8 @@ const year = new Date().getFullYear();
         </p>
       </div>
 
-      <!-- Center: Links -->
-      <div class="flex flex-wrap justify-center gap-4 text-sm">
-        <a href={withBase(lang === "zh" ? "/" : "/en/")} class="text-[var(--color-slate)] hover:text-[var(--color-accent)]">
-          {t("nav.home")}
-        </a>
-        <a href={withBase(lang === "zh" ? "/talks" : "/en/talks")} class="text-[var(--color-slate)] hover:text-[var(--color-accent)]">
-          {lang === "zh" ? "往期讲座" : "Past Talks"}
-        </a>
-        <a href={withBase(lang === "zh" ? "/contact" : "/en/contact")} class="text-[var(--color-slate)] hover:text-[var(--color-accent)]">
-          {t("nav.contact")}
-        </a>
-      </div>
-
       <!-- Right: Copyright -->
-      <div class="text-center md:text-right">
+      <div class="shrink-0 text-center md:text-right">
         <p class="text-xs text-[var(--color-muted)]">
           © {year} AI+X
         </p>
@@ -42,15 +28,6 @@ const year = new Date().getFullYear();
           {lang === "zh" ? "保留所有权利" : "All rights reserved"}
         </p>
       </div>
-    </div>
-
-    <!-- Bottom: Decorative Rule -->
-    <div class="mt-8 pt-6 border-t border-[var(--color-rule)] text-center">
-      <p class="text-xs text-[var(--color-muted)] italic">
-        {lang === "zh"
-          ? "AI 是起点，X 是我们共同探索的未知。"
-          : "AI is the starting point. X is the unknown we explore together."}
-      </p>
     </div>
   </Container>
 </footer>

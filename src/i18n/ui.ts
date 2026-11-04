@@ -28,7 +28,7 @@ export const ui = {
 
     // 首页 Hero
     "hero.title": "AI+X Seminar",
-    "hero.slogan": "在学科交叉中探索人工智能的新可能",
+    "hero.slogan": "AI 是起点，X 是我们共同探索的未知。",
     "hero.subtitle":
       "面向海内外研究者、青年学者、学生与相关领域实践者，建设一流的学术交流平台。",
     "hero.time": "具体时间以每场活动通知为准（北京时间）",
@@ -64,7 +64,7 @@ export const ui = {
     // 首页 CTA
     "cta.title": "加入我们的社区",
     "cta.desc":
-      "分享一项工作，旁听一场报告，或加入讨论。关注微信公众号【AI+X Seminar】，获取具体活动通知。",
+      "分享一项工作，旁听一场报告，或加入讨论。",
     "cta.button": "了解参与方式",
 
     // About 页
@@ -163,7 +163,7 @@ export const ui = {
     "nav.signup": "Apply as Speaker",
 
     "hero.title": "AI+X Seminar",
-    "hero.slogan": "Exploring new possibilities for AI across disciplines",
+    "hero.slogan": "AI is the starting point. X is the unknown we explore together.",
     "hero.subtitle":
       "Building a leading academic exchange platform for researchers, early-career scholars, students, and practitioners worldwide.",
     "hero.time": "See each event announcement for the date and time (Beijing Time, UTC+8)",
@@ -196,7 +196,7 @@ export const ui = {
 
     "cta.title": "Join the Community",
     "cta.desc":
-      "Share your work, attend a talk, or join the discussion. Follow our WeChat official account, AI+X Seminar, for event announcements.",
+      "Share your work, attend a talk, or join the discussion.",
     "cta.button": "How to Participate",
 
     "about.title": "About AI+X",
