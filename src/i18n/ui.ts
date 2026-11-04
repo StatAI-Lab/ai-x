@@ -27,9 +27,9 @@ export const ui = {
     "nav.signup": "讲者报名",
 
     // 首页 Hero
-    "hero.title": "AI+X",
+    "hero.title": "在学科交叉中探索人工智能的新可能",
     "hero.subtitle":
-      "面向海内外研究者、青年学者、学生与相关领域实践者，连接 AI 的理论探索、科学研究与应用实践。我们从 Seminar 专题报告与开放讨论出发，分享新工作，讨论新问题，促成跨学科交流与合作。",
+      "AI+X 是面向海内外研究者、青年学者、学生与相关领域实践者的学术交流平台。目前以 Seminar 专题报告与开放讨论为主要形式，分享 AI 理论探索、科学研究与应用实践中的新工作，促进跨学科交流与合作。",
     "hero.time": "具体时间以每场活动通知为准（北京时间）",
     "hero.cta.upcoming": "查看近期讲座",
     "hero.cta.subscribe": "订阅讲座通知",
@@ -161,9 +161,9 @@ export const ui = {
     "nav.contact": "Contact",
     "nav.signup": "Apply as Speaker",
 
-    "hero.title": "AI+X",
+    "hero.title": "Exploring new possibilities for AI across disciplines",
     "hero.subtitle":
-      "A platform for researchers, early-career scholars, students, and practitioners worldwide, connecting AI theory, scientific research, and applications. We begin with research seminars and open discussion to share new work, explore questions, and build connections across disciplines.",
+      "AI+X is an academic forum for researchers, early-career scholars, students, and practitioners worldwide. Our current focus is seminars and open discussion, sharing new work in AI theory, scientific research, and applications to encourage exchange and collaboration across disciplines.",
     "hero.time": "See each event announcement for the date and time (Beijing Time, UTC+8)",
     "hero.cta.upcoming": "View Upcoming Talks",
     "hero.cta.subscribe": "Subscribe",

@@ -18,31 +18,15 @@ const organizers = await getOrganizers(lang);
 
 <Layout lang={lang}>
   <!-- AI+X is the platform; seminars are its current activity. -->
-  <section class="py-12 lg:py-16 border-b border-[var(--color-rule)]">
+  <section class="py-10 lg:py-12 border-b border-[var(--color-rule)]">
     <Container>
-      <div class="flex flex-col lg:flex-row gap-8 lg:gap-10">
-        <div class="flex-1 min-w-0 max-w-3xl">
-          <p class="section-marker mb-2">{lang === "zh" ? "AI 与不同学科的交汇处" : "At the intersection of AI and other disciplines"}</p>
-          <h1 class="hero-title">{t("hero.title")}</h1>
-          <hr class="rule-accent my-4 w-24" />
-          <p class="text-xl sm:text-2xl font-serif text-[var(--color-ink)] leading-relaxed mb-4">
-            {lang === "zh" ? "在学科交汇处，让新的问题发生" : "Where disciplines meet and new questions emerge"}
-          </p>
-          <p class="hero-subtitle mb-6">{t("hero.subtitle")}</p>
-
-          <div class="grid sm:grid-cols-2 gap-3">
-            <div class="info-card min-w-0">
-              <p class="label">{lang === "zh" ? "当前活动" : "Current Format"}</p>
-              <p class="value">{lang === "zh" ? "Seminar · 专题报告与开放讨论" : "Seminars and open discussion"}</p>
-            </div>
-            <div class="info-card min-w-0">
-              <p class="label">{lang === "zh" ? "面向谁" : "Who Can Join"}</p>
-              <p class="value">{lang === "zh" ? "研究者、青年学者、学生与实践者" : "Researchers, students, and practitioners worldwide"}</p>
-            </div>
-          </div>
+      <div class="grid lg:grid-cols-[minmax(0,1fr)_23rem] gap-8 lg:gap-12 items-start">
+        <div class="min-w-0 max-w-2xl">
+          <h1 class="home-intro-title">{t("hero.title")}</h1>
+          <p class="home-intro-description">{t("hero.subtitle")}</p>
         </div>
 
-        <div class="w-full max-w-lg lg:w-[23rem] lg:shrink-0 grid grid-cols-3 gap-2 sm:gap-3 self-start">
+        <div class="w-full max-w-lg grid grid-cols-3 gap-2 sm:gap-3">
           <div class="min-w-0 border border-[var(--color-rule)] rounded p-2 sm:p-3 text-center bg-white">
             <Image class="w-full max-w-36 h-auto aspect-square mx-auto mb-3 object-contain bg-white" src={siteImages.qr.wechat} alt={lang === "zh" ? "微信公众号二维码" : "WeChat QR code"} width={144} height={144} densities={[1, 2]} format="png" />
             <p class="text-xs text-[var(--color-slate)]">{t("contact.wechat")}</p>
@@ -170,3 +154,21 @@ const organizers = await getOrganizers(lang);
     </Container>
   </section>
 </Layout>
+
+<style>
+  .home-intro-title {
+    margin-bottom: 1.125rem;
+    font-family: var(--font-sans);
+    font-size: clamp(1.5rem, 2.3vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.5;
+    text-wrap: balance;
+    color: var(--color-ink);
+  }
+
+  .home-intro-description {
+    font-size: 1.125rem;
+    line-height: 1.85;
+    color: var(--color-slate);
+  }
+</style>
