@@ -13,7 +13,6 @@ const { lang = "zh" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
 const prefix = lang === "en" ? "/en" : "";
 const organizers = await getOrganizers(lang);
-const sloganParts = lang === "zh" ? t("hero.slogan").split(/(?<=，)/u) : [t("hero.slogan")];
 
 ---
 
@@ -24,7 +23,6 @@ const sloganParts = lang === "zh" ? t("hero.slogan").split(/(?<=，)/u) : [t("he
       <div class="min-w-0 max-w-6xl">
         <h1 class="home-intro-title">{t("hero.title")}</h1>
         <div class="home-intro-rule" aria-hidden="true"></div>
-        <p class="home-intro-slogan">{sloganParts.map((part) => <span class="inline-block">{part}</span>)}</p>
         <p class="home-intro-description">{t("hero.subtitle")}</p>
       </div>
     </Container>
@@ -57,8 +55,8 @@ const sloganParts = lang === "zh" ? t("hero.slogan").split(/(?<=，)/u) : [t("he
       <h2 class="text-xl">{t("features.title")}</h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
         {([3, 4, 5, 6] as const).map((i) => (
-          <div class="border-t border-[var(--color-rule)] pt-5 min-w-0">
-            <h3 class="text-base font-semibold">{t(`features.f${i}.title` as const)}</h3>
+          <div class="min-w-0">
+            <h3 class="text-base font-semibold border-b border-[var(--color-rule)] pb-3">{t(`features.f${i}.title` as const)}</h3>
             <p class="text-sm text-[var(--color-slate)] leading-relaxed mt-3">{t(`features.f${i}.desc` as const)}</p>
           </div>
         ))}
@@ -177,18 +175,7 @@ const sloganParts = lang === "zh" ? t("hero.slogan").split(/(?<=，)/u) : [t("he
     max-width: 28rem;
     height: 2px;
     margin: 1.5rem 0;
-    background: #7eaac0;
-  }
-
-  .home-intro-slogan {
-    margin-bottom: 0.875rem;
-    font-family: 'Libre Baskerville', Georgia, 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', STSong, SimSun, serif;
-    font-size: clamp(1.25rem, 2.2vw, 1.625rem);
-    font-weight: 400;
-    letter-spacing: 0.025em;
-    line-height: 1.6;
-    text-wrap: balance;
-    color: var(--color-ink);
+    background: var(--color-accent);
   }
 
   .home-intro-description {

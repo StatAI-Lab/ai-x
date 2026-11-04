@@ -21,13 +21,14 @@ const otherLang: Lang = lang === "zh" ? "en" : "zh";
 const otherLangLabel = lang === "zh" ? "EN" : "中";
 const otherLangPath = switchLangPath(Astro.url, otherLang);
 const homePath = withBase(prefix + "/");
+const sloganParts = lang === "zh" ? t("hero.slogan").split(/(?<=，)/u) : [t("hero.slogan")];
 ---
 
 <header class="border-b border-[var(--color-rule)] sticky top-0 bg-[var(--color-paper)] z-50">
   <Container>
-    <div class="flex items-center justify-between gap-6 min-h-24 sm:min-h-28 py-2">
+    <div class="header-layout">
       <!-- Logo -->
-      <a href={homePath} class="shrink-0" aria-label={lang === "zh" ? "AI+X 首页" : "AI+X home"}>
+      <a href={homePath} class="header-brand" aria-label={lang === "zh" ? "AI+X 首页" : "AI+X home"}>
         <img
           class="brand-logo"
           src={withBase("/logo.png")}
@@ -39,37 +40,41 @@ const homePath = withBase(prefix + "/");
         />
       </a>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-6" aria-label={lang === "zh" ? "主导航" : "Main navigation"}>
-        {menuitems.map((item) => (
+      <p class="brand-slogan">{sloganParts.map((part) => <span>{part}</span>)}</p>
+
+      <div class="header-controls">
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-6" aria-label={lang === "zh" ? "主导航" : "Main navigation"}>
+          {menuitems.map((item) => (
+            <a
+              href={withBase(item.path)}
+              class="whitespace-nowrap text-base text-[var(--color-slate)] hover:text-[var(--color-accent)] transition border-b border-transparent hover:border-[var(--color-accent)] pb-0.5">
+              {item.title}
+            </a>
+          ))}
+        </nav>
+
+        <!-- Language Toggle -->
+        <div class="flex shrink-0 items-center gap-3">
           <a
-            href={withBase(item.path)}
-            class="whitespace-nowrap text-base text-[var(--color-slate)] hover:text-[var(--color-accent)] transition border-b border-transparent hover:border-[var(--color-accent)] pb-0.5">
-            {item.title}
+            href={withBase(otherLangPath)}
+            aria-label="Switch language"
+            class="inline-flex items-center justify-center w-9 h-9 text-sm font-mono font-medium text-[var(--color-slate)] hover:text-[var(--color-accent)] border border-[var(--color-rule)] rounded hover:border-[var(--color-accent)] transition">
+            {otherLangLabel}
           </a>
-        ))}
-      </nav>
 
-      <!-- Language Toggle -->
-      <div class="flex shrink-0 items-center gap-3">
-        <a
-          href={withBase(otherLangPath)}
-          aria-label="Switch language"
-          class="inline-flex items-center justify-center w-9 h-9 text-sm font-mono font-medium text-[var(--color-slate)] hover:text-[var(--color-accent)] border border-[var(--color-rule)] rounded hover:border-[var(--color-accent)] transition">
-          {otherLangLabel}
-        </a>
-
-        <!-- Mobile menu button -->
-        <button
-          class="md:hidden p-2 text-[var(--color-slate)]"
-          aria-label={lang === "zh" ? "导航菜单" : "Navigation menu"}
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-          id="mobile-menu-btn">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
+          <!-- Mobile menu button -->
+          <button
+            class="md:hidden p-2 text-[var(--color-slate)]"
+            aria-label={lang === "zh" ? "导航菜单" : "Navigation menu"}
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            id="mobile-menu-btn">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -106,6 +111,44 @@ const homePath = withBase(prefix + "/");
 </script>
 
 <style>
+  .header-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "brand controls" "slogan slogan";
+    align-items: center;
+    gap: 0.25rem 0.75rem;
+    min-height: 6rem;
+    padding: 0.5rem 0 0.75rem;
+  }
+
+  .header-brand {
+    grid-area: brand;
+    width: fit-content;
+  }
+
+  .brand-slogan {
+    grid-area: slogan;
+    min-width: 0;
+    font-family: 'Libre Baskerville', Georgia, 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', STSong, SimSun, serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--color-accent);
+    text-wrap: balance;
+  }
+
+  .brand-slogan span {
+    display: inline-block;
+  }
+
+  .header-controls {
+    grid-area: controls;
+    display: flex;
+    align-items: center;
+    justify-self: end;
+    gap: 1.5rem;
+  }
+
   .brand-logo {
     display: block;
     width: 160px;
@@ -117,6 +160,21 @@ const homePath = withBase(prefix + "/");
   @media (min-width: 640px) {
     .brand-logo {
       width: 208px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .header-layout {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-template-areas: "brand slogan controls";
+      column-gap: 2rem;
+      min-height: 7rem;
+      padding: 0.5rem 0;
+    }
+
+    .brand-slogan {
+      max-width: 26rem;
+      font-size: 1rem;
     }
   }
 </style>

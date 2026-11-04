@@ -36,7 +36,7 @@ export const ui = {
     "hero.cta.subscribe": "订阅讲座通知",
 
     // 首页 Features
-    "features.title": "我们在这里交流什么",
+    "features.title": "我们在这里交流",
     "features.subtitle":
       "AI 是起点，X 是我们共同探索的未知。",
     "features.f1.title": "专题报告与开放讨论",
@@ -170,7 +170,7 @@ export const ui = {
     "hero.cta.upcoming": "View Upcoming Talks",
     "hero.cta.subscribe": "Subscribe",
 
-    "features.title": "What We Explore",
+    "features.title": "Our Discussions",
     "features.subtitle":
       "AI is our starting point; X is what we explore together.",
     "features.f1.title": "Seminars and Open Discussion",
