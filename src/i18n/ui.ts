@@ -30,7 +30,7 @@ export const ui = {
     "hero.title": "AI+X Seminar",
     "hero.slogan": "AI 是起点，X 是我们共同探索的未知。",
     "hero.subtitle":
-      "面向海内外研究者、青年学者、学生与相关领域实践者，建设一流的学术交流平台。",
+      "AI+X 是面向海内外研究者、青年学者、学生及实践者的学术交流平台。我们聚焦 AI 与不同学科的交叉研究，通过专题学术报告与开放讨论，分享新工作、探讨新问题，促进交流与合作。",
     "hero.time": "具体时间以每场活动通知为准（北京时间）",
     "hero.cta.upcoming": "查看近期讲座",
     "hero.cta.subscribe": "订阅讲座通知",
@@ -165,7 +165,7 @@ export const ui = {
     "hero.title": "AI+X Seminar",
     "hero.slogan": "AI is the starting point. X is the unknown we explore together.",
     "hero.subtitle":
-      "Building a leading academic exchange platform for researchers, early-career scholars, students, and practitioners worldwide.",
+      "AI+X is an academic forum for researchers, early-career scholars, students, and practitioners worldwide. Through research seminars and open discussion, we explore the intersections of AI and other disciplines, share new work and questions, and encourage exchange and collaboration.",
     "hero.time": "See each event announcement for the date and time (Beijing Time, UTC+8)",
     "hero.cta.upcoming": "View Upcoming Talks",
     "hero.cta.subscribe": "Subscribe",
