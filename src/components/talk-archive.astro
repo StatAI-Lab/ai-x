@@ -1,0 +1,220 @@
+---
+import { withBase, type Lang } from "@/i18n/utils";
+import type { TalkEntry } from "@/utils/talks";
+
+interface Props {
+  lang?: Lang;
+  talks: TalkEntry[];
+}
+
+const { lang = "zh", talks } = Astro.props;
+const prefix = lang === "en" ? "/en" : "";
+const bySemester = new Map<string, TalkEntry[]>();
+for (const talk of [...talks].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())) {
+  const group = bySemester.get(talk.data.semester) ?? [];
+  group.push(talk);
+  bySemester.set(talk.data.semester, group);
+}
+const dateFormatter = new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : "en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  timeZone: "Asia/Shanghai",
+});
+---
+
+{bySemester.size === 0 ? (
+  <p class="archive-empty">
+    {lang === "zh"
+      ? "首场报告筹备中，往期报告与相关资料将在这里陆续更新。"
+      : "Our first seminar is being prepared. Past talks and related resources will be added here."}
+  </p>
+) : (
+  <div class="talk-archive">
+    {[...bySemester.entries()].map(([semester, entries]) => (
+      <details class="archive-group" open>
+        <summary>
+          <h3 class="archive-semester">{semester}</h3>
+          <span class="archive-count">
+            {lang === "zh" ? `${entries.length} 场报告` : `${entries.length} ${entries.length === 1 ? "talk" : "talks"}`}
+          </span>
+          <span class="archive-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="archive-head" aria-hidden="true">
+          <span>{lang === "zh" ? "日期" : "Date"}</span>
+          <span>{lang === "zh" ? "讲者 / 机构" : "Speaker / Affiliation"}</span>
+          <span>{lang === "zh" ? "报告标题" : "Talk"}</span>
+          <span>{lang === "zh" ? "相关资料" : "Resources"}</span>
+        </div>
+        <ul class="archive-list" role="list">
+          {entries.map((entry) => {
+            const resources = [
+              { url: entry.data.paperUrl, label: lang === "zh" ? "论文" : "Paper" },
+              { url: entry.data.videoUrl, label: lang === "zh" ? "录像" : "Video" },
+              { url: entry.data.slidesUrl, label: lang === "zh" ? "讲义" : "Slides" },
+              { url: entry.data.talkInfoUrl, label: lang === "zh" ? "推文" : "Announcement" },
+            ].filter((resource) => resource.url);
+            return (
+              <li class="archive-row">
+                <time class="archive-date" datetime={entry.data.date.toISOString()}>
+                  {dateFormatter.format(entry.data.date)}
+                </time>
+                <div class="archive-speaker">
+                  <p class="speaker-name">{entry.data.speaker}</p>
+                  <p class="speaker-affiliation">{entry.data.affiliation}</p>
+                </div>
+                <h4 class="archive-title">
+                  <a href={withBase(`${prefix}/talks/${entry.slug}`)}>{entry.data.title}</a>
+                </h4>
+                {resources.length > 0 && (
+                  <div class="archive-resources">
+                    {resources.map(({ url, label }) => (
+                      <a href={url} target="_blank" rel="noopener noreferrer">{label} <span aria-hidden="true">↗</span></a>
+                    ))}
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </details>
+    ))}
+  </div>
+)}
+
+<style>
+  .archive-empty {
+    border-block: 1px solid color-mix(in srgb, var(--color-rule) 65%, transparent);
+    padding-block: 1.75rem;
+    color: var(--color-muted);
+    line-height: 1.8;
+  }
+
+  .talk-archive { min-width: 0; }
+  .archive-group + .archive-group { margin-top: 2.5rem; }
+
+  .archive-group summary {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    list-style: none;
+    padding-block: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-rule);
+    cursor: pointer;
+  }
+
+  .archive-group summary::-webkit-details-marker { display: none; }
+
+  .archive-group summary:focus-visible,
+  .talk-archive a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+
+  .archive-semester {
+    min-width: 0;
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+
+  .archive-count {
+    flex-shrink: 0;
+    font-size: 0.8125rem;
+    color: var(--color-muted);
+  }
+
+  .archive-toggle {
+    margin-left: auto;
+    color: var(--color-accent);
+    font-size: 1.375rem;
+    line-height: 1;
+  }
+
+  .archive-toggle::before { content: "+"; }
+  .archive-group[open] .archive-toggle::before { content: "−"; }
+  .archive-head { display: none; }
+
+  .archive-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .archive-row {
+    display: grid;
+    gap: 0.75rem;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-rule) 55%, transparent);
+    min-width: 0;
+  }
+
+  .archive-date {
+    color: var(--color-muted);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+  }
+
+  .archive-speaker,
+  .archive-title,
+  .archive-resources {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .speaker-name {
+    color: var(--color-ink);
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+
+  .speaker-affiliation {
+    margin-top: 0.25rem;
+    color: var(--color-muted);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+  }
+
+  .archive-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  .archive-title a { color: var(--color-ink); }
+  .archive-title a:hover { color: var(--color-accent); }
+
+  .archive-resources {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: start;
+    gap: 0.5rem 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+  }
+
+  .archive-resources a { color: var(--color-accent); }
+
+  .talk-archive a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  @media (min-width: 768px) {
+    .archive-head,
+    .archive-row {
+      grid-template-columns: 6.5rem minmax(0, 1fr) minmax(0, 2.1fr) minmax(6rem, 0.8fr);
+      column-gap: 1.5rem;
+    }
+
+    .archive-head {
+      display: grid;
+      padding-top: 1.25rem;
+      color: var(--color-muted);
+      font-size: 0.75rem;
+    }
+
+    .archive-title { font-size: 1rem; }
+  }
+</style>

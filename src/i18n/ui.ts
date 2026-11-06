@@ -112,7 +112,7 @@ export const ui = {
     // Talks(原 Blog)页 — 往期讲座
     "talks.title": "往期讲座",
     "talks.desc":
-      "按学期划分的历次讲座存档。点击任意一场进入讲座详情与录像。",
+      "近期报告与历次讲座记录，汇集报告详情、论文及回放。",
     "talks.back": "← 返回讲座列表",
     "talks.speaker": "讲者",
     "talks.affiliation": "所属机构",
@@ -253,7 +253,7 @@ export const ui = {
 
     "talks.title": "Past Talks",
     "talks.desc":
-      "Archive of past sessions, grouped by semester. Click any talk to view details and recording.",
+      "Recent and past seminars, with talk details, papers, and recordings.",
     "talks.back": "← Back to Talks",
     "talks.speaker": "Speaker",
     "talks.affiliation": "Affiliation",

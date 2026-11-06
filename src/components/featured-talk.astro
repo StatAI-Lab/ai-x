@@ -1,0 +1,105 @@
+---
+import { withBase, type Lang } from "@/i18n/utils";
+import type { TalkEntry } from "@/utils/talks";
+
+interface Props {
+  lang?: Lang;
+  talk?: TalkEntry;
+}
+
+const { lang = "zh", talk } = Astro.props;
+const zh = lang === "zh";
+const prefix = zh ? "" : "/en";
+const date = talk?.data.date ?? new Date("2026-11-12T20:00:00+08:00");
+const format = (options: Intl.DateTimeFormatOptions) =>
+  new Intl.DateTimeFormat(zh ? "zh-CN" : "en-US", {
+    ...options,
+    timeZone: "Asia/Shanghai",
+  }).format(date);
+const month = format({ month: "short" });
+const day = new Intl.DateTimeFormat("en-US", { day: "2-digit", timeZone: "Asia/Shanghai" }).format(date);
+const year = format({ year: "numeric" });
+const weekday = format({ weekday: "long" });
+const time = format({ hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+const title = talk?.data.title ?? (zh ? "首场 Seminar" : "Our First Seminar");
+const abstract = talk?.data.abstract ?? (!talk
+  ? zh
+    ? "从自动化数据分析，到预测与生成建模，再到统计方法的研发，首场报告将连接 AI 的理论问题与研究实践，探讨基础模型为统计研究带来的新可能。"
+    : "From automated data analysis and predictive and generative modeling to the development of statistical methods, the first talk connects theoretical questions in AI with research practice and explores new possibilities for foundation models in statistics."
+  : undefined);
+---
+
+<article class="featured-talk">
+  <time class="talk-date" datetime={date.toISOString()} aria-label={format({ dateStyle: "full", timeStyle: "short" })}>
+    <span class="date-month">{month}</span>
+    <strong class="date-day">{day}</strong>
+    <span class="date-year">{year}</span>
+    <span class="date-weekday">{weekday}</span>
+  </time>
+
+  <div class="talk-copy">
+    <div class="talk-meta">
+      <span class="talk-kind">{talk ? (zh ? "专题学术报告" : "Research Talk") : (zh ? "首场报告 · 预告" : "First Talk · Preview")}</span>
+      <span>{time} · {zh ? "北京时间" : "Beijing Time (UTC+8)"}</span>
+    </div>
+    <h3 class="talk-title">{title}</h3>
+    {talk ? (
+      <p class="talk-speaker"><strong>{talk.data.speaker}</strong><span>{talk.data.affiliation}</span></p>
+    ) : (
+      <p class="talk-announcement">{zh ? "讲者与报告题目将陆续公布" : "Speaker and talk title to be announced"}</p>
+    )}
+    {abstract && <p class="talk-abstract">{abstract}</p>}
+    {!talk && <p class="talk-note">{zh ? "关注微信公众号【AI+X Seminar】，获取完整报告信息与参与方式。" : "Follow AI+X Seminar on WeChat for full talk details and participation information."}</p>}
+    <div class="talk-links">
+      {talk && <a href={withBase(`${prefix}/talks/${talk.slug}`)}>{zh ? "报告详情" : "Talk details"}<span aria-hidden="true"> →</span></a>}
+      {talk?.data.talkInfoUrl && <a href={talk.data.talkInfoUrl} target="_blank" rel="noopener noreferrer">{zh ? "公众号介绍 ↗" : "Announcement ↗"}</a>}
+      {talk?.data.paperUrl && <a href={talk.data.paperUrl} target="_blank" rel="noopener noreferrer">{zh ? "论文 ↗" : "Paper ↗"}</a>}
+      {talk?.data.slidesUrl && <a href={talk.data.slidesUrl} target="_blank" rel="noopener noreferrer">{zh ? "讲义 ↗" : "Slides ↗"}</a>}
+      {talk?.data.videoUrl && <a href={talk.data.videoUrl} target="_blank" rel="noopener noreferrer">{zh ? "回放 ↗" : "Recording ↗"}</a>}
+      <a href={withBase(`${prefix}/contact#audience`)}>{zh ? "如何参与" : "How to participate"}<span aria-hidden="true"> →</span></a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .featured-talk {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    align-items: start;
+    gap: 2rem;
+    padding-block: 2rem;
+    border-block: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+  .talk-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0.75rem;
+    background: color-mix(in srgb, var(--color-accent) 6%, var(--color-paper));
+    color: var(--color-accent);
+    border-radius: 0.25rem;
+    line-height: 1.4;
+  }
+  .date-month { font-size: 0.875rem; }
+  .date-day { font-family: var(--font-serif); font-size: 3rem; line-height: 1.25; }
+  .date-year { font-family: var(--font-mono); font-size: 0.75rem; }
+  .date-weekday { margin-top: 0.75rem; font-size: 0.75rem; }
+  .talk-copy { min-width: 0; overflow-wrap: anywhere; }
+  .talk-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; font-size: 0.875rem; color: var(--color-accent); }
+  .talk-kind { font-weight: 600; }
+  .talk-title { margin-top: 0.75rem; font-size: clamp(1.5rem, 2.4vw, 1.875rem); line-height: 1.4; overflow-wrap: anywhere; }
+  .talk-speaker { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin-top: 0.75rem; font-size: 1rem; color: var(--color-slate); }
+  .talk-speaker strong { color: var(--color-accent); }
+  .talk-announcement { margin-top: 0.5rem; font-size: 0.875rem; color: var(--color-muted); }
+  .talk-abstract { margin-top: 1rem; font-size: 1rem; line-height: 1.85; color: var(--color-slate); }
+  .talk-note { margin-top: 0.75rem; font-size: 0.875rem; color: var(--color-muted); }
+  .talk-links { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; margin-top: 1.25rem; font-size: 0.9375rem; font-weight: 600; }
+  .talk-links a:hover { text-decoration: underline; text-underline-offset: 0.25em; }
+  @media (max-width: 639px) {
+    .featured-talk { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; padding-block: 1.5rem; }
+    .talk-date { flex-direction: row; justify-content: flex-start; flex-wrap: wrap; gap: 0.5rem; width: fit-content; padding: 0.5rem 0.875rem; }
+    .date-day { font-size: 1.75rem; }
+    .date-year { order: -1; }
+    .date-weekday { margin: 0 0 0 0.25rem; }
+  }
+</style>

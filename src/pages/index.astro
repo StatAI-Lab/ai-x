@@ -5,6 +5,9 @@ import { useTranslations, withBase, type Lang } from "@/i18n/utils";
 import { getOrganizers, initials } from "@/utils/organizers";
 import { Image } from "astro:assets";
 import { siteImages } from "@/utils/images";
+import FeaturedTalk from "@/components/featured-talk.astro";
+import TalkArchive from "@/components/talk-archive.astro";
+import { getTalks } from "@/utils/talks";
 
 export interface Props {
   lang?: Lang;
@@ -13,6 +16,7 @@ const { lang = "zh" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
 const prefix = lang === "en" ? "/en" : "";
 const organizers = await getOrganizers(lang);
+const talks = (await getTalks()).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 ---
 
@@ -47,31 +51,7 @@ const organizers = await getOrganizers(lang);
     </Container>
   </section>
 
-  <section class="py-12 lg:py-16" id="first-seminar">
-    <Container>
-      <div class="home-featured-column">
-        <div class="flex flex-wrap items-baseline gap-x-6 gap-y-2 mb-6">
-          <h2 class="text-xl">{lang === "zh" ? "首场 Seminar" : "First Seminar"}</h2>
-          <span class="section-marker">{lang === "zh" ? "专题学术报告" : "Research Talk"}</span>
-        </div>
-        <div class="border-t border-[var(--color-rule)] pt-6 max-w-3xl">
-          <time datetime="2026-11-12T20:00:00+08:00" class="block text-lg font-medium text-[var(--color-accent)]">
-            {lang === "zh" ? "2026 年 11 月 12 日 · 20:00（北京时间）" : "November 12, 2026 · 8:00 PM (Beijing Time, UTC+8)"}
-          </time>
-          <p class="text-[var(--color-slate)] leading-relaxed mt-4">
-            {lang === "zh"
-              ? "从自动化数据分析，到预测与生成建模，再到统计方法的研发，首场报告将连接 AI 的理论问题与研究实践，探讨基础模型为统计研究带来的新可能。"
-              : "From automated data analysis and predictive and generative modeling to the development of statistical methods, the first talk connects theoretical questions in AI with research practice and explores new possibilities for foundation models in statistics."}
-          </p>
-          <p class="text-sm text-[var(--color-muted)] mt-3">
-            {lang === "zh" ? "更多报告信息与参与方式，请关注微信公众号【AI+X Seminar】的活动通知。" : "Follow the WeChat official account AI+X Seminar for further talk details and participation information."}
-          </p>
-        </div>
-      </div>
-    </Container>
-  </section>
-
-  <section class="py-12 lg:py-16 border-b border-[var(--color-rule)] scroll-mt-36" id="discussions">
+  <section class="pt-6 pb-12 lg:pt-8 lg:pb-16 scroll-mt-36" id="discussions">
     <Container>
       <div class="home-featured-column">
         <h2 class="home-section-title">{t("features.title")}</h2>
@@ -82,6 +62,22 @@ const organizers = await getOrganizers(lang);
               <p class="text-sm text-[var(--color-slate)] leading-relaxed mt-3">{t(`features.f${i}.desc` as const)}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-10 lg:py-12 scroll-mt-36" id="first-seminar">
+    <Container>
+      <div class="home-featured-column">
+        <h2 class="home-section-title mb-8">{lang === "zh" ? "报告信息" : "Seminar Talks"}</h2>
+        <FeaturedTalk lang={lang} talk={talks[0]} />
+        <div class="mt-10">
+          <div class="flex flex-wrap items-baseline justify-between gap-3 mb-5">
+            <h3 class="text-xl">{lang === "zh" ? "讲座列表" : "Talk Archive"}</h3>
+            <a class="text-sm" href={withBase(`${prefix}/talks`)}>{lang === "zh" ? "全部讲座 →" : "All talks →"}</a>
+          </div>
+          <TalkArchive lang={lang} talks={talks.slice(0, 5)} />
         </div>
       </div>
     </Container>
