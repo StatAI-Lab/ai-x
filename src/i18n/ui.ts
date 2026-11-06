@@ -20,7 +20,7 @@ export const ui = {
 
     // 导航
     "nav.home": "首页",
-    "nav.about": "关于",
+    "nav.about": "基础信息",
     "nav.info": "须知",
     "nav.talks": "往期讲座",
     "nav.contact": "联系我们",
@@ -68,7 +68,7 @@ export const ui = {
     "cta.button": "了解参与方式",
 
     // About 页
-    "about.title": "关于 AI+X",
+    "about.title": "基础信息",
     "about.desc": "一个连接 AI 与不同学科的学术交流平台。",
     "about.intro.h":
       "AI 是起点，X 是我们共同探索的未知。",
@@ -156,7 +156,7 @@ export const ui = {
       "AI+X is an academic exchange platform for researchers, early-career scholars, students, and practitioners worldwide, connecting AI theory, scientific research, and applications. Our current focus is research seminars and open discussion.",
 
     "nav.home": "Home",
-    "nav.about": "About",
+    "nav.about": "Information",
     "nav.info": "Guidelines",
     "nav.talks": "Past Talks",
     "nav.contact": "Contact",
@@ -199,7 +199,7 @@ export const ui = {
       "Share your work, attend a talk, or join the discussion.",
     "cta.button": "How to Participate",
 
-    "about.title": "About AI+X",
+    "about.title": "Basic Information",
     "about.desc":
       "A forum connecting AI with research across disciplines.",
     "about.intro.h":
