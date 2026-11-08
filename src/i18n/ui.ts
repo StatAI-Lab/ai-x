@@ -84,7 +84,7 @@ export const ui = {
       "哔哩哔哩 + 微信公众号 + 小红书",
     "about.logistics.archive": "归档",
     "about.logistics.archive.value":
-      "活动通知与报告内容见微信公众号「人工智能交叉研究」，以及哔哩哔哩、小红书账号 AI+X Seminar",
+      "活动通知与报告内容见微信公众号、哔哩哔哩及小红书账号「人工智能交叉研究」",
     "about.organizers.title": "组织者",
     "about.organizers.desc":
       "AI+X 由来自不同高校和研究机构的研究者共同组织。",
@@ -133,9 +133,9 @@ export const ui = {
     "contact.wechat": "微信公众号",
     "contact.wechat.value": "人工智能交叉研究",
     "contact.bilibili": "哔哩哔哩",
-    "contact.bilibili.value": "AI+X Seminar",
+    "contact.bilibili.value": "人工智能交叉研究",
     "contact.xiaohongshu": "小红书",
-    "contact.xiaohongshu.value": "AI+X Seminar",
+    "contact.xiaohongshu.value": "人工智能交叉研究",
     "contact.youtube": "YouTube",
     "contact.youtube.value": "@AIXSeminar",
     "contact.form.name": "姓名",
@@ -219,7 +219,7 @@ export const ui = {
       "Bilibili + WeChat + Xiaohongshu",
     "about.logistics.archive": "Archive",
     "about.logistics.archive.value":
-      "Find event announcements and talk content on WeChat at 人工智能交叉研究, and on Bilibili and Xiaohongshu at AI+X Seminar",
+      "Find event announcements and talk content on WeChat, Bilibili, and Xiaohongshu under the name 人工智能交叉研究",
     "about.organizers.title": "Organizers",
     "about.organizers.desc":
       "AI+X is organized by researchers from universities and research institutes.",
@@ -276,9 +276,9 @@ export const ui = {
     "contact.wechat": "WeChat",
     "contact.wechat.value": "人工智能交叉研究",
     "contact.bilibili": "Bilibili",
-    "contact.bilibili.value": "AI+X Seminar",
+    "contact.bilibili.value": "人工智能交叉研究",
     "contact.xiaohongshu": "Xiaohongshu",
-    "contact.xiaohongshu.value": "AI+X Seminar",
+    "contact.xiaohongshu.value": "人工智能交叉研究",
     "contact.youtube": "YouTube",
     "contact.youtube.value": "@AIXSeminar",
     "contact.form.name": "Name",
