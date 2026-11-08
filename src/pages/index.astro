@@ -27,9 +27,9 @@ const talks = (await getTalks()).sort((a, b) => b.data.date.valueOf() - a.data.d
       <div class="home-featured-column">
         <h1 class="home-intro-title">{t("hero.title")}</h1>
         <div class="home-intro-rule" aria-hidden="true"></div>
-        <div class="grid lg:grid-cols-[minmax(0,1fr)_23rem] gap-8 lg:gap-10 items-center">
+        <div class="grid lg:grid-cols-[minmax(0,1fr)_32rem] gap-8 lg:gap-10 items-center">
           <p class="home-intro-description">{t("hero.subtitle")}</p>
-          <div class="w-full max-w-lg mx-auto grid grid-cols-3 gap-2 sm:gap-3">
+          <div class="w-full max-w-2xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div class="min-w-0 border border-[var(--color-rule)] rounded p-2 sm:p-3 text-center bg-white">
               <img class="w-full max-w-36 h-auto aspect-square mx-auto mb-3 object-contain bg-white" src={withBase("/qr/wechat.png")} alt={lang === "zh" ? "人工智能交叉研究微信公众号二维码" : "WeChat QR code for 人工智能交叉研究"} width="144" height="144" decoding="async" />
               <p class="text-xs text-[var(--color-slate)]">{t("contact.wechat")}</p>
@@ -44,6 +44,11 @@ const talks = (await getTalks()).sort((a, b) => b.data.date.valueOf() - a.data.d
               <Image class="w-full max-w-36 h-auto aspect-square mx-auto mb-3 object-contain bg-white" src={siteImages.qr.xiaohongshu} alt={lang === "zh" ? "小红书二维码" : "Xiaohongshu QR code"} width={144} height={144} densities={[1, 2]} format="png" />
               <p class="text-xs text-[var(--color-slate)]">{t("contact.xiaohongshu")}</p>
               <p class="text-[11px] text-[var(--color-muted)] mt-1 break-words">{t("contact.xiaohongshu.value")}</p>
+            </div>
+            <div class="min-w-0 border border-[var(--color-rule)] rounded p-2 sm:p-3 text-center bg-white">
+              <img class="w-full max-w-36 h-auto aspect-square mx-auto mb-3 object-contain bg-white" src={withBase("/qr/yt.png")} alt={lang === "zh" ? "YouTube 频道二维码" : "YouTube channel QR code"} width="144" height="144" decoding="async" />
+              <p class="text-xs text-[var(--color-slate)]">{t("contact.youtube")}</p>
+              <p class="text-[11px] text-[var(--color-muted)] mt-1 text-balance">{t("contact.youtube.value")}</p>
             </div>
           </div>
         </div>

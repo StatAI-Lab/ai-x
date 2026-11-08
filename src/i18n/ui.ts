@@ -136,6 +136,8 @@ export const ui = {
     "contact.bilibili.value": "AI+X Seminar",
     "contact.xiaohongshu": "小红书",
     "contact.xiaohongshu.value": "AI+X Seminar",
+    "contact.youtube": "YouTube",
+    "contact.youtube.value": "扫码访问频道",
     "contact.form.name": "姓名",
     "contact.form.email": "邮箱",
     "contact.form.message": "留言(若为讲者自荐,请简述拟讲内容与论文链接)",
@@ -277,6 +279,8 @@ export const ui = {
     "contact.bilibili.value": "AI+X Seminar",
     "contact.xiaohongshu": "Xiaohongshu",
     "contact.xiaohongshu.value": "AI+X Seminar",
+    "contact.youtube": "YouTube",
+    "contact.youtube.value": "Scan to visit channel",
     "contact.form.name": "Name",
     "contact.form.email": "Email",
     "contact.form.message":
