@@ -22,7 +22,7 @@ const otherLang: Lang = lang === "zh" ? "en" : "zh";
 const otherLangLabel = lang === "zh" ? "EN" : "中";
 const otherLangPath = switchLangPath(Astro.url, otherLang);
 const homePath = withBase(prefix + "/");
-const sloganParts = lang === "zh" ? t("hero.slogan").split(/(?<=，)/u) : [t("hero.slogan")];
+const sloganParts = t("hero.slogan").split(lang === "zh" ? /(?<=，)/u : /(?<=\.)\s+/u);
 ---
 
 <header class="border-b border-[var(--color-rule)] sticky top-0 bg-[var(--color-paper)] z-50">
@@ -41,7 +41,7 @@ const sloganParts = lang === "zh" ? t("hero.slogan").split(/(?<=，)/u) : [t("he
         />
       </a>
 
-      <p class="brand-slogan">{sloganParts.map((part) => <span>{part}</span>)}</p>
+      <p class:list={["brand-slogan", { "brand-slogan-en": lang === "en" }]}>{sloganParts.map((part, i) => <><span>{part}</span>{lang === "en" && i < sloganParts.length - 1 && " "}</>)}</p>
 
       <div class="header-controls">
         <!-- Desktop Nav -->
@@ -140,6 +140,15 @@ const sloganParts = lang === "zh" ? t("hero.slogan").split(/(?<=，)/u) : [t("he
 
   .brand-slogan span {
     display: inline-block;
+  }
+
+  .brand-slogan-en {
+    line-height: 1.55;
+    text-wrap: initial;
+  }
+
+  .brand-slogan-en span {
+    display: block;
   }
 
   .header-controls {

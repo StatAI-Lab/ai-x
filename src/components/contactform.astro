@@ -22,8 +22,8 @@ const formEnabled = Boolean(accessKey && accessKey !== "YOUR_ACCESS_KEY_HERE");
   {!formEnabled && (
     <p id="form-unavailable" class="mb-5 text-sm leading-relaxed text-[var(--color-slate)]">
       {lang === "zh"
-        ? "线上表单暂未开放。讲者报名与其他咨询，请通过微信公众号「AI+X Seminar」联系我们。"
-        : "Online submissions are not available yet. For speaker applications and other enquiries, please contact us through our WeChat official account, AI+X Seminar."}
+        ? `线上表单暂未开放。讲者报名与其他咨询，请通过微信公众号「${t("contact.wechat.value")}」联系我们。`
+        : `Online submissions are not available yet. For speaker applications and other enquiries, please contact us through our WeChat official account, ${t("contact.wechat.value")}.`}
     </p>
   )}
 

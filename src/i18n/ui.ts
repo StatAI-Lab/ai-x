@@ -84,7 +84,7 @@ export const ui = {
       "哔哩哔哩 + 微信公众号 + 小红书",
     "about.logistics.archive": "归档",
     "about.logistics.archive.value":
-      "讲座内容通过哔哩哔哩、微信公众号与小红书账号 AI+X Seminar 发布",
+      "活动通知与报告内容见微信公众号「人工智能交叉研究」，以及哔哩哔哩、小红书账号 AI+X Seminar",
     "about.organizers.title": "组织者",
     "about.organizers.desc":
       "AI+X 由来自不同高校和研究机构的研究者共同组织。",
@@ -94,7 +94,7 @@ export const ui = {
     "info.desc": "目前活动以 Seminar 为主，以下为观众与讲者的参与须知。",
     "info.audience.title": "观众须知",
     "info.audience.f1": "讲座日期、时间与参与方式以每场活动通知为准（北京时间）",
-    "info.audience.f2": "关注微信公众号【AI+X Seminar】获取具体活动通知，也可通过哔哩哔哩与小红书关注内容更新",
+    "info.audience.f2": "关注微信公众号【人工智能交叉研究】获取具体活动通知，也可通过哔哩哔哩与小红书关注内容更新",
     "info.audience.f3": "报告设有提问与交流时间，欢迎围绕研究问题参与讨论",
     "info.audience.f4": "讲座结束后回放将通过哔哩哔哩发布",
     "info.audience.f5": "论文/讲义链接见公众号或对应平台发布内容",
@@ -131,7 +131,7 @@ export const ui = {
       "欢迎有意分享工作的研究者自荐，也欢迎提出合作设想、活动建议与反馈。无论你致力于 AI 基础理论、探索 AI 驱动的科学研究，还是推动技术落地，都欢迎与我们交流。",
     "contact.email": "邮箱",
     "contact.wechat": "微信公众号",
-    "contact.wechat.value": "AI+X Seminar",
+    "contact.wechat.value": "人工智能交叉研究",
     "contact.bilibili": "哔哩哔哩",
     "contact.bilibili.value": "AI+X Seminar",
     "contact.xiaohongshu": "小红书",
@@ -163,7 +163,7 @@ export const ui = {
     "nav.signup": "Apply as Speaker",
 
     "hero.title": "AI+X Seminar",
-    "hero.slogan": "AI is the starting point. X is the unknown we explore together.",
+    "hero.slogan": "AI is our starting point. Together, we explore X.",
     "hero.subtitle":
       "AI+X is an academic forum for researchers, early-career scholars, students, and practitioners worldwide. Through research seminars and open discussion, we explore the intersections of AI and other disciplines, share new work and questions, and encourage exchange and collaboration.",
     "hero.time": "See each event announcement for the date and time (Beijing Time, UTC+8)",
@@ -172,7 +172,7 @@ export const ui = {
 
     "features.title": "Our Discussions",
     "features.subtitle":
-      "AI is our starting point; X is what we explore together.",
+      "AI is our starting point. Together, we explore X.",
     "features.f1.title": "Seminars and Open Discussion",
     "features.f1.desc":
       "Our current focus is research seminars, with time for questions and conversation after each presentation.",
@@ -203,7 +203,7 @@ export const ui = {
     "about.desc":
       "A forum connecting AI with research across disciplines.",
     "about.intro.h":
-      "AI is our starting point; X is what we explore together.",
+      "AI is our starting point. Together, we explore X.",
     "about.intro.p":
       "AI+X brings together researchers, early-career scholars, students, and practitioners worldwide to explore the intersections of AI and other disciplines. We connect theoretical inquiry, scientific research, and applications through new work and open questions, creating opportunities for people at different career stages and from different fields to meet and collaborate. Our current focus is research seminars and open discussion. We plan to expand into thematic discussions, early-career researcher exchanges, and conversations across disciplines.",
     "about.logistics.title": "Seminar Information",
@@ -217,7 +217,7 @@ export const ui = {
       "Bilibili + WeChat + Xiaohongshu",
     "about.logistics.archive": "Archive",
     "about.logistics.archive.value":
-      "Talk content is published through AI+X Seminar on Bilibili, WeChat, and Xiaohongshu",
+      "Find event announcements and talk content on WeChat at 人工智能交叉研究, and on Bilibili and Xiaohongshu at AI+X Seminar",
     "about.organizers.title": "Organizers",
     "about.organizers.desc":
       "AI+X is organized by researchers from universities and research institutes.",
@@ -228,7 +228,7 @@ export const ui = {
     "info.audience.f1":
       "See each event announcement for the date, time, and participation details (Beijing Time, UTC+8)",
     "info.audience.f2":
-      "Follow the WeChat official account AI+X Seminar for event announcements, and Bilibili and Xiaohongshu for content updates",
+      "Follow the WeChat official account 人工智能交叉研究 for event announcements, and Bilibili and Xiaohongshu for content updates",
     "info.audience.f3":
       "Each presentation includes time for questions and exchange. Contributions to the research discussion are welcome",
     "info.audience.f4":
@@ -271,8 +271,8 @@ export const ui = {
     "contact.intro.p":
       "We welcome researchers interested in sharing their work, ideas for collaboration, and suggestions for future activities. Whether you study AI foundations, explore AI-driven science, or work on practical applications, we would like to hear from you.",
     "contact.email": "Email",
-    "contact.wechat": "WeChat Channel",
-    "contact.wechat.value": "AI+X Seminar",
+    "contact.wechat": "WeChat",
+    "contact.wechat.value": "人工智能交叉研究",
     "contact.bilibili": "Bilibili",
     "contact.bilibili.value": "AI+X Seminar",
     "contact.xiaohongshu": "Xiaohongshu",

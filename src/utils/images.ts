@@ -1,5 +1,4 @@
 import bilibiliQr from "@/assets/qr/bilibili.png";
-import wechatQr from "@/assets/qr/wechat.png";
 import xiaohongshuQr from "@/assets/qr/xiaohongshu.png";
 import bangLiuAvatar from "@/assets/organizers/bang-liu.jpg";
 import chengchunShiAvatar from "@/assets/organizers/chengchun-shi.jpg";
@@ -11,7 +10,6 @@ import type { ImageMetadata } from "astro";
 export const siteImages = {
   qr: {
     bilibili: bilibiliQr,
-    wechat: wechatQr,
     xiaohongshu: xiaohongshuQr,
   },
 } as const;

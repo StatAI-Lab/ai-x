@@ -1,5 +1,5 @@
 ---
-import { withBase, type Lang } from "@/i18n/utils";
+import { useTranslations, withBase, type Lang } from "@/i18n/utils";
 import type { TalkEntry } from "@/utils/talks";
 
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { lang = "zh", talk } = Astro.props;
+const t = useTranslations(lang);
 const zh = lang === "zh";
 const prefix = zh ? "" : "/en";
 const date = talk?.data.date ?? new Date("2026-11-12T20:00:00+08:00");
@@ -49,7 +50,7 @@ const abstract = talk?.data.abstract ?? (!talk
       <p class="talk-announcement">{zh ? "讲者与报告题目将陆续公布" : "Speaker and talk title to be announced"}</p>
     )}
     {abstract && <p class="talk-abstract">{abstract}</p>}
-    {!talk && <p class="talk-note">{zh ? "关注微信公众号【AI+X Seminar】，获取完整报告信息与参与方式。" : "Follow AI+X Seminar on WeChat for full talk details and participation information."}</p>}
+    {!talk && <p class="talk-note">{zh ? `关注微信公众号【${t("contact.wechat.value")}】，获取完整报告信息与参与方式。` : `Follow ${t("contact.wechat.value")} on WeChat for full talk details and participation information.`}</p>}
     <div class="talk-links">
       {talk && <a href={withBase(`${prefix}/talks/${talk.slug}`)}>{zh ? "报告详情" : "Talk details"}<span aria-hidden="true"> →</span></a>}
       {talk?.data.talkInfoUrl && <a href={talk.data.talkInfoUrl} target="_blank" rel="noopener noreferrer">{zh ? "公众号介绍 ↗" : "Announcement ↗"}</a>}
