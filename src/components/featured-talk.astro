@@ -1,6 +1,6 @@
 ---
 import { useTranslations, withBase, type Lang } from "@/i18n/utils";
-import type { TalkEntry } from "@/utils/talks";
+import { localizeTalk, type TalkEntry } from "@/utils/talks";
 
 interface Props {
   lang?: Lang;
@@ -11,6 +11,8 @@ const { lang = "zh", talk } = Astro.props;
 const t = useTranslations(lang);
 const zh = lang === "zh";
 const prefix = zh ? "" : "/en";
+const data = talk ? localizeTalk(talk, lang) : undefined;
+const detailUrl = talk ? withBase(`${prefix}/talks/${talk.slug}`) : undefined;
 const date = talk?.data.date ?? new Date("2026-11-12T20:00:00+08:00");
 const format = (options: Intl.DateTimeFormatOptions) =>
   new Intl.DateTimeFormat(zh ? "zh-CN" : "en-US", {
@@ -22,8 +24,8 @@ const day = new Intl.DateTimeFormat("en-US", { day: "2-digit", timeZone: "Asia/S
 const year = format({ year: "numeric" });
 const weekday = format({ weekday: "long" });
 const time = format({ hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
-const title = talk?.data.title ?? (zh ? "首场 Seminar" : "Our First Seminar");
-const abstract = talk?.data.abstract ?? (!talk
+const title = data?.title ?? (zh ? "首场 Seminar" : "Our First Seminar");
+const abstract = data?.summary ?? data?.abstract ?? (!talk
   ? zh
     ? "从自动化数据分析，到预测与生成建模，再到统计方法的研发，首场报告将连接 AI 的理论问题与研究实践，探讨基础模型为统计研究带来的新可能。"
     : "From automated data analysis and predictive and generative modeling to the development of statistical methods, the first talk connects theoretical questions in AI with research practice and explores new possibilities for foundation models in statistics."
@@ -45,19 +47,20 @@ const abstract = talk?.data.abstract ?? (!talk
     </div>
     <h3 class="talk-title">{title}</h3>
     {talk ? (
-      <p class="talk-speaker"><strong>{talk.data.speaker}</strong><span>{talk.data.affiliation}</span></p>
+      <p class="talk-speaker"><strong>{data?.speaker}</strong><span>{data?.affiliation}</span></p>
     ) : (
       <p class="talk-announcement">{zh ? "讲者与报告题目将陆续公布" : "Speaker and talk title to be announced"}</p>
     )}
+    {data?.meetingId && <p class="talk-meeting"><span>{zh ? "腾讯会议号" : "Tencent Meeting ID"}</span><strong>{data.meetingId}</strong></p>}
     {abstract && <p class="talk-abstract">{abstract}</p>}
     {!talk && <p class="talk-note">{zh ? `关注微信公众号【${t("contact.wechat.value")}】，获取完整报告信息与参与方式。` : `Follow ${t("contact.wechat.value")} on WeChat for full talk details and participation information.`}</p>}
     <div class="talk-links">
-      {talk && <a href={withBase(`${prefix}/talks/${talk.slug}`)}>{zh ? "报告详情" : "Talk details"}<span aria-hidden="true"> →</span></a>}
+      {talk && <a href={detailUrl}>{zh ? "报告详情" : "Talk details"}<span aria-hidden="true"> →</span></a>}
       {talk?.data.talkInfoUrl && <a href={talk.data.talkInfoUrl} target="_blank" rel="noopener noreferrer">{zh ? "公众号介绍 ↗" : "Announcement ↗"}</a>}
       {talk?.data.paperUrl && <a href={talk.data.paperUrl} target="_blank" rel="noopener noreferrer">{zh ? "论文 ↗" : "Paper ↗"}</a>}
       {talk?.data.slidesUrl && <a href={talk.data.slidesUrl} target="_blank" rel="noopener noreferrer">{zh ? "讲义 ↗" : "Slides ↗"}</a>}
       {talk?.data.videoUrl && <a href={talk.data.videoUrl} target="_blank" rel="noopener noreferrer">{zh ? "回放 ↗" : "Recording ↗"}</a>}
-      <a href={withBase(`${prefix}/contact#audience`)}>{zh ? "如何参与" : "How to participate"}<span aria-hidden="true"> →</span></a>
+      <a href={talk && (data?.meetingId || data?.groupQr) ? `${detailUrl}#participation` : withBase(`${prefix}/contact#audience`)}>{zh ? "如何参与" : "How to participate"}<span aria-hidden="true"> →</span></a>
     </div>
   </div>
 </article>
@@ -91,6 +94,8 @@ const abstract = talk?.data.abstract ?? (!talk
   .talk-title { margin-top: 0.75rem; font-size: clamp(1.5rem, 2.4vw, 1.875rem); line-height: 1.4; overflow-wrap: anywhere; }
   .talk-speaker { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin-top: 0.75rem; font-size: 1rem; color: var(--color-slate); }
   .talk-speaker strong { color: var(--color-accent); }
+  .talk-meeting { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.75rem; margin-top: 1rem; font-size: 0.9375rem; color: var(--color-accent); }
+  .talk-meeting strong { font-family: var(--font-mono); font-size: 1.0625rem; letter-spacing: 0.03em; }
   .talk-announcement { margin-top: 0.5rem; font-size: 0.875rem; color: var(--color-muted); }
   .talk-abstract { margin-top: 1rem; font-size: 1rem; line-height: 1.85; color: var(--color-slate); }
   .talk-note { margin-top: 0.75rem; font-size: 0.875rem; color: var(--color-muted); }

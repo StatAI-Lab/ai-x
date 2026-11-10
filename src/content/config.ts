@@ -1,11 +1,9 @@
-// AI-x Seminar 内容集合定义
+// AI+X Seminar 内容集合定义
 //
 // talks       — 每场讲座一篇 markdown,放在 src/content/talks/
 // organizers  — 每位组织者一篇 markdown,放在 src/content/organizers/
 //
-// 注意:讲者姓名、机构、论文标题在中英文页面都直接展示同一份字符串
-// (按 FAI-Seminar 的实际做法:讲者姓名用中文,论文标题保持英文原文)。
-// 如果将来要做完全本地化,可以在每个字段后加 _en 后缀字段。
+// 讲座可提供 En 后缀的英文内容；缺省时回退到对应中文字段。
 
 import { z, defineCollection } from "astro:content";
 
@@ -14,9 +12,12 @@ const talks = defineCollection({
     draft: z.boolean().default(false),
 
     // 讲座基础信息
-    title: z.string(), // 讲座标题(通常是论文标题或中文化标题)
-    speaker: z.string(), // 讲者姓名(优先中文)
-    affiliation: z.string(), // 所属机构,可包含中英文,如 "上海财经大学 (SUFE)"
+    title: z.string(), // 中文讲座标题
+    titleEn: z.string().optional(),
+    speaker: z.string(), // 中文讲者姓名
+    speakerEn: z.string().optional(),
+    affiliation: z.string(), // 中文所属机构
+    affiliationEn: z.string().optional(),
 
     // 时间
     date: z
@@ -24,8 +25,18 @@ const talks = defineCollection({
       .transform((s) => new Date(s)), // ISO 日期 / 日期时间
     semester: z.string(), // 学期标记,如 "2026 R01"
 
-    // 摘要 / 概要(可选,详情页用)
+    // 首页简述、完整摘要与讲者简介（可选）
+    summary: z.string().optional(),
+    summaryEn: z.string().optional(),
     abstract: z.string().optional(),
+    abstractEn: z.string().optional(),
+    bio: z.string().optional(),
+    bioEn: z.string().optional(),
+
+    // 参会信息与 public 下的活动图片路径（可选）
+    meetingId: z.string().optional(),
+    poster: z.string().optional(),
+    groupQr: z.string().optional(),
 
     // 链接(可选)
     paperUrl: z.string().url().optional(),

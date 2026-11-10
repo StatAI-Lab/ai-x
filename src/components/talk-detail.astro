@@ -1,0 +1,161 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import { withBase, type Lang } from "@/i18n/utils";
+import { localizeTalk, type TalkEntry } from "@/utils/talks";
+
+interface Props {
+  entry: TalkEntry;
+  lang?: Lang;
+}
+
+const { entry, lang = "zh" } = Astro.props;
+const zh = lang === "zh";
+const data = localizeTalk(entry, lang);
+const prefix = zh ? "" : "/en";
+const extraContent = (await Astro.slots.render("default"))?.trim();
+const dateFormatter = new Intl.DateTimeFormat(zh ? "zh-CN" : "en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  weekday: "long",
+  hour: "2-digit",
+  minute: "2-digit",
+  hourCycle: "h23",
+  timeZone: "Asia/Shanghai",
+});
+const paragraphs = (text?: string) => text?.split(/\n\s*\n/).filter((paragraph) => paragraph.trim()) ?? [];
+const resources = [
+  { url: data.talkInfoUrl, label: zh ? "公众号介绍" : "Announcement" },
+  { url: data.paperUrl, label: zh ? "论文" : "Paper" },
+  { url: data.slidesUrl, label: zh ? "讲义" : "Slides" },
+  { url: data.videoUrl, label: zh ? "报告回放" : "Recording" },
+].filter((resource) => resource.url);
+---
+
+<Layout title={data.title} lang={lang}>
+  <Container>
+    <article class="talk-detail">
+      <header class="detail-header">
+        <p class="detail-kicker">AI+X Seminar <span aria-hidden="true">·</span> {zh ? "专题学术报告" : "Research Talk"}</p>
+        <h1>{data.title}</h1>
+        {zh && data.titleEn && <p class="detail-title-en" lang="en">{data.titleEn}</p>}
+        <dl class="detail-facts">
+          <div>
+            <dt>{zh ? "主讲嘉宾" : "Speaker"}</dt>
+            <dd class="detail-speaker">{data.speaker}</dd>
+          </div>
+          <div>
+            <dt>{zh ? "所属机构" : "Affiliation"}</dt>
+            <dd>{data.affiliation}</dd>
+          </div>
+          <div class="detail-time">
+            <dt>{zh ? "报告时间" : "Date and time"}</dt>
+            <dd>
+              <time datetime={data.date.toISOString()}>{dateFormatter.format(data.date)}</time>
+              <span class="detail-timezone">{zh ? "北京时间（UTC+8）" : "Beijing Time (UTC+8)"}</span>
+            </dd>
+          </div>
+        </dl>
+        {resources.length > 0 && (
+          <nav class="detail-resources" aria-label={zh ? "报告资料" : "Talk resources"}>
+            {resources.map(({ url, label }) => <a href={url} target="_blank" rel="noopener noreferrer">{label} <span aria-hidden="true">↗</span></a>)}
+          </nav>
+        )}
+      </header>
+
+      {data.abstract && (
+        <section class="detail-section" aria-labelledby="abstract-title">
+          <h2 id="abstract-title">{zh ? "报告摘要" : "Abstract"}</h2>
+          <div class="detail-prose">{paragraphs(data.abstract).map((paragraph) => <p>{paragraph}</p>)}</div>
+        </section>
+      )}
+
+      {data.bio && (
+        <section class="detail-section" aria-labelledby="speaker-bio-title">
+          <h2 id="speaker-bio-title">{zh ? "个人简介" : "About the speaker"}</h2>
+          <div class="detail-prose">{paragraphs(data.bio).map((paragraph) => <p>{paragraph}</p>)}</div>
+        </section>
+      )}
+
+      {(data.meetingId || data.groupQr) && (
+        <section class="detail-section participation" id="participation" aria-labelledby="participation-title">
+          <h2 id="participation-title">{zh ? "参与方式" : "How to join"}</h2>
+          <div class:list={["participation-body", { "has-qr": Boolean(data.groupQr) }]}>
+            <div>
+              {data.meetingId && (
+                <dl class="meeting-details">
+                  <dt>{zh ? "腾讯会议号" : "Tencent Meeting ID"}</dt>
+                  <dd>{data.meetingId}</dd>
+                </dl>
+              )}
+              {data.groupQr && <p class="participation-note">{zh ? "扫码加入直播群，获取具体直播信息。" : "Scan the QR code to join the livestream group for access details."}</p>}
+            </div>
+            {data.groupQr && (
+              <figure class="group-qr">
+                <img src={withBase(data.groupQr)} alt={zh ? "讲座直播群二维码" : "QR code for the lecture livestream group"} loading="lazy" decoding="async" />
+                <figcaption>{zh ? "讲座直播群" : "Livestream group"}</figcaption>
+              </figure>
+            )}
+          </div>
+        </section>
+      )}
+
+      {data.poster && (
+        <section class="detail-section" aria-labelledby="poster-title">
+          <h2 id="poster-title">{zh ? "讲座海报" : "Seminar poster"}</h2>
+          <a class="poster-link" href={withBase(data.poster)} target="_blank" rel="noopener noreferrer" aria-label={zh ? "查看讲座海报原图" : "Open the full-size seminar poster"}>
+            <img src={withBase(data.poster)} alt={zh ? data.speaker + "：" + data.title + "讲座海报" : "Seminar poster: " + data.title + " — " + data.speaker} loading="lazy" decoding="async" />
+          </a>
+          {!zh && <p class="poster-caption">Original poster in Chinese.</p>}
+        </section>
+      )}
+
+      {extraContent && <div class="detail-section prose prose-lg max-w-none" set:html={extraContent} />}
+      <div class="detail-back"><a href={withBase(prefix + "/talks")}><span aria-hidden="true">← </span>{zh ? "返回讲座列表" : "Back to all talks"}</a></div>
+    </article>
+  </Container>
+</Layout>
+
+<style>
+  .talk-detail { max-width: 56rem; min-width: 0; margin: 3.5rem auto 4rem; }
+  .detail-header { padding-bottom: 2rem; border-bottom: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent); }
+  .detail-kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 0.65rem; color: var(--color-accent); font-size: 0.875rem; font-weight: 600; }
+  h1 { margin-top: 1rem; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.35; text-wrap: balance; overflow-wrap: anywhere; }
+  .detail-title-en { margin-top: 0.75rem; color: var(--color-muted); font-family: var(--font-serif); font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.65; }
+  .detail-facts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 1.25rem 2rem; margin-top: 2rem; }
+  .detail-facts dt { margin-bottom: 0.3rem; color: var(--color-muted); font-size: 0.8125rem; }
+  .detail-facts dd { color: var(--color-slate); font-size: 1rem; line-height: 1.7; overflow-wrap: anywhere; }
+  .detail-facts .detail-speaker { color: var(--color-accent); font-size: 1.25rem; font-weight: 600; }
+  .detail-time { grid-column: 1 / -1; }
+  .detail-timezone { display: block; color: var(--color-muted); font-size: 0.875rem; }
+  .detail-resources { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; margin-top: 1.5rem; font-size: 0.9375rem; font-weight: 600; }
+  .detail-section { margin-top: 2.75rem; }
+  .detail-section h2 { margin-bottom: 1.25rem; font-size: clamp(1.5rem, 2.5vw, 1.875rem); line-height: 1.4; }
+  .detail-prose { color: var(--color-slate); font-size: 1.0625rem; line-height: 1.9; overflow-wrap: anywhere; }
+  .detail-prose p + p { margin-top: 1.1rem; }
+  .participation { scroll-margin-top: 10rem; padding: 1.75rem; background: color-mix(in srgb, var(--color-accent) 5%, var(--color-paper)); border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent); border-radius: 0.3rem; }
+  .participation-body { min-width: 0; }
+  .participation-body.has-qr { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; align-items: center; gap: 2rem; }
+  .meeting-details dt { color: var(--color-muted); font-size: 0.9375rem; }
+  .meeting-details dd { margin-top: 0.45rem; color: var(--color-accent); font-family: var(--font-mono); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; overflow-wrap: anywhere; }
+  .participation-note { margin-top: 1rem; color: var(--color-slate); line-height: 1.8; }
+  .group-qr { width: 100%; max-width: 15rem; margin: 0; }
+  .group-qr img { display: block; width: 100%; height: auto; background: white; }
+  .group-qr figcaption { margin-top: 0.6rem; text-align: center; font-size: 0.8125rem; color: var(--color-muted); }
+  .poster-link { display: block; }
+  .poster-link img { display: block; width: 100%; height: auto; border-radius: 0.2rem; }
+  .poster-caption { margin-top: 0.75rem; color: var(--color-muted); font-size: 0.875rem; }
+  .detail-back { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid color-mix(in srgb, var(--color-rule) 65%, transparent); font-size: 0.9375rem; }
+  a:hover { text-decoration: underline; text-underline-offset: 0.25em; }
+  a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 5px; }
+  @media (max-width: 639px) {
+    .talk-detail { margin-top: 2rem; }
+    .detail-facts { grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
+    .detail-time { grid-column: auto; }
+    .detail-section { margin-top: 2.25rem; }
+    .participation { padding: 1.25rem; }
+    .participation-body.has-qr { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+    .group-qr { margin-inline: auto; }
+  }
+</style>

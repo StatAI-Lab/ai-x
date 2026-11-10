@@ -1,6 +1,6 @@
 ---
 import { withBase, type Lang } from "@/i18n/utils";
-import type { TalkEntry } from "@/utils/talks";
+import { localizeTalk, type TalkEntry } from "@/utils/talks";
 
 interface Props {
   lang?: Lang;
@@ -48,6 +48,7 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : "en-US",
         </div>
         <ul class="archive-list" role="list">
           {entries.map((entry) => {
+            const data = localizeTalk(entry, lang);
             const resources = [
               { url: entry.data.paperUrl, label: lang === "zh" ? "论文" : "Paper" },
               { url: entry.data.videoUrl, label: lang === "zh" ? "录像" : "Video" },
@@ -60,11 +61,11 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : "en-US",
                   {dateFormatter.format(entry.data.date)}
                 </time>
                 <div class="archive-speaker">
-                  <p class="speaker-name">{entry.data.speaker}</p>
-                  <p class="speaker-affiliation">{entry.data.affiliation}</p>
+                  <p class="speaker-name">{data.speaker}</p>
+                  <p class="speaker-affiliation">{data.affiliation}</p>
                 </div>
                 <h4 class="archive-title">
-                  <a href={withBase(`${prefix}/talks/${entry.slug}`)}>{entry.data.title}</a>
+                  <a href={withBase(`${prefix}/talks/${entry.slug}`)}>{data.title}</a>
                 </h4>
                 {resources.length > 0 && (
                   <div class="archive-resources">
