@@ -24,6 +24,7 @@ abstractEn: |-
 bio: "黄坚教授，现任香港理工大学数据科学及人工智能学系、应用数学系数据科学与分析讲座教授。其研究兴趣涵盖统计学、机器学习与生物信息学，当前主要致力于深度学习、生成学习、表征学习以及大模型驱动的统计方法研究。黄坚教授是美国统计学会（ASA）和数理统计学（IMS）会士，2015—2019年度科睿唯安高被引学者，并入选斯坦福大学发布的2019—2026年度全球前2%顶尖科学家榜单（职业生涯榜）。现任《美国统计学会会刊》（JASA）和《英国皇家统计学会会刊B辑》（JRSS-B）编委。"
 bioEn: "Professor Jian Huang is Chair Professor of Data Science and Analytics in the Department of Data Science and Artificial Intelligence and the Department of Applied Mathematics at The Hong Kong Polytechnic University. His research interests span statistics, machine learning, and bioinformatics, with a current focus on deep learning, generative learning, representation learning, and statistical methods driven by large models. He is a Fellow of the American Statistical Association (ASA) and the Institute of Mathematical Statistics (IMS), was named a Clarivate Highly Cited Researcher for 2015–2019, and was included in the career-long impact lists of the world’s top 2% of scientists published by Stanford University for 2019–2026. He currently serves on the editorial boards of the Journal of the American Statistical Association (JASA) and the Journal of the Royal Statistical Society: Series B (JRSS-B)."
 meetingId: "453-437-854"
+speakerImage: "/talks/2026-11-12-jian-huang/speaker.png"
 poster: "/talks/2026-11-12-jian-huang/poster.png"
 groupQr: "/talks/2026-11-12-jian-huang/group-qr.jpg"
 tags: ["Statistics", "Foundation Models", "Data Analysis"]

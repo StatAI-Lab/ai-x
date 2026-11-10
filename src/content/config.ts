@@ -35,6 +35,7 @@ const talks = defineCollection({
 
     // 参会信息与 public 下的活动图片路径（可选）
     meetingId: z.string().optional(),
+    speakerImage: z.string().optional(),
     poster: z.string().optional(),
     groupQr: z.string().optional(),
 
