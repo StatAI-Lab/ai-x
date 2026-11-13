@@ -23,3 +23,15 @@ export function localizeTalk(talk: TalkEntry, lang: "zh" | "en") {
     bio: en ? data.bioEn ?? data.bio : data.bio,
   };
 }
+
+/** Named replay links, with support for older talks using videoUrl. */
+export function getTalkRecordings(data: TalkEntry["data"]) {
+  const recordings = data.recordings.map(({ platform, url }) => ({
+    label: platform === "bilibili" ? "Bilibili" : "YouTube",
+    url,
+  }));
+  if (data.videoUrl && !recordings.some(({ url }) => url === data.videoUrl)) {
+    recordings.push({ label: "Video", url: data.videoUrl });
+  }
+  return recordings;
+}

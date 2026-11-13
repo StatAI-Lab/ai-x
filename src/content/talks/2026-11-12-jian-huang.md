@@ -7,8 +7,16 @@ affiliation: "香港理工大学"
 affiliationEn: "The Hong Kong Polytechnic University"
 date: "2026-11-12T20:00:00+08:00"
 semester: "2026"
-summary: "基础模型正在重塑统计学研究、实践与教育。黄坚教授将围绕自主数据分析、预测与生成建模，以及统计方法研发的加速展开报告，并分析表格基础模型的统计风险。"
-summaryEn: "Foundation models are reshaping statistical research, practice, and education. Professor Jian Huang will discuss autonomous data analysis, advances in predictive and generative modeling, and accelerated development of statistical methods, concluding with an analysis of the statistical risk of tabular foundation models."
+episode: 1
+status: "completed"
+recordings:
+  - platform: "bilibili"
+    url: "https://www.bilibili.com/video/BV1R9WY6mEvz/"
+  - platform: "youtube"
+    url: "https://youtu.be/BI41zMwstaI"
+wechatReplay: true
+summary: "基础模型正在重塑统计学研究、实践与教育。黄坚教授围绕自主数据分析、预测与生成建模，以及统计方法研发的加速展开报告，并分析表格基础模型的统计风险。"
+summaryEn: "Foundation models are reshaping statistical research, practice, and education. Professor Jian Huang discusses autonomous data analysis, advances in predictive and generative modeling, and accelerated development of statistical methods, concluding with an analysis of the statistical risk of tabular foundation models."
 abstract: |-
   基础模型正在重塑统计学研究、实践与教育。本报告将围绕三个方面的进展展开：自主数据分析、预测与生成建模的进步，以及统计方法研发的加速。
 

@@ -1,8 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
+import TalkRecordings from "@/components/talk-recordings.astro";
 import { withBase, type Lang } from "@/i18n/utils";
-import { localizeTalk, type TalkEntry } from "@/utils/talks";
+import { getTalkRecordings, localizeTalk, type TalkEntry } from "@/utils/talks";
 
 interface Props {
   entry: TalkEntry;
@@ -12,6 +13,10 @@ interface Props {
 const { entry, lang = "zh" } = Astro.props;
 const zh = lang === "zh";
 const data = localizeTalk(entry, lang);
+const completed = data.status === "completed";
+const recordings = getTalkRecordings(data);
+const hasRecordings = recordings.length > 0 || data.wechatReplay;
+const episodeLabel = data.episode ? (zh ? (data.episode === 1 ? "第一期" : `第${data.episode}期`) : `Episode ${data.episode}`) : undefined;
 const prefix = zh ? "" : "/en";
 const extraContent = (await Astro.slots.render("default"))?.trim();
 const dateFormatter = new Intl.DateTimeFormat(zh ? "zh-CN" : "en-US", {
@@ -29,7 +34,6 @@ const resources = [
   { url: data.talkInfoUrl, label: zh ? "公众号介绍" : "Announcement" },
   { url: data.paperUrl, label: zh ? "论文" : "Paper" },
   { url: data.slidesUrl, label: zh ? "讲义" : "Slides" },
-  { url: data.videoUrl, label: zh ? "报告回放" : "Recording" },
 ].filter((resource) => resource.url);
 ---
 
@@ -37,7 +41,11 @@ const resources = [
   <Container>
     <article class="talk-detail">
       <header class="detail-header">
-        <p class="detail-kicker">AI+X Seminar <span aria-hidden="true">·</span> {zh ? "专题学术报告" : "Research Talk"}</p>
+        <p class="detail-kicker">
+          <span>AI+X Seminar</span><span aria-hidden="true">·</span>
+          <span>{episodeLabel ?? (zh ? "专题学术报告" : "Research Talk")}</span>
+          {completed && <><span aria-hidden="true">·</span><span class="detail-status">{zh ? "已结束" : "Completed"}</span></>}
+        </p>
         <h1>{data.title}</h1>
         {zh && data.titleEn && <p class="detail-title-en" lang="en">{data.titleEn}</p>}
         <div class:list={["detail-profile", { "has-portrait": Boolean(data.speakerImage) }]}>
@@ -71,6 +79,14 @@ const resources = [
         )}
       </header>
 
+      {(completed || hasRecordings) && (
+        <section class="detail-section recordings-section" id="recordings" aria-labelledby="recordings-title">
+          {completed && <span id="participation" class="recordings-anchor" aria-hidden="true"></span>}
+          <h2 id="recordings-title">{hasRecordings ? (zh ? "讲座回放" : "Watch the replay") : (zh ? "报告回顾" : "Past seminar")}</h2>
+          {hasRecordings ? <TalkRecordings lang={lang} recordings={recordings} wechatReplay={data.wechatReplay} /> : <p class="detail-prose">{zh ? "本场讲座已结束。" : "This seminar has concluded."}</p>}
+        </section>
+      )}
+
       {data.abstract && (
         <section class="detail-section" aria-labelledby="abstract-title">
           <h2 id="abstract-title">{zh ? "报告摘要" : "Abstract"}</h2>
@@ -85,7 +101,7 @@ const resources = [
         </section>
       )}
 
-      {(data.meetingId || data.groupQr) && (
+      {!completed && (data.meetingId || data.groupQr) && (
         <section class="detail-section participation" id="participation" aria-labelledby="participation-title">
           <h2 id="participation-title">{zh ? "参与方式" : "How to join"}</h2>
           <div class:list={["participation-body", { "has-qr": Boolean(data.groupQr) }]}>
@@ -142,6 +158,9 @@ const resources = [
   .detail-timezone { display: block; color: var(--color-muted); font-size: 0.875rem; }
   .detail-resources { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; margin-top: 1.5rem; font-size: 0.9375rem; font-weight: 600; }
   .detail-section { margin-top: 2.75rem; }
+  .detail-status { color: var(--color-muted); }
+  .recordings-section { position: relative; scroll-margin-top: 10rem; padding: 1.5rem; background: color-mix(in srgb, var(--color-accent) 5%, var(--color-paper)); border-radius: 0.3rem; }
+  .recordings-anchor { display: block; position: absolute; top: 0; scroll-margin-top: 10rem; }
   .detail-section h2 { margin-bottom: 1.25rem; font-size: clamp(1.5rem, 2.5vw, 1.875rem); line-height: 1.4; }
   .detail-prose { color: var(--color-slate); font-size: 1.0625rem; line-height: 1.9; overflow-wrap: anywhere; }
   .detail-prose p + p { margin-top: 1.1rem; }

@@ -1,6 +1,7 @@
 ---
 import { useTranslations, withBase, type Lang } from "@/i18n/utils";
-import { localizeTalk, type TalkEntry } from "@/utils/talks";
+import TalkRecordings from "@/components/talk-recordings.astro";
+import { getTalkRecordings, localizeTalk, type TalkEntry } from "@/utils/talks";
 
 interface Props {
   lang?: Lang;
@@ -12,6 +13,9 @@ const t = useTranslations(lang);
 const zh = lang === "zh";
 const prefix = zh ? "" : "/en";
 const data = talk ? localizeTalk(talk, lang) : undefined;
+const completed = data?.status === "completed";
+const recordings = data ? getTalkRecordings(data) : [];
+const episodeLabel = data?.episode ? (zh ? `第${data.episode === 1 ? "一" : data.episode}期` : `Episode ${data.episode}`) : (zh ? "专题学术报告" : "Research Talk");
 const detailUrl = talk ? withBase(`${prefix}/talks/${talk.slug}`) : undefined;
 const date = talk?.data.date ?? new Date("2026-11-12T20:00:00+08:00");
 const format = (options: Intl.DateTimeFormatOptions) =>
@@ -39,7 +43,7 @@ const abstract = data?.summary ?? data?.abstract ?? (!talk
 
   <div class="talk-copy">
     <div class="talk-meta">
-      <span class="talk-kind">{talk ? (zh ? "专题学术报告" : "Research Talk") : (zh ? "首场报告 · 预告" : "First Talk · Preview")}</span>
+      <span class="talk-kind">{talk ? `${episodeLabel}${completed ? (zh ? " · 已结束" : " · Completed") : ""}` : (zh ? "首场报告 · 预告" : "First Talk · Preview")}</span>
       <span>{time} · {zh ? "北京时间" : "Beijing Time (UTC+8)"}</span>
     </div>
     <h3 class="talk-title">{title}</h3>
@@ -48,16 +52,18 @@ const abstract = data?.summary ?? data?.abstract ?? (!talk
     ) : (
       <p class="talk-announcement">{zh ? "讲者与报告题目将陆续公布" : "Speaker and talk title to be announced"}</p>
     )}
-    {data?.meetingId && <p class="talk-meeting"><span>{zh ? "腾讯会议号" : "Tencent Meeting ID"}</span><strong>{data.meetingId}</strong></p>}
+    {!completed && data?.meetingId && <p class="talk-meeting"><span>{zh ? "腾讯会议号" : "Tencent Meeting ID"}</span><strong>{data.meetingId}</strong></p>}
     {abstract && <p class="talk-abstract">{abstract}</p>}
     {!talk && <p class="talk-note">{zh ? `关注微信公众号【${t("contact.wechat.value")}】，获取完整报告信息与参与方式。` : `Follow ${t("contact.wechat.value")} on WeChat for full talk details and participation information.`}</p>}
+    {(recordings.length > 0 || data?.wechatReplay) && (
+      <div class="talk-replays"><TalkRecordings lang={lang} recordings={recordings} wechatReplay={data?.wechatReplay} /></div>
+    )}
     <div class="talk-links">
       {talk && <a href={detailUrl}>{zh ? "报告详情" : "Talk details"}<span aria-hidden="true"> →</span></a>}
       {talk?.data.talkInfoUrl && <a href={talk.data.talkInfoUrl} target="_blank" rel="noopener noreferrer">{zh ? "公众号介绍 ↗" : "Announcement ↗"}</a>}
       {talk?.data.paperUrl && <a href={talk.data.paperUrl} target="_blank" rel="noopener noreferrer">{zh ? "论文 ↗" : "Paper ↗"}</a>}
       {talk?.data.slidesUrl && <a href={talk.data.slidesUrl} target="_blank" rel="noopener noreferrer">{zh ? "讲义 ↗" : "Slides ↗"}</a>}
-      {talk?.data.videoUrl && <a href={talk.data.videoUrl} target="_blank" rel="noopener noreferrer">{zh ? "回放 ↗" : "Recording ↗"}</a>}
-      <a href={talk && (data?.meetingId || data?.groupQr) ? `${detailUrl}#participation` : withBase(`${prefix}/contact#audience`)}>{zh ? "如何参与" : "How to participate"}<span aria-hidden="true"> →</span></a>
+      {!completed && <a href={talk && (data?.meetingId || data?.groupQr) ? `${detailUrl}#participation` : withBase(`${prefix}/contact#audience`)}>{zh ? "如何参与" : "How to participate"}<span aria-hidden="true"> →</span></a>}
     </div>
   </div>
   {data?.speakerImage && (
@@ -100,6 +106,7 @@ const abstract = data?.summary ?? data?.abstract ?? (!talk
   .talk-announcement { margin-top: 0.5rem; font-size: 0.875rem; color: var(--color-muted); }
   .talk-abstract { margin-top: 1rem; font-size: 1rem; line-height: 1.85; color: var(--color-slate); }
   .talk-note { margin-top: 0.75rem; font-size: 0.875rem; color: var(--color-muted); }
+  .talk-replays { margin-top: 1.25rem; }
   .talk-links { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; margin-top: 1.25rem; font-size: 0.9375rem; font-weight: 600; }
   .talk-links a:hover { text-decoration: underline; text-underline-offset: 0.25em; }
   @media (min-width: 640px) and (max-width: 899px) {

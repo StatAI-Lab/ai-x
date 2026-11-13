@@ -1,6 +1,6 @@
 ---
 import { withBase, type Lang } from "@/i18n/utils";
-import { localizeTalk, type TalkEntry } from "@/utils/talks";
+import { getTalkRecordings, localizeTalk, type TalkEntry } from "@/utils/talks";
 
 interface Props {
   lang?: Lang;
@@ -51,7 +51,7 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : "en-US",
             const data = localizeTalk(entry, lang);
             const resources = [
               { url: entry.data.paperUrl, label: lang === "zh" ? "论文" : "Paper" },
-              { url: entry.data.videoUrl, label: lang === "zh" ? "录像" : "Video" },
+              ...getTalkRecordings(data).map(({ url, label }) => ({ url, label: label === "Video" ? (lang === "zh" ? "回放" : "Replay") : `${lang === "zh" && label === "Bilibili" ? "B站" : label}${lang === "zh" ? "回放" : " replay"}` })),
               { url: entry.data.slidesUrl, label: lang === "zh" ? "讲义" : "Slides" },
               { url: entry.data.talkInfoUrl, label: lang === "zh" ? "推文" : "Announcement" },
             ].filter((resource) => resource.url);
@@ -59,6 +59,7 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : "en-US",
               <li class="archive-row">
                 <time class="archive-date" datetime={entry.data.date.toISOString()}>
                   {dateFormatter.format(entry.data.date)}
+                  {data.status === "completed" && <span class="archive-status">{lang === "zh" ? "已结束" : "Completed"}</span>}
                 </time>
                 <div class="archive-speaker">
                   <p class="speaker-name">{data.speaker}</p>
@@ -67,11 +68,12 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : "en-US",
                 <h4 class="archive-title">
                   <a href={withBase(`${prefix}/talks/${entry.slug}`)}>{data.title}</a>
                 </h4>
-                {resources.length > 0 && (
+                {(resources.length > 0 || data.wechatReplay) && (
                   <div class="archive-resources">
                     {resources.map(({ url, label }) => (
                       <a href={url} target="_blank" rel="noopener noreferrer">{label} <span aria-hidden="true">↗</span></a>
                     ))}
+                    {data.wechatReplay && <a href={withBase(`${prefix}/talks/${entry.slug}#recordings`)}>{lang === "zh" ? "视频号回放" : "WeChat Channels replay"} <span aria-hidden="true">→</span></a>}
                   </div>
                 )}
               </li>
@@ -156,6 +158,8 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "zh" ? "zh-CN" : "en-US",
     font-size: 0.8125rem;
     line-height: 1.6;
   }
+
+  .archive-status { display: block; margin-top: 0.25rem; color: var(--color-accent); font-size: 0.75rem; }
 
   .archive-speaker,
   .archive-title,

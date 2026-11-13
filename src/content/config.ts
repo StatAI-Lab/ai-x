@@ -10,6 +10,8 @@ import { z, defineCollection } from "astro:content";
 const talks = defineCollection({
   schema: z.object({
     draft: z.boolean().default(false),
+    status: z.enum(["upcoming", "completed"]).default("upcoming"),
+    episode: z.number().int().positive().optional(),
 
     // 讲座基础信息
     title: z.string(), // 中文讲座标题
@@ -42,6 +44,11 @@ const talks = defineCollection({
     // 链接(可选)
     paperUrl: z.string().url().optional(),
     videoUrl: z.string().url().optional(),
+    recordings: z.array(z.object({
+      platform: z.enum(["bilibili", "youtube"]),
+      url: z.string().url(),
+    })).default([]),
+    wechatReplay: z.boolean().default(false),
     slidesUrl: z.string().url().optional(),
     talkInfoUrl: z.string().url().optional(), // 微信公众号详情推文链接
 

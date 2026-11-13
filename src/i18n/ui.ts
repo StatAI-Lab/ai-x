@@ -96,7 +96,7 @@ export const ui = {
     "info.audience.f1": "讲座日期、时间与参与方式以每场活动通知为准（北京时间）",
     "info.audience.f2": "关注微信公众号【人工智能交叉研究】获取具体活动通知，也可通过哔哩哔哩与小红书关注内容更新",
     "info.audience.f3": "报告设有提问与交流时间，欢迎围绕研究问题参与讨论",
-    "info.audience.f4": "讲座结束后回放将通过哔哩哔哩发布",
+    "info.audience.f4": "已发布的回放可在哔哩哔哩、YouTube 和微信视频号观看，入口见对应讲座页面",
     "info.audience.f5": "论文/讲义链接见公众号或对应平台发布内容",
     "info.audience.f6": "提倡尊重讲者、文明讨论",
     "info.audience.cta": "联系我们",
@@ -234,7 +234,7 @@ export const ui = {
     "info.audience.f3":
       "Each presentation includes time for questions and exchange. Contributions to the research discussion are welcome",
     "info.audience.f4":
-      "Recordings are published on Bilibili after each talk",
+      "Published recordings are available on Bilibili, YouTube, and WeChat Channels; see each talk page for access",
     "info.audience.f5":
       "Paper and slide links are shared through the relevant platform post",
     "info.audience.f6": "Please be respectful to the speaker and other viewers",
